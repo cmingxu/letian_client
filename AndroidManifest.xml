@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.letian" android:versionCode="1" android:versionName="1.0">
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:name=".Main" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".view.BaoshiNew" android:label="@string/app_name"></activity>
+
+		<activity android:name=".view.TestView" android:label="@string/app_name"></activity>
+
+		<activity android:name=".view.BaoshiList" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ChaxunView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ChaobiaoView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ShenpiView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.RenwuView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ZhibiaoView" android:label="@string/app_name"></activity>
+		<activity android:name=".Main" android:label="main">
+
+		</activity>
+		<activity android:name=".view.TousuList" android:label="@string/app_name"></activity>
+		<activity android:name=".view.WeixiuList" android:label="@string/app_name"></activity>
+
+		<activity android:name=".view.UnitChooser" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ShouLouNew" android:label="@string/app_name"></activity>
+		<activity android:name=".view.NoticeListView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.NoticeActivity" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Dialog"></activity>
+		<activity android:name=".view.ReceiverActivityMedimDialog"
+			android:label="@string/app_name" android:theme="@android:style/Theme.Dialog"></activity>
+
+		<activity android:name=".view.LougeDialog" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Dialog"></activity>
+		<activity android:name=".view.LoupanDialog" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Dialog"></activity>
+
+		<activity android:name=".view.LoucengDialog" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Dialog"></activity>
+		<activity android:name=".view.DanyuanDialog" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Dialog"></activity>
+		<activity android:name=".view.WeixiuxiangmuChooser"
+			android:label="@string/app_name" android:theme="@android:style/Theme.Dialog"></activity>
+
+		<activity android:name=".test.ListUnit" android:label="@string/app_name"></activity>
+		<activity android:name=".test.ListLouge" android:label="@string/app_name"></activity>
+		<activity android:name=".test.ListLoupan" android:label="@string/app_name"></activity>
+		<activity android:name=".test.ListZhuhu" android:label="@string/app_name"></activity>
+		<activity android:name=".test.ListKfWeixiuxiangmu"
+			android:label="@string/app_name"></activity>
+		<activity android:name=".view.ShowImageActivity"
+			android:label="@string/app_name"></activity>
+		<service android:name=".services.FetchNoticeService"></service>
+		<activity android:name=".view.ShouLouList" android:label="@string/app_name"></activity>
+		<activity android:name=".view.ShouLouEdit" android:label="@string/app_name"></activity>
+		<activity android:name=".view.KfWeixiujiluNew" android:label="@string/app_name"></activity>
+		<activity android:name=".view.NoticeView" android:label="@string/app_name"></activity>
+		<activity android:name=".view.BaoshiEdit" android:label="@string/app_name"></activity>
+		<activity android:name=".view.WeixiuJiedanList"
+			android:label="@string/app_name"></activity>
+		<activity android:name=".view.WeixiuJiedanNew" android:label="@string/app_name"></activity>
+
+
+		<receiver android:name=".receiver.StartService">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<category android:name="android.intent.category.HOME" />
+			</intent-filter>
+		</receiver>
+
+		<receiver android:name=".receiver.StartActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.start_activity" />
+			</intent-filter>
+		</receiver>
+
+		<activity android:name=".view.NoticeActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.Notice111" />
+			</intent-filter>
+		</activity>
+
+	</application>
+
+	<uses-sdk android:minSdkVersion="7" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.CAMERA"></uses-permission>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-feature android:name="android.hardware.camera" />
+	<uses-feature android:name="android.hardware.camera.autofocus" />
+</manifest> 
+

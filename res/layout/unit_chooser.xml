@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bg">
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@+id/choosed_result"
+		android:hint="请选择单元" android:textSize="20dip" android:gravity="center_horizontal"></TextView>
+
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/choose_loupan_text"
+		android:id="@+id/choose_loupan_button"></Button>
+
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/clear"
+		android:id="@+id/cancel_button" android:enabled="false"></Button>
+
+	<Button android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/done"
+		android:id="@+id/done_button" android:enabled="false"></Button>
+
+
+</LinearLayout>

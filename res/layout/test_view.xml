@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/baoshi_new" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:scrollbars="vertical">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:orientation="vertical">
+		<Button android:layout_width="wrap_content" android:id="@+id/drop_button"
+			android:layout_height="wrap_content" android:text="清空数据库表"></Button>
+
+		<Button android:layout_width="wrap_content" android:id="@+id/list_unit"
+			android:layout_height="wrap_content" android:text="单元列表"></Button>
+
+		<Button android:layout_width="wrap_content" android:id="@+id/list_louge"
+			android:layout_height="wrap_content" android:text="楼阁列表"></Button>
+
+		<Button android:layout_width="wrap_content" android:id="@+id/list_loupan"
+			android:layout_height="wrap_content" android:text="楼盘列表"></Button>
+		<Button android:layout_width="wrap_content" android:id="@+id/list_zhuhu"
+			android:layout_height="wrap_content" android:text="住户列表"></Button>
+		<Button android:layout_width="wrap_content" android:id="@+id/list_slxm"
+			android:layout_height="wrap_content" android:text="收楼项目列表"></Button>
+
+
+		<Button android:layout_width="wrap_content" android:id="@+id/set_admin_password"
+			android:layout_height="wrap_content" android:text="设置管理员密码"></Button>
+	</LinearLayout>
+</ScrollView>  
