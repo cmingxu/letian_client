@@ -18,7 +18,6 @@ public class ListKfWeixiuxiangmu extends Activity {
 
 		
         Cursor cursor = KfWeixiuxiangmu.getScrollDataCursor(0, 130,getApplicationContext()); 
-        Log.e("CAOAAAAAAAAAAAA",Integer.toString(cursor.getCount()));
         SimpleCursorAdapter adapter= new SimpleCursorAdapter(this,R.layout.baoshi_list_item,
         		cursor,new String[]  {"xiangmuleibie","xiangmumingcheng"},new int[]{R.id.favorite_body,R.id.favorite_category}); 
 

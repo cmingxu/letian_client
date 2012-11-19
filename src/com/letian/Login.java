@@ -65,7 +65,7 @@ public class Login extends Activity {
 		public void onClick(View arg0) {
 			Login.this.finish();
 		}
-		
+
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,10 +132,10 @@ public class Login extends Activity {
 			user.name = login.getText().toString().trim();
 			user.password = password.getText().toString().trim();
 
-	
+
 			user.remember_me = remember_me.isChecked() ? 1 : 0;
 
-	
+
 //			if (NetworkConnection.getInstance(
 //					Login.this.getApplicationContext()).NetworkNotAvailable()) {
 //				Log.e(Login.LOG_TAG, "network can not be reach");
@@ -163,7 +163,9 @@ public class Login extends Activity {
 				@Override
 				public void run() {
 					try {
+                        Log.d(Login.LOG_TAG, "before");
 						final VerifiedInfo vi = user.verify();
+                        Log.d(Login.LOG_TAG, "after");
 						Log.e(Login.LOG_TAG, vi.verifyMessage);
 
 						if (vi.verifyCode == VerifiedInfo.VERIFY_SUCCESS) {
@@ -175,7 +177,7 @@ public class Login extends Activity {
 							Login.this.startService(intent);
 
 							Intent i = new Intent(Login.this, Main.class);
-							
+
 							startActivity(i);
 							finish();
 						} else {
@@ -191,10 +193,11 @@ public class Login extends Activity {
 						}
 					} catch (Exception e) {
 
+                        Log.d(Login.LOG_TAG, e.getMessage());
 						handler.post(new Runnable() {
 							public void run() {
 								new AlertDialog.Builder(Login.this).setMessage(
-										"�������Ӵ���").setPositiveButton("Okay",
+										"网络好像不太给力！").setPositiveButton("Okay",
 										null).show();
 
 							}

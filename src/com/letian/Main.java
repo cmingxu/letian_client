@@ -45,34 +45,19 @@ public class Main extends Activity {
 
 	public static final int TONGBU = Menu.FIRST;
 	private static final String LOG_TAG = "Main_Activityaaa";
-	private Animation animLeft, animRight;
-	private Interpolator interpolator;
-	ImageView baoshi_view;
-	TextView baoshi_tv;
 
-	ImageView renwu_view;
-	TextView renwu_tv;
-	
-	ImageView chaobiao_view;
-	TextView chaobiao_tv;
-	
-	ImageView chaxun_view;
-	TextView chaxun_tv;
-	
-	ImageView zhibiao_view;
-	TextView zhibiao_tv;
-	
-	ImageView shenpi_view;
-	TextView shenpi_tv;
+
+	ImageView setting_view;
+
+
+
 	
 	ImageView shoulou_view;
-	TextView shoulou_tv;
+
 	
-	ImageView ceshi_view;
-	TextView ceshi_tv;
+
 	
 	ImageView logout_view;
-	TextView logout_tv;
 
 	private Context ctx;
 	private Handler handler = new Handler();
@@ -83,48 +68,17 @@ public class Main extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		animLeft = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
-		animRight = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
-		interpolator = new BounceInterpolator(Type.IN);
-		animLeft.setInterpolator(interpolator);
-		animRight.setInterpolator(interpolator);
+
+
+
 		this.setTitle(LocalAccessor.login_user_title());
-		baoshi_view = (ImageView) findViewById(R.id.baoshi_view);
-		baoshi_view.setAnimation(animLeft);
-		baoshi_view.setOnClickListener(new BaoshiListener());
-//
-		renwu_view = (ImageView) findViewById(R.id.renwu_view);
-		renwu_view.setAnimation(animLeft);
-		renwu_view.setOnClickListener(new RenwuListener());
-//		
-//		chaobiao_view = (ImageView) findViewById(R.id.chaobiao_view);
-//		chaobiao_view.setAnimation(animLeft);
-//		chaobiao_view.setOnClickListener(new ChaobiaoListener());
-		
-		
-		chaxun_view = (ImageView) findViewById(R.id.chaxun_view);
-		chaxun_view.setAnimation(animLeft);
-		chaxun_view.setOnClickListener(new ChaxunListener());
-		
-//		
-//		zhibiao_view = (ImageView) findViewById(R.id.zhibiao_view);
-//		zhibiao_view.setAnimation(animLeft);
-//		zhibiao_view.setOnClickListener(new ZhibiaoListener());
-//		
-//		shenpi_view = (ImageView) findViewById(R.id.shenpi_view);
-//		shenpi_view.setAnimation(animLeft);
-//		shenpi_view.setOnClickListener(new ShenpiListener());
-		
+
+
 		shoulou_view = (ImageView) findViewById(R.id.shoulou_view);
-		shoulou_view.setAnimation(animLeft);
 		shoulou_view.setOnClickListener(new ShoulouListener());
 		
-		ceshi_view = (ImageView) findViewById(R.id.test);
-		ceshi_view.setAnimation(animLeft);
-		ceshi_view.setOnClickListener(new WeixiuListener());
-		
+
 		logout_view = (ImageView) findViewById(R.id.logout);
-		logout_view.setAnimation(animLeft);
 		logout_view.setOnClickListener(new LogoutListener());
 		
 	
@@ -149,7 +103,7 @@ public class Main extends Activity {
 	}
 
 	private void tongbu() {
-		progressDialog = ProgressDialog.show(Main.this, "ͬ����...", null, true);
+		progressDialog = ProgressDialog.show(Main.this, this.getResources().getString(R.string.) , null, true);
 		new Thread() {
 			@Override
 			public void run() {
@@ -163,7 +117,7 @@ public class Main extends Activity {
 							@Override
 							public void run() {
 								 new AlertDialog.Builder(Main.this)
-		                         .setMessage("��������")
+		                         .setMessage()
 		                         .setPositiveButton("Okay", null)
 		                         .show(); 
 								
@@ -187,9 +141,7 @@ public class Main extends Activity {
 	}
 
 	public void get_data_from_server() {
-
-
-		KfWeixiuxiangmu.syn(Main.this.getApplicationContext());
+    	KfWeixiuxiangmu.syn(Main.this.getApplicationContext());
 		Danyuan.syn(Main.this.getApplicationContext());
 		Louge.syn(Main.this.getApplicationContext());
 		Loupan.syn(Main.this.getApplicationContext());
@@ -206,37 +158,8 @@ public class Main extends Activity {
 		}
 	}
 	
-	
-	private class RenwuListener implements View.OnClickListener {
 
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-//			intent.setClass(Main.this, NoticeActivity.class);
-			intent.setClass(Main.this, WeixiuJiedanList.class);
-			Main.this.startActivity(intent);
-		}
-	}
-	
-	private class ZhibiaoListener implements View.OnClickListener {
 
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-			intent.setClass(Main.this, ZhibiaoView.class);
-			Main.this.startActivity(intent);
-		}
-	}
-	
-	private class ShenpiListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-			intent.setClass(Main.this, FetchNoticeService.class);
-			Main.this.startService(intent);
-		}
-	}
 	
 	private class ShoulouListener implements View.OnClickListener {
 
@@ -247,27 +170,7 @@ public class Main extends Activity {
 			Main.this.startActivity(intent);
 		}
 	}
-	
-	private class ChaobiaoListener implements View.OnClickListener {
 
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-			intent.setClass(Main.this, NoticeListViewaaa.class);
-			Main.this.startActivity(intent);
-		}
-	}
-	
-	private class ChaxunListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-			intent.setClass(Main.this, ChaxunView.class);
-			Main.this.startActivity(intent);
-		}
-	}
-	
 	
 	private class LogoutListener implements View.OnClickListener {
 
@@ -287,45 +190,6 @@ public class Main extends Activity {
 		}
 	}
 
-
-	private class WeixiuListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			boolean ok = true;  
-		     LayoutInflater factory = (LayoutInflater)    
-		    Main.this.getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);   
-			final View textEntryView = factory.inflate(R.layout.admin_password_layout, null);
-		    final EditText addr = (EditText)textEntryView.findViewById(R.id.admin_password);
-		     AlertDialog dlg = new AlertDialog.Builder(Main.this)
-		        .setTitle("�������Ա����")
-		        .setView(textEntryView)
-		        .setPositiveButton("����", new DialogInterface.OnClickListener() {
-		            public void onClick(DialogInterface dialog, int whichButton) {
-
-		            	String password = addr.getText().toString().trim();
-
-		            	if(password.equalsIgnoreCase(LocalAccessor.getInstance(Main.this.getApplicationContext())
-		            			.get_admin_password())){
-		            		Intent intent = new Intent();
-		        			intent.setClass(Main.this, TestView.class);
-		        			Main.this.startActivity(intent);
-
-		            	}else{
-		              	new AlertDialog.Builder(Main.this)
-		                .setMessage("���벻��")
-		                .setPositiveButton(R.string.i_know, null)
-		                .show();  
-		            	}
-		            }
-		        })
-		        .create();
-		        dlg.show();
-			
-			
-		
-		}
-	}
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

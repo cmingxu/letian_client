@@ -5,16 +5,7 @@
 	<TableLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:layout_marginTop="20dip">
 		<TableRow android:gravity="center_vertical|center_horizontal">
-			<LinearLayout android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:orientation="vertical">
-				<ImageView android:src="@drawable/baoshi"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true" android:id="@+id/baoshi_view"></ImageView>
-				<TextView android:text="@string/baoshi"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:layout_alignParentBottom="true" android:id="@+id/baoshi_tv" />
-			</LinearLayout>
+
 
 			<LinearLayout android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:orientation="vertical"
@@ -28,53 +19,18 @@
 
 			</LinearLayout>
 
-			<LinearLayout android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:orientation="vertical">
-				<ImageView android:src="@drawable/chaxun" android:id="@+id/chaxun_view"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true"></ImageView>
-				<TextView android:text="@string/chaxun"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal" />
 
-			</LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/setting_view"></ImageView>
+                <TextView android:text="@string/setting"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
+            </LinearLayout>
 
-
-		</TableRow>
-
-
-
-
-		<TableRow android:layout_width="fill_parent"
-			android:gravity="center_vertical|center_horizontal"
-			android:paddingTop="10dip">
-
-			<LinearLayout android:layout_width="fill_parent"
-				android:layout_height="wrap_content" android:orientation="vertical">
-				<ImageView android:src="@drawable/renwu" android:id="@+id/renwu_view"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true"></ImageView>
-				<TextView android:text="@string/renwu"
-					android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:id="@+id/renwu_tv"
-					android:layout_alignParentBottom="true" />
-
-			</LinearLayout>
-
-
-
-
-			<LinearLayout android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:orientation="vertical"
-				android:layout_marginLeft="20dip" android:layout_marginRight="20dip">
-				<ImageView android:src="@drawable/shoulou"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true" android:id="@+id/test"></ImageView>
-				<TextView android:text="管理" android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal" />
-
-			</LinearLayout>
 			<LinearLayout android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:orientation="vertical">
 				<ImageView android:src="@drawable/shoulou"

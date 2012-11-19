@@ -9,6 +9,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 
+import android.util.Log;
+import com.letian.Login;
 import com.letian.model.LTException;
 
 
@@ -73,7 +75,10 @@ public class BaseAuthenicationHttpClient {
 	 
 	 static public String doRequest(String urlString, String name, String password) throws LTException
 	 {
-		 try{
+         Log.d(Login.LOG_TAG, "doRequest");
+         Log.d(Login.LOG_TAG, urlString);
+
+         try{
 	        URL url = new URL (urlString);
 
 	        URLConnection uc = url.openConnection();

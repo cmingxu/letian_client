@@ -31,7 +31,7 @@
 			android:gravity="center_vertical|center_horizontal">
 			<Button android:layout_width="wrap_content"
 				android:layout_height="fill_parent" android:id="@+id/take_pic_button"
-				android:text="拍照">
+				android:text="@string/paizhao">
 			</Button>
 
 			<ImageView android:src="@drawable/icon" android:id="@+id/pic"
