@@ -2,7 +2,6 @@ package com.letian.view;
 
 import com.letian.R;
 import com.letian.lib.LocalAccessor;
-import com.letian.test.ListKfWeixiuxiangmu;
 import com.letian.test.ListLouge;
 import com.letian.test.ListLoupan;
 import com.letian.test.ListUnit;
@@ -48,8 +47,7 @@ public class TestView extends Activity {
 		list_louge.setOnClickListener(new ListlougeListener());
 		list_loupan.setOnClickListener(new ListloupanListener());
 		list_zhuhu.setOnClickListener(new ListZhuhuListener());
-		list_slxm.setOnClickListener(new ListSlxmListener());
-		
+
 		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
 	}
 	
@@ -118,7 +116,7 @@ public class TestView extends Activity {
 		                .show();  
 		            }
 		        })
-		        .setNegativeButton("�����˵", new DialogInterface.OnClickListener() {
+		        .setNegativeButton("cancel˵", new DialogInterface.OnClickListener() {
 		            public void onClick(DialogInterface dialog, int whichButton) {
 
 		                /* User clicked cancel so do some stuff */
@@ -163,18 +161,6 @@ public class TestView extends Activity {
 		}
 	}
 
-	private class ListSlxmListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent();
-			i.setClass(TestView.this, ListKfWeixiuxiangmu.class);
-			startActivity(i);
-			TestView.this.finish();
-		}
-	}
-	
 	private class SaveButtonListener implements OnClickListener {
 
 		@Override
@@ -183,9 +169,7 @@ public class TestView extends Activity {
 			SQLiteDatabase db = LocalAccessor.getInstance(
 					TestView.this.getApplicationContext()).openDB();
 
-//			Cursor c = db.rawQuery("select * from Zhuhu", null);
-//			c.moveToLast();
-//			Log.e("ssssssscolumn name", Integer.toString(c.getCount()));
+
 			db.execSQL("delete from Danyuan where _id >0;");
 			db.execSQL("delete from Louge where _id >0;");
 			db.execSQL("delete from Weixiudan where _id >0;");
@@ -194,29 +178,10 @@ public class TestView extends Activity {
 //			
 			
 
-//			String sql = "select * from Weixiudan";
-//			// String sql = "select weixiudanyuan_in_string,zuhumingcheng, " +
-//			// "lianxidianhua Weixiudan limit ?,?";
-//		
-//			Cursor cursor = db.rawQuery(sql, null);
-//			Log.e("ssssssssss cursor", Integer.toString(cursor.getColumnCount()));
-//			cursor.moveToLast();
-//			Log.e("SSSS", cursor.getString(3));
-//			Log.e("SSSS", cursor.getString(4));
-//			Log.e("SSSS", cursor.getString(5));
-//			Log.e("SSSS", cursor.getString(6));
-//			Log.e("SSSS", cursor.getString(7));
-//			Log.e("SSSS", cursor.getString(8));
-			
-//			String sql =  "select * from Louge";
-//			Cursor cursor = db.rawQuery(sql, null);
-//			Log.e("ssssssssss cursor", Integer.toString(cursor.getCount()));
-//			cursor.moveToFirst();
-//			Log.e("ssssssssss cursor",cursor.getString(2));
-//			c.close();
+
 			db.close();
 
-			// Danyuan.syn(TestView.this.getApplicationContext());
+
 		}
 	}
 }

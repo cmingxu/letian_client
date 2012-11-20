@@ -1,10 +1,9 @@
 package com.letian;
 
 import com.letian.lib.LocalAccessor;
-import com.letian.lib.NetworkConnection;
 import com.letian.model.User;
 import com.letian.model.VerifiedInfo;
-import com.letian.services.FetchNoticeService;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -171,10 +170,7 @@ public class Login extends Activity {
 						if (vi.verifyCode == VerifiedInfo.VERIFY_SUCCESS) {
 
 							User.set_current_user(user, Login.this.getApplicationContext());
-							Intent intent = new Intent();
-							intent.setClass(Login.this,
-									FetchNoticeService.class);
-							Login.this.startService(intent);
+
 
 							Intent i = new Intent(Login.this, Main.class);
 

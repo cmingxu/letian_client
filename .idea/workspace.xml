@@ -27,21 +27,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef7018b6-1e1b-4b51-a5a0-1e36d9abb4db" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\back_main.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\work\repo\letian_client\res\drawable-hdpi\baoshi.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/setting.png" />
-      <change type="MOVED" beforePath="C:\work\repo\letian_client\res\drawable-ldpi\baoshi.png" afterPath="$PROJECT_DIR$/res/drawable-ldpi/setting.png" />
-      <change type="MOVED" beforePath="C:\work\repo\letian_client\res\drawable-mdpi\baoshi.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/setting.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/running.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/coming_soon.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/setting.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/letian/view/ComingSoon.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/letian/view/SettingActivity.java" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\baoshi_edit.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\baoshi_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\baoshi_list_item.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\baoshi_list_item_green.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\baoshi_new.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\chaobiao_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\list_unit_test.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\notice_activity.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\notice_list.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\notice_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\renwu_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\shenpi_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\shoulou.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\shoulou_edit.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\weixiu_jiedan_new.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\weixiujilu_new.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\res\layout\zhibiao_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\Danyuanchaobiao.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\KfWeixiudan.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\KfWeixiujilu.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\KfWeixiuxiangmu.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\Syssend.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\Tousudan.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\Weixiudan.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\xmlhandler\KfWeixiuxiangmuHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\xmlhandler\SyssendHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\model\xmlhandler\WeixiudanHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\receiver\StartActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\services\FetchNoticeService.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\test\ListKfWeixiuxiangmu.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\BaoshiEdit.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\BaoshiNew.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ChaobiaoView.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ChaxunView.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\KfWeixiujiluEdit.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\KfWeixiujiluNew.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\NoticeActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\NoticeListViewaaa.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\NoticeView.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ReceiverActivityMedimDialog.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\RenwuView.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ShenpiView.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ShouLouEdit.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ShouLouList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ShouLouNew.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ShowImageActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\TousuJiedanList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\TousuList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\WeixiuJiedanList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\WeixiuJiedanNew.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\WeixiuList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\WeixiuxiangmuChooser.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\work\repo\letian_client\src\com\letian\view\ZhibiaoView.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/letian/R.java" afterPath="$PROJECT_DIR$/gen/com/letian/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/baoshi_new.xml" afterPath="$PROJECT_DIR$/res/layout/baoshi_new.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/Login.java" afterPath="$PROJECT_DIR$/src/com/letian/Login.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/Main.java" afterPath="$PROJECT_DIR$/src/com/letian/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java" afterPath="$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/model/User.java" afterPath="$PROJECT_DIR$/src/com/letian/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/test/ListKfWeixiuxiangmu.java" afterPath="$PROJECT_DIR$/src/com/letian/test/ListKfWeixiuxiangmu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/test/ListLouge.java" afterPath="$PROJECT_DIR$/src/com/letian/test/ListLouge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/test/ListLoupan.java" afterPath="$PROJECT_DIR$/src/com/letian/test/ListLoupan.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/test/ListUnit.java" afterPath="$PROJECT_DIR$/src/com/letian/test/ListUnit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/test/ListZhuhu.java" afterPath="$PROJECT_DIR$/src/com/letian/test/ListZhuhu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/view/TestView.java" afterPath="$PROJECT_DIR$/src/com/letian/view/TestView.java" />
     </list>
     <ignored path="letian_client.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,59 +154,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ListKfWeixiuxiangmu.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/letian/test/ListKfWeixiuxiangmu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="14" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Login.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/letian/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="24" selection-start="4914" selection-end="4952" vertical-scroll-proportion="0.0">
+            <state line="67" column="44" selection-start="1913" selection-end="1913" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5841#6031#0" expanded="true" />
-                <element signature="e#6022#6023#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/letian/model/User.java">
+      <file leaf-file-name="setting.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/setting.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="56" selection-start="1763" selection-end="1763" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetworkConnection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/letian/lib/NetworkConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="35" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="43" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/letian/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="102" selection-start="2572" selection-end="2572" vertical-scroll-proportion="0.0">
+            <state line="5" column="28" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -160,34 +177,50 @@
       <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
+            <state line="27" column="44" selection-start="1594" selection-end="1594" vertical-scroll-proportion="-2.25">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="coming_soon.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/coming_soon.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="27" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="running.jpg" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/running.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComingSoon.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/view/ComingSoon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="46" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="73" selection-start="985" selection-end="985" vertical-scroll-proportion="0.5730706">
+            <state line="12" column="33" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="baoshi_new.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/baoshi_new.xml">
+      <file leaf-file-name="ListItemView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/view/ListItemView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="45" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="baoshi_edit.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/baoshi_edit.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="41" selection-start="1232" selection-end="1234" vertical-scroll-proportion="0.0">
+            <state line="43" column="51" selection-start="1323" selection-end="1323" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,19 +239,27 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/letian/test/ListKfWeixiuxiangmu.java" />
-        <option value="$PROJECT_DIR$/src/com/letian/view/BaoshiEdit.java" />
-        <option value="$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java" />
-        <option value="$PROJECT_DIR$/src/com/letian/Login.java" />
-        <option value="$PROJECT_DIR$/src/com/letian/model/User.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/layout/back_main.xml" />
-        <option value="$PROJECT_DIR$/src/com/letian/Main.java" />
         <option value="$PROJECT_DIR$/res/layout/baoshi_new.xml" />
+        <option value="$PROJECT_DIR$/src/com/letian/view/NoticeActivity.java" />
+        <option value="$PROJECT_DIR$/gen/com/letian/R.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/view/TestView.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/test/ListUnit.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/test/ListZhuhu.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/test/ListLoupan.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/test/ListLouge.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/Login.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/Main.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/view/SettingActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/setting.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/layout/main.xml" />
+        <option value="$PROJECT_DIR$/res/layout/coming_soon.xml" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
@@ -252,6 +293,20 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="letian_client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Letian_client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -262,7 +317,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -294,6 +348,32 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="letian" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="letian_client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="letian_client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="letian" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -306,10 +386,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -344,22 +420,8 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="letian_client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="letian_client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="letian" />
+              <option name="myItemId" value="drawable-hdpi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -370,20 +432,57 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/com/letian/view" />
     <property name="project.structure.proportion" value="0.0" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="project.structure.side.proportion" value="0.1969697" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\repo\letian_client\res\layout" />
+      <recent name="C:\work\repo\letian_client\src\com\letian\view" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\work\repo\letian_client\res\drawable-hdpi" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.letian.view" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.Letian_client">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -400,6 +499,24 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -428,24 +545,6 @@
       <envs />
       <properties />
       <listeners />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -530,7 +629,9 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -573,25 +674,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1170" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1318328" sideWeight="0.6706949" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1318328" sideWeight="0.6706949" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997986" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973205" sideWeight="0.19536757" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32930514" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34541792" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.6706949" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973205" sideWeight="0.6706949" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24973205" sideWeight="0.6706949" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -658,108 +759,120 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/letian/view/BaoshiEdit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="547" column="51" selection-start="15789" selection-end="15789" vertical-scroll-proportion="0.67874014" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Android-client.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="8" selection-start="2443" selection-end="2445" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="69" selection-start="2666" selection-end="2666" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/model/Danyuanchaobiao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="22" selection-start="150" selection-end="150" vertical-scroll-proportion="0.3231018">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/test/ListLouge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="10" selection-start="920" selection-end="920" vertical-scroll-proportion="0.77544427">
+        <state line="13" column="57" selection-start="318" selection-end="369" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/test/ListKfWeixiuxiangmu.java">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/test/ListLoupan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="14" selection-start="883" selection-end="883" vertical-scroll-proportion="0.0" />
+        <state line="18" column="0" selection-start="391" selection-end="391" vertical-scroll-proportion="0.36124796">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/lib/NetworkConnection.java">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/view/LoupanDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="35" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0" />
+        <state line="27" column="93" selection-start="767" selection-end="767" vertical-scroll-proportion="0.22988506">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/Login.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/unit_list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="24" selection-start="4914" selection-end="4952" vertical-scroll-proportion="0.0">
+        <state line="6" column="50" selection-start="331" selection-end="331" vertical-scroll-proportion="0.18897638">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/setting_dialog_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="90" selection-start="729" selection-end="793" vertical-scroll-proportion="0.40944883">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/view/SettingActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="50" selection-start="412" selection-end="412" vertical-scroll-proportion="0.56692916">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5841#6031#0" expanded="true" />
-            <element signature="e#6022#6023#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="56" selection-start="1763" selection-end="1763" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/setting.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="43" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="102" selection-start="2572" selection-end="2572" vertical-scroll-proportion="0.0">
+        <state line="54" column="0" selection-start="1333" selection-end="1333" vertical-scroll-proportion="0.503937">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/unit_chooser.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="37" selection-start="824" selection-end="824" vertical-scroll-proportion="0.503937">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/baoshi_edit.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="41" selection-start="1232" selection-end="1234" vertical-scroll-proportion="0.0">
+        <state line="67" column="44" selection-start="1913" selection-end="1913" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/view/ListItemView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="51" selection-start="1323" selection-end="1323" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+    <entry file="file://$PROJECT_DIR$/res/layout/setting.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/baoshi_new.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="45" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0">
+        <state line="5" column="28" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="73" selection-start="985" selection-end="985" vertical-scroll-proportion="0.5730706">
+        <state line="12" column="33" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="44" selection-start="1594" selection-end="1594" vertical-scroll-proportion="-2.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/view/ComingSoon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="46" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/coming_soon.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="27" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/running.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>

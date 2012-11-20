@@ -16,17 +16,7 @@ public class ListLoupan extends Activity {
 
 		
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.list_unit_test);
 
-		Cursor cursor = Loupan.getScrollDataCursor(0, 1130,getApplicationContext());  
-     
-        
-        SimpleCursorAdapter adapter= new SimpleCursorAdapter(this,R.layout.baoshi_list_item,
-        		cursor,new String[]  {"loupanmingcheng","loupanbianhao"},
-        		new int[]{R.id.favorite_body,R.id.favorite_category}); 
-    
-        
-        ((ListView) findViewById(R.id.baoshi_list)).setAdapter(adapter); 
       
 	}
 }
