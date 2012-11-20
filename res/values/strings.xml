@@ -15,13 +15,14 @@
     <string name="test">测试</string>
     <string name="i_know">我知道了</string>
     <string name="plz_choose_unit">选择单元</string>
-    <string name="choose_unit"></string>
+    <string name="choose_unit">选择单元</string>
     <string name="contact_tel">联系电话</string>
     <string name="contact_person">联系人</string>
     <string name="description">事项说明</string>
     <string name="save">保存</string>
     <string name="delete">删除</string>
     <string name="edit">修改</string>
+    <string name="back">返回</string>
 
     <string name="save_to_server">上传</string>
 

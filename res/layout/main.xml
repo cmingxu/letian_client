@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="@drawable/bg">
-	<TableLayout android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:layout_marginTop="40dip">
-		<TableRow>
+              android:orientation="vertical" android:layout_width="fill_parent"
+              android:layout_height="fill_parent" android:background="@drawable/bg">
+    <TableLayout android:layout_width="fill_parent"
+                 android:layout_height="fill_parent" android:layout_marginTop="40dip">
+        <TableRow>
 
 
-			<LinearLayout android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:orientation="vertical"
-				android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
-				<ImageView android:src="@drawable/shoulou" android:id="@+id/shoulou_view"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true"></ImageView>
-				<TextView android:text="@string/shoulou"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal" />
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/shoulou" android:id="@+id/shoulou_view"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true"></ImageView>
+                <TextView android:text="@string/shoulou"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal"/>
 
-			</LinearLayout>
+            </LinearLayout>
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
@@ -28,7 +28,20 @@
                 <TextView android:text="@string/setting"
                           android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/shenpi"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/logout"></ImageView>
+                <TextView android:text="@string/logout"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal"/>
+
             </LinearLayout>
 
             <LinearLayout android:layout_width="fill_parent"
@@ -36,33 +49,22 @@
                           android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view"></ImageView>
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_2"></ImageView>
                 <TextView android:text="@string/coming_soon"
                           android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
                           android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view"></ImageView>
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_3"></ImageView>
                 <TextView android:text="@string/coming_soon"
                           android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
-            </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent"
-                          android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
-                <ImageView android:src="@drawable/setting"
-                           android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view"></ImageView>
-                <TextView android:text="@string/coming_soon"
-                          android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="fill_parent"
@@ -70,25 +72,158 @@
                           android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view"></ImageView>
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_4"></ImageView>
                 <TextView android:text="@string/coming_soon"
                           android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv" />
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
             </LinearLayout>
 
-			<LinearLayout android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:orientation="vertical"
-                android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
-				<ImageView android:src="@drawable/shoulou"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentTop="true" android:id="@+id/logout"></ImageView>
-				<TextView android:text="@string/logout"
-					android:layout_width="wrap_content" android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal" />
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_5"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_6"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
 
-			</LinearLayout>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_7"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal"/>
 
-		</TableRow>
-	</TableLayout>
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow>
+
+
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting" android:id="@+id/coming_soon_view_8"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_9"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_10"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_11"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_12"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_13"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_14"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_15"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_1"></ImageView>
+                <TextView android:text="@string/coming_soon"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
+            </LinearLayout>
+
+        </TableRow>
+    </TableLayout>
 </LinearLayout>

@@ -11,6 +11,8 @@
 
         <activity android:name=".Main" android:label="@string/app_name" />
         <activity android:name=".view.ComingSoon"/>
+        <activity android:name=".view.SettingActivity"/>
+
     </application>
 
 

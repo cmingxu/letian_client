@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="@drawable/bg">
+              android:orientation="vertical" android:layout_width="fill_parent"
+              android:layout_height="fill_parent" android:background="@drawable/bg">
 
 
-		<Button android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/setting"
-			android:id="@+id/coming_soon_btb">
-		</Button>
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:text="@string/back"
+            android:id="@+id/coming_soon_back_button">
+    </Button>
+
 
     <ImageView android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:text="@string/setting"
+               android:layout_height="wrap_content" android:src="@drawable/running"
             >
     </ImageView>
-
 
 
 </LinearLayout>
