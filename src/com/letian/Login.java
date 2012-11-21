@@ -40,7 +40,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		this.setTitle(R.string.login_title);
+		this.setTitle(R.string.title);
 		login = (EditText) findViewById(R.id.login);
 		password = (EditText) findViewById(R.id.password);
 		login_button = (Button) findViewById(R.id.login_button);

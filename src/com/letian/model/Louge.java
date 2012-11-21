@@ -51,7 +51,6 @@ public class Louge extends Model {
 	}
 	
 
-	// �ͷ�����ͬ����USBֱ��ʱ����Ч��
 	public static void syn(Context context) {
 		// get xml
 		String xml;
@@ -128,20 +127,6 @@ public class Louge extends Model {
 	}
 	
 	
-	public static Cursor getScrollDataCursor(long startIndex, long maxCount,Context context) {
-		// ���� ��·��
-	
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql = "select * from Louge limit ?,?";	
-//		String sql = "select weixiudanyuan_in_string,zuhumingcheng, " +
-//		"lianxidianhua Weixiudan limit ?,?";
-		String[] selectionArgs = { String.valueOf(startIndex),
-				String.valueOf(maxCount) };
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		Log.e("ssssssssss cursor", Integer.toString(cursor.getColumnCount()));
-		return cursor;
-	}
-
 	public static HashMap<String,String> mingcheng_bianhao_map(Context context,String loupan_bianhao){
 		HashMap<String,String> res  = new HashMap<String,String>();
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();

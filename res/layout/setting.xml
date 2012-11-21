@@ -5,10 +5,19 @@
 
 
 		<Button android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/setting"
+			android:layout_height="wrap_content" android:text="@string/sync_btn"
 			android:id="@+id/sync_xml_btn">
 		</Button>
 
+    <TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/sync_info_display">
+
+    </TextView>
+
+
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:text="@string/back"
+            android:id="@+id/setting_back">
+    </Button>
 
 
 
