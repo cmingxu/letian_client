@@ -105,7 +105,7 @@ public class Louge extends Model {
 		values.put("lougebianhao", this.lougebianhao);
 		values.put("loupanbianhao", this.loupanbianhao);
 		values.put("lougemingcheng", this.lougemingcheng);
-		values.put("createdTime", (new Date()).toLocaleString());
+		values.put("createdTime", (new Date()).toString());
 		;
 
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();

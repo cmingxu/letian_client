@@ -24,9 +24,7 @@ public class TestView extends Activity {
 	private Button drop_button;
 	private Button list_unit;
 	private Button list_louge;
-	private Button list_loupan;
 	private Button list_zhuhu;
-	private Button list_slxm;
 	private Button set_admin_password;
 
 	@Override
@@ -37,15 +35,12 @@ public class TestView extends Activity {
 //		button = (Button) findViewById(R.id.test_button);
 		list_unit = (Button) findViewById(R.id.list_unit);
 		list_louge = (Button) findViewById(R.id.list_louge);
-		list_loupan = (Button) findViewById(R.id.list_loupan);
 		list_zhuhu = (Button) findViewById(R.id.list_zhuhu);
-		list_slxm = (Button) findViewById(R.id.list_slxm);
 		set_admin_password= (Button) findViewById(R.id.set_admin_password);
 		drop_button.setOnClickListener(new DropButtonListener());
 //		button.setOnClickListener(new SaveButtonListener());
 		list_unit.setOnClickListener(new ListUnitListener());
 		list_louge.setOnClickListener(new ListlougeListener());
-		list_loupan.setOnClickListener(new ListloupanListener());
 		list_zhuhu.setOnClickListener(new ListZhuhuListener());
 
 		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
@@ -81,7 +76,6 @@ public class TestView extends Activity {
 			Intent i = new Intent();
 			i.setClass(TestView.this, ListZhuhu.class);
 			startActivity(i);
-//			TestView.this.finish();
 		}
 	}
 
@@ -106,7 +100,6 @@ public class TestView extends Activity {
 		            	if(addr_str != ""){
 		            		text = "Cancel";
 		            		LocalAccessor.getInstance(TestView.this.getApplicationContext()).set_admin_password(addr_str);
-//		            		User.set_server_addr(addr_str, Login.this.getApplicationContext());
 		            	}else{
 		            		text = "Cancel";
 		            	}
@@ -174,9 +167,7 @@ public class TestView extends Activity {
 			db.execSQL("delete from Louge where _id >0;");
 			db.execSQL("delete from Weixiudan where _id >0;");
 			db.execSQL("delete from Tousudan where _id >0;");
-			db.execSQL("delete from Loupan where _id >0;");
-//			
-			
+
 
 
 			db.close();

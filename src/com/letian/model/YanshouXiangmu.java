@@ -11,7 +11,7 @@ import android.content.Context;
  */
 public class YanshouXiangmu extends Model{
     private int _id;
-    String  duixiang_id
+    String  duixiang_id;
     public String xmmc;
     public String xmbh;
 

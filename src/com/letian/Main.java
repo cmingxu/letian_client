@@ -52,7 +52,7 @@ public class Main extends Activity {
 		setContentView(R.layout.main);
 
 
-		this.setTitle(LocalAccessor.login_user_title());
+		this.setTitle(getResources().getString(R.string.app_name));
 		logout_view = (ImageView) findViewById(R.id.logout);
 		logout_view.setOnClickListener(new LogoutListener());
 
