@@ -62,7 +62,6 @@ public class DanyuanHandler extends DefaultHandler{
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-//        Log.e(Danyuan.LOG_TAG, "sssssssss document");
         danyuans = new ArrayList<Danyuan>();
         builder = new StringBuilder();
     }

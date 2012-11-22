@@ -58,7 +58,6 @@ public class Danyuan extends Model {
 				SQL_CREATE_TABLE_MESSAGE);
 	}
 
-	// �ͷ�����ͬ����USBֱ��ʱ����Ч��
 	public static void syn(Context context) {
 		// get xml
 		String xml;
