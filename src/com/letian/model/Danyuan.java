@@ -75,10 +75,12 @@ public class Danyuan extends Model {
 				// Log.e(Danyuan.LOG_TAG, xml);
 
 				// turn xml into object
-				items = turn_xml_into_items(xml, context);
+				items = (ArrayList<Danyuan>)Model.turn_xml_into_items(xml, new DanyuanHandler(context));
 				// prepare database
+
 				for (Danyuan d : items) {
-					d.save_into_db();
+				        Log.d(Danyuan.LOG_TAG, items.toString());
+						d.save_into_db();
 				}
 
 				// break loop
@@ -92,21 +94,6 @@ public class Danyuan extends Model {
 		}
 	}
 
-	private static ArrayList<Danyuan> turn_xml_into_items(String xml,
-			Context context) {
-		ArrayList<Danyuan> items = new ArrayList<Danyuan>();
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		try {
-			SAXParser parser = factory.newSAXParser();
-			DanyuanHandler handler = new DanyuanHandler(context);
-			InputStream is = new ByteArrayInputStream(xml.getBytes());
-			parser.parse(is, handler);
-			items = handler.getDanyuans();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		return items;
-	}
 
 	public boolean save_into_db() throws LTException {
 		ContentValues values = new ContentValues();
@@ -117,7 +104,7 @@ public class Danyuan extends Model {
 		values.put("zhuhubianhao", this.zhuhubianhao);
 		values.put("louceng", this.louceng);
 		values.put("loucengmingcheng", this.loucengmingcheng);
-		values.put("createdTime", (new Date()).toLocaleString());
+		values.put("createdTime", (new Date()).toString());
 
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
 		db.insertOrThrow("Danyuan", null, values);
@@ -140,14 +127,12 @@ public class Danyuan extends Model {
 
 	public static Cursor getScrollDataCursor(long startIndex, long maxCount,
 			Context context) {
-		// ���� ��·��
 
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
 		String sql = "select * from Danyuan limit ?,?";
 		String[] selectionArgs = { String.valueOf(startIndex),
 				String.valueOf(maxCount) };
 		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		Log.e("ssssssssss cursor", Integer.toString(cursor.getColumnCount()));
 		return cursor;
 	}
 
@@ -159,7 +144,6 @@ public class Danyuan extends Model {
 				+ loucengmingcheng.replaceAll("\\s*", "")
 				+ "' and lougebianhao='" + lougebianhao.replaceAll("\\s*", "")
 				+ "' order by _id DESC";
-		Log.e("sssssssssssssss", sql);
 		Cursor cursor;
 		try{
 			cursor = db.rawQuery(sql,null);
@@ -169,7 +153,6 @@ public class Danyuan extends Model {
 		Log.e("maobing", Integer.toString(cursor.getCount()));
 		cursor.moveToFirst();
 		while (cursor.isAfterLast() != true) {
-			Log.e("maobing", "sssssssssssssssssssssssssss");
 			res.put(cursor.getString(2), cursor.getString(1));
 			cursor.moveToNext();
 		}
@@ -185,7 +168,6 @@ public class Danyuan extends Model {
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
 		Cursor cursor = db.rawQuery("select * from Danyuan", null);
 		cursor.moveToFirst();
-//		cursor.getColumnName(arg0)
 
 		
 		String sql = "select distinct(loucengmingcheng) from Danyuan where lougebianhao = '"
@@ -226,9 +208,7 @@ public class Danyuan extends Model {
 		Zhuhu zh;
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
 		String sql1 = "select * from Zhuhu";
-	Cursor cursor1 = db.rawQuery(sql1, null);
-	Log.e(Danyuan.LOG_TAG,"sql");
-	Log.e(Danyuan.LOG_TAG,Integer.toString(cursor1.getCount()));
+    	Cursor cursor1 = db.rawQuery(sql1, null);
 		String sql = "select * from Zhuhu where zhuhubianhao	='"
 				+ this.zhuhubianhao + "'";
 		Cursor cursor = db.rawQuery(sql, null);

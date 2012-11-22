@@ -8,7 +8,8 @@ import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
-import com.letian.model.xmlhandler.DanyuanHandler;
+import com.letian.model.xmlhandler.YanshouduixiangHandler;
+
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -25,7 +26,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class YanshouDuixiang extends Model{
-    private int _id;
+    public int _id;
     public String dxmc;
     public String dxbh;
 
@@ -85,10 +86,10 @@ public class YanshouDuixiang extends Model{
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser parser = factory.newSAXParser();
-            DanyuanHandler handler = new DanyuanHandler(context);
+            YanshouduixiangHandler handler = new YanshouduixiangHandler(context);
             InputStream is = new ByteArrayInputStream(xml.getBytes());
             parser.parse(is, handler);
-            items = handler.getDanyuans();
+            items = handler.geYanshouDuixiangs();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

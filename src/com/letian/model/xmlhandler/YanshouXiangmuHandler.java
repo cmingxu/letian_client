@@ -1,7 +1,7 @@
 package com.letian.model.xmlhandler;
 
 import android.content.Context;
-import com.letian.model.YanshouDuixiang;
+import com.letian.model.YanshouXiangmu;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -12,21 +12,21 @@ import java.util.ArrayList;
  * Created with IntelliJ IDEA.
  * User: xcm
  * Date: 12-11-22
- * Time: 上午8:03
+ * Time: 下午8:01
  * To change this template use File | Settings | File Templates.
  */
-public class YanshouduixiangHandler extends DefaultHandler {
-    private ArrayList<YanshouDuixiang> yanshouduixiangs;
-    private YanshouDuixiang currentYanshouDuixiang;
+public class YanshouXiangmuHandler extends DefaultHandler {
+    private ArrayList<YanshouXiangmu> yanshouxiangmus;
+    private YanshouXiangmu currentYanshouXiangmu;
     private StringBuilder builder;
     private Context context;
 
-    public YanshouduixiangHandler(Context context){
+    public YanshouXiangmuHandler(Context context){
         this.context = context;
     }
 
-    public ArrayList<YanshouDuixiang> geYanshouDuixiangs(){
-        return this.yanshouduixiangs;
+    public ArrayList<YanshouXiangmu> getYanshouXinagmus(){
+        return this.yanshouxiangmus;
     }
     @Override
     public void characters(char[] ch, int start, int length)
@@ -40,18 +40,20 @@ public class YanshouduixiangHandler extends DefaultHandler {
             throws SAXException {
         super.endElement(uri, localName, name);
 
-        if (this.currentYanshouDuixiang != null){
-            if (localName.equalsIgnoreCase("dxmc")){
-                currentYanshouDuixiang.dxmc = builder.toString().replaceAll("\\s","");
-            } else if (localName.equalsIgnoreCase("dxbh")){
-                currentYanshouDuixiang.dxbh = builder.toString().replaceAll("\\s","");
+        if (this.currentYanshouXiangmu != null){
+            if (localName.equalsIgnoreCase("DXID")){
+                currentYanshouXiangmu.duixiang_id = builder.toString().replaceAll("\\s","");
+            } else if (localName.equalsIgnoreCase("XMMC")){
+                currentYanshouXiangmu.xmmc = builder.toString().replaceAll("\\s","");
+            }else if (localName.equalsIgnoreCase("XMBH")){
+                currentYanshouXiangmu.xmbh = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("id")){
-                currentYanshouDuixiang._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
+                currentYanshouXiangmu._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("/ysdx")){
-                yanshouduixiangs.add(currentYanshouDuixiang);
-                this.currentYanshouDuixiang = null;
+            else if (localName.equalsIgnoreCase("/ysxm")){
+                yanshouxiangmus.add(currentYanshouXiangmu);
+                this.currentYanshouXiangmu = null;
             }
             builder.setLength(0);
         }
@@ -60,7 +62,7 @@ public class YanshouduixiangHandler extends DefaultHandler {
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-        yanshouduixiangs = new ArrayList<YanshouDuixiang>();
+        yanshouxiangmus = new ArrayList<YanshouXiangmu>();
         builder = new StringBuilder();
     }
 
@@ -70,9 +72,9 @@ public class YanshouduixiangHandler extends DefaultHandler {
                              Attributes attributes) throws SAXException {
         super.startElement(uri, localName, name, attributes);
 
-        if (localName.equalsIgnoreCase("ysdx")){
+        if (localName.equalsIgnoreCase("ysxm")){
 
-            this.currentYanshouDuixiang = new YanshouDuixiang(context);
+            this.currentYanshouXiangmu = new YanshouXiangmu(context);
         }
 
     }

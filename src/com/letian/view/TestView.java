@@ -20,28 +20,23 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class TestView extends Activity {
-	private Button button;
 	private Button drop_button;
 	private Button list_unit;
 	private Button list_louge;
-	private Button list_zhuhu;
 	private Button set_admin_password;
+    private Button back;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_view);
 		drop_button= (Button) findViewById(R.id.drop_button);
-//		button = (Button) findViewById(R.id.test_button);
 		list_unit = (Button) findViewById(R.id.list_unit);
 		list_louge = (Button) findViewById(R.id.list_louge);
-		list_zhuhu = (Button) findViewById(R.id.list_zhuhu);
 		set_admin_password= (Button) findViewById(R.id.set_admin_password);
 		drop_button.setOnClickListener(new DropButtonListener());
-//		button.setOnClickListener(new SaveButtonListener());
-		list_unit.setOnClickListener(new ListUnitListener());
-		list_louge.setOnClickListener(new ListlougeListener());
-		list_zhuhu.setOnClickListener(new ListZhuhuListener());
+		list_unit.setOnClickListener(new ListItemListener());
+		list_louge.setOnClickListener(new ListItemListener());
 
 		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
 	}
@@ -50,34 +45,26 @@ public class TestView extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
 			SQLiteDatabase db = LocalAccessor.getInstance(
 					TestView.this.getApplicationContext()).openDB();
 			db.execSQL("drop table  if exists Danyuan;");
 			db.execSQL("drop table  if exists Louge;");
 			db.execSQL("drop table  if exists Loupan;");
-			db.execSQL("drop table  if exists Weixiudan;");
-			db.execSQL("drop table  if exists Tousudan;");
 			db.execSQL("drop table  if exists Zhuhu;");
-			db.execSQL("drop table  if exists Misc;");
-			db.execSQL("drop table if exists kf_weixiudans");
-
-			db.execSQL("drop table if exists kf_weixiujilus");
-			db.execSQL("drop table  if exists kf_weixiuxiangmus;");
 			db.close();
 		}
 	}
-	
-	private class ListZhuhuListener implements OnClickListener {
 
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent();
-			i.setClass(TestView.this, ListZhuhu.class);
-			startActivity(i);
-		}
-	}
+    private class ListItemListener implements OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent();
+            Bundle b = new Bundle();
+            i.setClass(TestView.this, ListItem.class);
+            startActivity(i);
+        }
+    }
 
 	private class SetAdminPasswordListener implements OnClickListener {
 
@@ -117,40 +104,6 @@ public class TestView extends Activity {
 		        })
 		        .create();
 		        dlg.show();
-		}
-	}
-	private class ListloupanListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent();
-			i.setClass(TestView.this, ListLoupan.class);
-			startActivity(i);
-//			TestView.this.finish();
-		}
-	}
-	private class ListlougeListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent();
-			i.setClass(TestView.this, ListLouge.class);
-			startActivity(i);
-//			TestView.this.finish();
-		}
-	}
-	
-	private class ListUnitListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Intent i = new Intent();
-			i.setClass(TestView.this, ListUnit.class);
-			startActivity(i);
-//			TestView.this.finish();
 		}
 	}
 

@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ImageView;
 import com.letian.view.ComingSoon;
 import com.letian.view.SettingActivity;
+import com.letian.view.TestView;
 
 public class Main extends Activity {
 
@@ -74,8 +75,9 @@ public class Main extends Activity {
         coming_soon_view_11 = (ImageView)findViewById(R.id.coming_soon_view_11);
         coming_soon_view_12 = (ImageView)findViewById(R.id.coming_soon_view_12);
 
-        coming_soon_view_1.setOnClickListener(new ComingSoonListener());
-        coming_soon_view_2.setOnClickListener(new ComingSoonListener());
+//        coming_soon_view_2.setOnClickListener(new ComingSoonListener());
+
+        coming_soon_view_2.setOnClickListener(new TestListener());
         coming_soon_view_3.setOnClickListener(new ComingSoonListener());
         coming_soon_view_4.setOnClickListener(new ComingSoonListener());
         coming_soon_view_5.setOnClickListener(new ComingSoonListener());
@@ -88,10 +90,19 @@ public class Main extends Activity {
         coming_soon_view_12.setOnClickListener(new ComingSoonListener());
 
 
+    }
+
+    private class TestListener implements View.OnClickListener{
+        @Override
+        public void onClick(View arg0) {
+
+            Intent intent = new Intent();
+            intent.setClass(Main.this, TestView.class);
+            Main.this.startActivity(intent);
+            Main.this.finish();
 
 
-
-
+        }
     }
 
 

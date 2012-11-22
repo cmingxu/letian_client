@@ -13,15 +13,21 @@
 		<Button android:layout_width="wrap_content" android:id="@+id/list_louge"
 			android:layout_height="wrap_content" android:text="楼阁列表"></Button>
 
-		<Button android:layout_width="wrap_content" android:id="@+id/list_loupan"
-			android:layout_height="wrap_content" android:text="楼盘列表"></Button>
-		<Button android:layout_width="wrap_content" android:id="@+id/list_zhuhu"
-			android:layout_height="wrap_content" android:text="住户列表"></Button>
-		<Button android:layout_width="wrap_content" android:id="@+id/list_slxm"
-			android:layout_height="wrap_content" android:text="收楼项目列表"></Button>
+        <Button android:layout_width="wrap_content" android:id="@+id/list_hx"
+                android:layout_height="wrap_content" android:text="户型列表"></Button>
+
+        <Button android:layout_width="wrap_content" android:id="@+id/list_fjlx"
+                android:layout_height="wrap_content" android:text="房间类型"></Button>
+
+        <Button android:layout_width="wrap_content" android:id="@+id/list_ysdx"
+                android:layout_height="wrap_content" android:text="验收对象"></Button>
 
 
-		<Button android:layout_width="wrap_content" android:id="@+id/set_admin_password"
+        <Button android:layout_width="wrap_content" android:id="@+id/back"
+                android:layout_height="wrap_content" android:text="返回"></Button>
+
+
+        <Button android:layout_width="wrap_content" android:id="@+id/set_admin_password"
 			android:layout_height="wrap_content" android:text="设置管理员密码"></Button>
 	</LinearLayout>
 </ScrollView>  

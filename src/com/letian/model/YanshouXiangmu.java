@@ -10,8 +10,12 @@ import android.content.Context;
  * To change this template use File | Settings | File Templates.
  */
 public class YanshouXiangmu extends Model{
-    private int _id;
-    String  duixiang_id;
+    public YanshouXiangmu(Context context) {
+        this.context = context;
+    }
+
+    public int _id;
+    public String  duixiang_id;
     public String xmmc;
     public String xmbh;
 

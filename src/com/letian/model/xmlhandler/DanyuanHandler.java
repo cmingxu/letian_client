@@ -10,7 +10,7 @@ import com.letian.model.Danyuan;
 
 import android.content.Context;
 
-public class DanyuanHandler extends DefaultHandler{
+public class DanyuanHandler extends BaseHandler{
     private ArrayList<Danyuan> danyuans;
     private Danyuan currentDanyuan;
     private StringBuilder builder;
@@ -20,7 +20,7 @@ public class DanyuanHandler extends DefaultHandler{
     	this.context = context;
     }
     
-    public ArrayList<Danyuan> getDanyuans(){
+    public ArrayList<Danyuan> getItems(){
         return this.danyuans;
     }
     @Override
