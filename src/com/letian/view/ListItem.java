@@ -2,7 +2,16 @@ package com.letian.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import com.letian.R;
+import com.letian.lib.Constants;
+import com.letian.model.Danyuan;
+import com.letian.model.Model;
+
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,17 +22,27 @@ import com.letian.R;
  */
 public class ListItem extends Activity {
     private String tableToDisplay;
+    private ListView list_view;
+    private ArrayList<String> dataList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item);
-        tableToDisplay = savedInstanceState.getString("tableToDisplay");
+        tableToDisplay = getIntent().getStringExtra("tableToDisplay");
+        list_view = (ListView)findViewById(R.id.custom_list_view);
 
-        if (tableToDisplay.equals("Danyuan")) {
-        } else if (tableToDisplay.equals("Louge")) {
-        } else if (tableToDisplay.equals("Louceng")) {
-        } else {
-        }
+        Log.d(Constants.GENERAL_MESSAGE, tableToDisplay);
+
+        dataList = Model.inArrayList(getApplicationContext(), tableToDisplay);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                dataList
+        ) ;
+
+        list_view.setAdapter(adapter);
     }
 
 

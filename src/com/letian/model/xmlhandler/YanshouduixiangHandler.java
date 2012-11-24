@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Time: 上午8:03
  * To change this template use File | Settings | File Templates.
  */
-public class YanshouduixiangHandler extends DefaultHandler {
+public class YanshouduixiangHandler extends BaseHandler {
     private ArrayList<YanshouDuixiang> yanshouduixiangs;
     private YanshouDuixiang currentYanshouDuixiang;
     private StringBuilder builder;
@@ -25,7 +25,7 @@ public class YanshouduixiangHandler extends DefaultHandler {
         this.context = context;
     }
 
-    public ArrayList<YanshouDuixiang> geYanshouDuixiangs(){
+    public ArrayList<YanshouDuixiang> getItems(){
         return this.yanshouduixiangs;
     }
     @Override
@@ -41,15 +41,15 @@ public class YanshouduixiangHandler extends DefaultHandler {
         super.endElement(uri, localName, name);
 
         if (this.currentYanshouDuixiang != null){
-            if (localName.equalsIgnoreCase("dxmc")){
+            if (localName.equalsIgnoreCase("DXMC")){
                 currentYanshouDuixiang.dxmc = builder.toString().replaceAll("\\s","");
-            } else if (localName.equalsIgnoreCase("dxbh")){
+            } else if (localName.equalsIgnoreCase("DXBH")){
                 currentYanshouDuixiang.dxbh = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("id")){
                 currentYanshouDuixiang._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("/ysdx")){
+            else if (localName.equalsIgnoreCase("ysdx")){
                 yanshouduixiangs.add(currentYanshouDuixiang);
                 this.currentYanshouDuixiang = null;
             }

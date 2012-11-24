@@ -3,6 +3,7 @@ package com.letian.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,10 +13,7 @@ import android.widget.Button;
 import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.NetworkConnection;
-import com.letian.model.Danyuan;
-import com.letian.model.Louge;
-import com.letian.model.Loupan;
-import com.letian.model.Zhuhu;
+import com.letian.model.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -96,9 +94,16 @@ public class SettingActivity extends Activity {
 
 
     public void get_data_from_server() {
-        Danyuan.syn(SettingActivity.this.getApplicationContext());
-        Louge.syn(SettingActivity.this.getApplicationContext());
-        Zhuhu.syn(SettingActivity.this.getApplicationContext());
+        Context context = getApplication();
+        Danyuan.syn(context);
+        Louge.syn(context);
+        FangjianLeixing.syn(context);
+        FangjianleixingYanshouduixiang.syn(context);
+        Huxing.syn(context);
+        HuxingFangjianLeixing.syn(context);
+        YanshouDuixiang.syn(context);
+        YanshouXiangmu.syn(context);
+
     }
 
 

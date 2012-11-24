@@ -30,7 +30,6 @@ public class UnitChooser extends Activity implements OnItemClickListener {
 
 		find_widget_by_id();
 
-		loupan_chooser_button.setOnClickListener(new LoupanButtonListener());
 		cancel_button.setOnClickListener(new CancelButtonListener());
 		done_button.setOnClickListener(new DoneButtonListener());
 
@@ -49,17 +48,6 @@ public class UnitChooser extends Activity implements OnItemClickListener {
 
 	}
 
-	private class LoupanButtonListener implements OnClickListener {
-
-		@Override
-		public void onClick(View arg0) {
-			Intent intent = new Intent();
-			intent.setClass(UnitChooser.this, LoupanDialog.class);
-			loupan_chooser_button.setEnabled(false);
-			UnitChooser.this.startActivityForResult(intent, 1);
-		}
-
-	}
 
 	private class CancelButtonListener implements OnClickListener {
 

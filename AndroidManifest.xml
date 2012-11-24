@@ -13,6 +13,8 @@
         <activity android:name=".view.ComingSoon"/>
         <activity android:name=".view.SettingActivity"/>
         <activity android:name=".view.TestView"/>
+        <activity android:name=".view.ListItem"/>
+        <activity android:name=".view.SelectorView"/>
 
     </application>
 

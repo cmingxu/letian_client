@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Time: 下午8:01
  * To change this template use File | Settings | File Templates.
  */
-public class YanshouXiangmuHandler extends DefaultHandler {
+public class YanshouXiangmuHandler extends BaseHandler {
     private ArrayList<YanshouXiangmu> yanshouxiangmus;
     private YanshouXiangmu currentYanshouXiangmu;
     private StringBuilder builder;
@@ -25,7 +25,7 @@ public class YanshouXiangmuHandler extends DefaultHandler {
         this.context = context;
     }
 
-    public ArrayList<YanshouXiangmu> getYanshouXinagmus(){
+    public ArrayList<YanshouXiangmu> getItems(){
         return this.yanshouxiangmus;
     }
     @Override
@@ -51,7 +51,7 @@ public class YanshouXiangmuHandler extends DefaultHandler {
             else if (localName.equalsIgnoreCase("id")){
                 currentYanshouXiangmu._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("/ysxm")){
+            else if (localName.equalsIgnoreCase("ysxm")){
                 yanshouxiangmus.add(currentYanshouXiangmu);
                 this.currentYanshouXiangmu = null;
             }

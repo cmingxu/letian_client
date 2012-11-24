@@ -1,14 +1,8 @@
 package com.letian;
 
 
-import com.letian.lib.LocalAccessor;
-import com.letian.lib.NetworkConnection;
-import com.letian.model.Danyuan;
-import com.letian.model.Louge;
-import com.letian.model.Loupan;
-import com.letian.model.Zhuhu;
+
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +12,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import com.letian.view.ComingSoon;
+import com.letian.view.SelectorView;
 import com.letian.view.SettingActivity;
 import com.letian.view.TestView;
 
@@ -90,6 +86,17 @@ public class Main extends Activity {
         coming_soon_view_12.setOnClickListener(new ComingSoonListener());
 
 
+        shoulou_view.setOnClickListener(new Button.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(Main.this, SelectorView.class);
+                Main.this.startActivity(intent);
+            }
+        });
+
     }
 
     private class TestListener implements View.OnClickListener{
@@ -99,7 +106,7 @@ public class Main extends Activity {
             Intent intent = new Intent();
             intent.setClass(Main.this, TestView.class);
             Main.this.startActivity(intent);
-            Main.this.finish();
+
 
 
         }

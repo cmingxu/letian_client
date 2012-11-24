@@ -1,11 +1,10 @@
 package com.letian.model.xmlhandler;
 
 import android.content.Context;
-import android.util.Log;
 import com.letian.model.FangjianLeixing;
+import com.letian.model.Huxing;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 
@@ -16,18 +15,18 @@ import java.util.ArrayList;
  * Time: 下午7:57
  * To change this template use File | Settings | File Templates.
  */
-public class FangjianLeixingHandler extends BaseHandler {
-    private ArrayList<FangjianLeixing> fangjianleixings;
-    private FangjianLeixing currentFangjianLeixing;
+public class HuxingHandler extends BaseHandler {
+    private ArrayList<Huxing> huxings ;
+    private Huxing currentHuxing;
     private StringBuilder builder;
     public Context context;
 
-    public FangjianLeixingHandler(Context context) {
+    public HuxingHandler(Context context) {
         this.context = context;
     }
 
-    public ArrayList<FangjianLeixing> getItems(){
-        return this.fangjianleixings;
+    public ArrayList<Huxing> getItems(){
+        return this.huxings;
     }
     @Override
     public void characters(char[] ch, int start, int length)
@@ -41,18 +40,18 @@ public class FangjianLeixingHandler extends BaseHandler {
             throws SAXException {
         super.endElement(uri, localName, name);
 
-        if (this.currentFangjianLeixing != null){
-            if (localName.equalsIgnoreCase("FJMC")){
-                currentFangjianLeixing.fjmc = builder.toString().replaceAll("\\s","");
-            } else if (localName.equalsIgnoreCase("FJBH")){
-                currentFangjianLeixing.fjbh = builder.toString().replaceAll("\\s","");
+        if (this.currentHuxing != null){
+            if (localName.equalsIgnoreCase("HXMC")){
+                currentHuxing.hxmc = builder.toString().replaceAll("\\s","");
+            } else if (localName.equalsIgnoreCase("HXBH")){
+                currentHuxing.hxbh = builder.toString().replaceAll("\\s","");
             }
-            else if (localName.equalsIgnoreCase("id")){
-                currentFangjianLeixing._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
+            else if (localName.equalsIgnoreCase("ID")){
+                currentHuxing._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("fjlx")){
-                fangjianleixings.add(currentFangjianLeixing);
-                this.currentFangjianLeixing = null;
+            else if (localName.equalsIgnoreCase("hx")){
+                huxings.add(currentHuxing);
+                this.currentHuxing = null;
             }
             builder.setLength(0);
         }
@@ -61,7 +60,7 @@ public class FangjianLeixingHandler extends BaseHandler {
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-        fangjianleixings = new ArrayList<FangjianLeixing>();
+        huxings = new ArrayList<Huxing>();
         builder = new StringBuilder();
     }
 
@@ -71,10 +70,9 @@ public class FangjianLeixingHandler extends BaseHandler {
                              Attributes attributes) throws SAXException {
         super.startElement(uri, localName, name, attributes);
 
-        if (localName.equalsIgnoreCase("fjlx")){
+        if (localName.equalsIgnoreCase("hx")){
 
-            Log.d(FangjianLeixing.LOG_TAG, "start handle FangjianLeixing");
-            this.currentFangjianLeixing = new FangjianLeixing(context);
+            this.currentHuxing = new Huxing(context);
         }
 
     }

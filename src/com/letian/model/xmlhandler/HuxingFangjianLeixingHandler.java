@@ -15,7 +15,7 @@ import org.xml.sax.Attributes;
  * Time: 下午8:12
  * To change this template use File | Settings | File Templates.
  */
-public class HuxingFangjianLeixingHandler extends DefaultHandler {
+public class HuxingFangjianLeixingHandler extends BaseHandler {
     private ArrayList<HuxingFangjianLeixing> huxingFangjianLeixings;
     private HuxingFangjianLeixing currentHuxingFangjianleixing;
     private StringBuilder builder;
@@ -25,7 +25,7 @@ public class HuxingFangjianLeixingHandler extends DefaultHandler {
         this.context = context;
     }
 
-    public ArrayList<HuxingFangjianLeixing> geHuxingFangjianLexings(){
+    public ArrayList<HuxingFangjianLeixing> getItems(){
         return this.huxingFangjianLeixings;
     }
     @Override
@@ -49,7 +49,7 @@ public class HuxingFangjianLeixingHandler extends DefaultHandler {
             else if (localName.equalsIgnoreCase("id")){
                 currentHuxingFangjianleixing._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("/hx-fjlx")){
+            else if (localName.equalsIgnoreCase("hx-fjlx")){
                 huxingFangjianLeixings.add(currentHuxingFangjianleixing);
                 this.currentHuxingFangjianleixing = null;
             }

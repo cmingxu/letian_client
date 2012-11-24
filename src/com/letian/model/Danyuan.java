@@ -33,6 +33,7 @@ public class Danyuan extends Model {
 	public String loucengmingcheng;
 
 	public static final String LOG_TAG = "DANYUAN_MODEL";
+    public static final String TABLE_NAME = "DANYUAN";
 	public Context context;
 
 
@@ -46,12 +47,16 @@ public class Danyuan extends Model {
 			+ "loucengmingcheng TEXT,"
 			+ "createdTime TEXT" + ");";
 
-	// index��PATH
 
-	
+    public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao) {
+        this._id = _id;
+        this.danyuanbianhao = danyuanbianhao;
+        this.danyuanmingcheng = danyuanmingcheng;
+        this.lougebianhao = lougebianhao;
+        this.zhuhubianhao = zhuhubianhao;
+    }
 
-
-	public Danyuan(Context context) {
+    public Danyuan(Context context) {
 		this.context = context;
 
 		LocalAccessor.getInstance(this.context).create_db(
@@ -59,31 +64,27 @@ public class Danyuan extends Model {
 	}
 
 	public static void syn(Context context) {
+        Log.d(LOG_TAG, "syn start danyuan");
 		// get xml
 		String xml;
 		String url = LocalAccessor.getInstance(context).get_server_url() + "/danyuans.xml";
-		
+
 		ArrayList<Danyuan> items = new ArrayList<Danyuan>();
 		try {
 			while (true) {
-				int offset = Danyuan.max_count(context);
-				String params = "?offset=" + offset + "&limit="
+
+				int offset = Model.max_count(context, "Danyuan");
+                Log.d(LOG_TAG, "syn start danyuan");
+                String params = "?offset=" + offset + "&limit="
 						+ Constants.EACH_SLICE;
-				Log.e(Danyuan.LOG_TAG, url + params);
 				xml = BaseAuthenicationHttpClient.doRequest(url + params,
 						User.current_user.name, User.current_user.password);
-				// Log.e(Danyuan.LOG_TAG, xml);
 
-				// turn xml into object
 				items = (ArrayList<Danyuan>)Model.turn_xml_into_items(xml, new DanyuanHandler(context));
-				// prepare database
-
 				for (Danyuan d : items) {
-				        Log.d(Danyuan.LOG_TAG, items.toString());
+                        Log.d(LOG_TAG, d.danyuanbianhao);
 						d.save_into_db();
 				}
-
-				// break loop
 				if (items.size() < Constants.EACH_SLICE) {
 					break;
 				}
@@ -97,7 +98,6 @@ public class Danyuan extends Model {
 
 	public boolean save_into_db() throws LTException {
 		ContentValues values = new ContentValues();
-
 		values.put("danyuanbianhao", this.danyuanbianhao);
 		values.put("danyuanmingcheng", this.danyuanmingcheng);
 		values.put("lougebianhao", this.lougebianhao);
@@ -106,35 +106,9 @@ public class Danyuan extends Model {
 		values.put("loucengmingcheng", this.loucengmingcheng);
 		values.put("createdTime", (new Date()).toString());
 
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		db.insertOrThrow("Danyuan", null, values);
-		db.close();
-		return true;
+	    return super.save_into_db(context, Danyuan.TABLE_NAME, values);
 	}
 
-	private static int max_count(Context context) {
-		int offset = 0;
-		// make sure table created
-		new Danyuan(context);
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		Cursor c = db.query("Danyuan", null, null, null, null, null, null);
-		offset = c.getCount();
-		c.close();
-		db.close();
-		return offset;
-
-	}
-
-	public static Cursor getScrollDataCursor(long startIndex, long maxCount,
-			Context context) {
-
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql = "select * from Danyuan limit ?,?";
-		String[] selectionArgs = { String.valueOf(startIndex),
-				String.valueOf(maxCount) };
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		return cursor;
-	}
 
 	public static HashMap<String, String> mingcheng_bianhao_map(
 			Context context, String loucengmingcheng, String lougebianhao) {
@@ -192,8 +166,6 @@ public class Danyuan extends Model {
 		String sql = "select * from Danyuan where danyuanbianhao='"
 				+ bianhao + "'";
 		Cursor cursor = db.rawQuery(sql, null);
-		Log.e(Danyuan.LOG_TAG,"sql");
-		Log.e(Danyuan.LOG_TAG,Integer.toString(cursor.getCount()));
 		cursor.moveToFirst();
 		danyuan._id = cursor.getInt(0);
 		danyuan.danyuanbianhao = cursor.getString(1);
@@ -232,5 +204,32 @@ public class Danyuan extends Model {
 		db.close();
 		return zh;
 	}
+
+    public static ArrayList<Danyuan> findAll(Context context){
+        ArrayList<Danyuan> danyuans = new ArrayList<Danyuan>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql = "select * from Danyuan order by _id DESC";
+        Cursor cursor;
+        try{
+            cursor = db.rawQuery(sql,null);
+        }catch(Exception e){
+            return danyuans;
+        }
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() != true){
+            danyuans.add(new Danyuan(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4)
+            ));
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return danyuans;
+    }
 
 }

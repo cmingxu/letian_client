@@ -18,6 +18,7 @@ import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
+import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.model.xmlhandler.LougeHandler;
 
 public class Louge extends Model {
@@ -28,6 +29,7 @@ public class Louge extends Model {
 	public String lougemingcheng;
 
 	public static final String LOG_TAG = "LOUGE_MODEL";
+    public static final String TABLE_NAME = "Louge";
 	public Context context;
 
 
@@ -42,8 +44,15 @@ public class Louge extends Model {
 //	private static final String COLLECTION_PATH = Constants.LT_BASE_URL
 //			+ "louges.xml";
 
-	
-	public Louge(Context context) {
+
+    public Louge(String lougemingcheng, String lougebianhao, String loupanbianhao, Integer _id) {
+        this.lougemingcheng = lougemingcheng;
+        this.lougebianhao = lougebianhao;
+        this.loupanbianhao = loupanbianhao;
+        this._id = _id;
+    }
+
+    public Louge(Context context) {
 		this.context = context;
 
 		LocalAccessor.getInstance(this.context).create_db(
@@ -52,52 +61,36 @@ public class Louge extends Model {
 	
 
 	public static void syn(Context context) {
-		// get xml
-		String xml;
-		String url = LocalAccessor.getInstance(context).get_server_url() + "/louges.xml";
-		ArrayList<Louge> items = new ArrayList<Louge>();
-		try {
-			while(true){
-			int offset  = Louge.max_count(context);
-			String params =  "?offset=" + offset + "&limit=" + Constants.EACH_SLICE;
-			Log.e(Louge.LOG_TAG, url  + params);
-			xml = BaseAuthenicationHttpClient.doRequest(url + params,
-					User.current_user.name, User.current_user.password);
-			Log.e(Louge.LOG_TAG, xml);
+        Log.d(LOG_TAG, "syn start louge");
+        // get xml
+        String xml;
+        String url = LocalAccessor.getInstance(context).get_server_url() + "/louges.xml";
 
-			// turn xml into object
-			items = turn_xml_into_items(xml,context);
-			// prepare database
-			for(Louge d : items){
-				d.save_into_db();
-			}
-			
-//			break loop
-			if(items.size() < Constants.EACH_SLICE){
-				break;
-			}
-			
-			}
-		} catch (Exception e) {// "received authentication challenge is null"
-			Log.e(Louge.LOG_TAG, e.getMessage());
-		}
+        ArrayList<Louge> items = new ArrayList<Louge>();
+        try {
+            while (true) {
+
+                int offset = Model.max_count(context, TABLE_NAME);
+                String params = "?offset=" + offset + "&limit="
+                        + Constants.EACH_SLICE;
+                xml = BaseAuthenicationHttpClient.doRequest(url + params,
+                        User.current_user.name, User.current_user.password);
+
+                items = (ArrayList<Louge>)Model.turn_xml_into_items(xml, new LougeHandler(context));
+                for (Louge d : items) {
+                    d.save_into_db();
+                }
+                if (items.size() < Constants.EACH_SLICE) {
+                    break;
+                }
+
+            }
+        } catch (Exception e) {// "received authentication challenge is null"
+            Log.e(Danyuan.LOG_TAG, e.getMessage());
+        }
 	}
 
-	private static ArrayList<Louge> turn_xml_into_items(String xml,
-			Context context) {
-		ArrayList<Louge> items = new ArrayList<Louge>();
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		try {
-			SAXParser parser = factory.newSAXParser();
-			LougeHandler handler = new LougeHandler(context);
-			InputStream is = new ByteArrayInputStream(xml.getBytes());
-			parser.parse(is, handler);
-			items = handler.getLouges();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		return items;
-	}
+
 
 	public boolean save_into_db() throws LTException {
 		ContentValues values = new ContentValues();
@@ -106,27 +99,31 @@ public class Louge extends Model {
 		values.put("loupanbianhao", this.loupanbianhao);
 		values.put("lougemingcheng", this.lougemingcheng);
 		values.put("createdTime", (new Date()).toString());
-		;
 
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		db.insertOrThrow("Louge", null, values);
-		db.close();
-		return true;
+        return  super.save_into_db(context, Louge.TABLE_NAME, values);
 	}
 
-	private static int max_count(Context context) {
-		int offset = 0;
-		//make sure table created
-		new Louge(context);
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		Cursor c = db.query("Louge", null, null, null, null, null, null);
-		offset = c.getCount();
-		c.close();
-		db.close();
-		return offset;
-	}
-	
-	
+    public static ArrayList<Louge> findAll(Context context){
+        ArrayList<Louge> louges = new ArrayList<Louge>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql = "select * from Louge order by _id DESC";
+        Cursor cursor;
+        try{
+            cursor = db.rawQuery(sql,null);
+        }catch(Exception e){
+            return louges;
+        }
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() != true){
+            louges.add(new Louge(cursor.getString(3), cursor.getString(2), cursor.getString(1), cursor.getInt(0)));
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return louges;
+    }
+
 	public static HashMap<String,String> mingcheng_bianhao_map(Context context,String loupan_bianhao){
 		HashMap<String,String> res  = new HashMap<String,String>();
 		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();

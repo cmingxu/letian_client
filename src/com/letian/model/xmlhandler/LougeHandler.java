@@ -11,7 +11,7 @@ import com.letian.model.Louge;
 import android.content.Context;
 import android.util.Log;
 
-public class LougeHandler extends DefaultHandler{
+public class LougeHandler extends BaseHandler{
     private ArrayList<Louge> louges;
     private Louge currentLouge;
     private StringBuilder builder;
@@ -21,7 +21,7 @@ public class LougeHandler extends DefaultHandler{
     	this.context = context;
     }
     
-    public ArrayList<Louge> getLouges(){
+    public ArrayList<Louge> getItems(){
         return this.louges;
     }
     @Override

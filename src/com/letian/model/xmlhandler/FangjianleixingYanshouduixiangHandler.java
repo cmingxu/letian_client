@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Time: 下午8:19
  * To change this template use File | Settings | File Templates.
  */
-public class FangjianleixingYanshouduixiangHandler extends DefaultHandler {
+public class FangjianleixingYanshouduixiangHandler extends BaseHandler {
     private ArrayList<FangjianleixingYanshouduixiang> fangjianleixingYanshouduixiangs;
     private FangjianleixingYanshouduixiang currentFangjianLeixingYanshouDuixiang;
     private StringBuilder builder;
@@ -25,7 +25,7 @@ public class FangjianleixingYanshouduixiangHandler extends DefaultHandler {
         this.context = context;
     }
 
-    public ArrayList<FangjianleixingYanshouduixiang> geFangjianLexings(){
+    public ArrayList<FangjianleixingYanshouduixiang> getItems(){
         return this.fangjianleixingYanshouduixiangs;
     }
     @Override
@@ -49,7 +49,7 @@ public class FangjianleixingYanshouduixiangHandler extends DefaultHandler {
             else if (localName.equalsIgnoreCase("id")){
                 currentFangjianLeixingYanshouDuixiang._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
-            else if (localName.equalsIgnoreCase("/fjlx-ysdx")){
+            else if (localName.equalsIgnoreCase("fjlx-ysdx")){
                 fangjianleixingYanshouduixiangs.add(currentFangjianLeixingYanshouDuixiang);
                 this.currentFangjianLeixingYanshouDuixiang = null;
             }

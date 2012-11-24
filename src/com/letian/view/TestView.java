@@ -1,7 +1,10 @@
 package com.letian.view;
 
+import android.util.Log;
+import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.LocalAccessor;
+import com.letian.model.*;
 import com.letian.test.ListLouge;
 import com.letian.test.ListLoupan;
 import com.letian.test.ListUnit;
@@ -23,6 +26,9 @@ public class TestView extends Activity {
 	private Button drop_button;
 	private Button list_unit;
 	private Button list_louge;
+    private Button list_hx;
+    private Button list_fjlx;
+    private Button list_ysdx;
 	private Button set_admin_password;
     private Button back;
 
@@ -33,13 +39,32 @@ public class TestView extends Activity {
 		drop_button= (Button) findViewById(R.id.drop_button);
 		list_unit = (Button) findViewById(R.id.list_unit);
 		list_louge = (Button) findViewById(R.id.list_louge);
+        list_fjlx = (Button)findViewById(R.id.list_fjlx);
+        list_hx   = (Button)findViewById(R.id.list_hx);
+        list_ysdx = (Button) findViewById(R.id.list_ysdx);
+
 		set_admin_password= (Button) findViewById(R.id.set_admin_password);
 		drop_button.setOnClickListener(new DropButtonListener());
 		list_unit.setOnClickListener(new ListItemListener());
 		list_louge.setOnClickListener(new ListItemListener());
+        list_fjlx.setOnClickListener(new ListItemListener());
+        list_hx.setOnClickListener(new ListItemListener());
+        list_ysdx.setOnClickListener(new ListItemListener());
 
 		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
-	}
+	    back = (Button)findViewById(R.id.back);
+
+        back.setOnClickListener(new Button.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.setClass(TestView.this,Main.class);
+                TestView.this.startActivity(i);
+            }
+        });
+    }
 	
 	private class DropButtonListener implements OnClickListener {
 
@@ -47,10 +72,14 @@ public class TestView extends Activity {
 		public void onClick(View arg0) {
 			SQLiteDatabase db = LocalAccessor.getInstance(
 					TestView.this.getApplicationContext()).openDB();
-			db.execSQL("drop table  if exists Danyuan;");
-			db.execSQL("drop table  if exists Louge;");
-			db.execSQL("drop table  if exists Loupan;");
-			db.execSQL("drop table  if exists Zhuhu;");
+			db.execSQL("drop table  if exists " + Danyuan.TABLE_NAME + ";");
+			db.execSQL("drop table  if exists " + Louge.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + FangjianLeixing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + Huxing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + FangjianleixingYanshouduixiang.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + HuxingFangjianLeixing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + YanshouXiangmu.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + YanshouDuixiang.TABLE_NAME + ";");
 			db.close();
 		}
 	}
@@ -60,7 +89,18 @@ public class TestView extends Activity {
         @Override
         public void onClick(View view) {
             Intent i = new Intent();
-            Bundle b = new Bundle();
+            if (view.getId() == R.id.list_unit){
+                i.putExtra("tableToDisplay", Danyuan.TABLE_NAME);
+            }else if(view.getId() == R.id.list_louge)      {
+                i.putExtra("tableToDisplay", Louge.TABLE_NAME);
+            }else if(view.getId() == R.id.list_hx){
+                i.putExtra("tableToDisplay", Huxing.TABLE_NAME);
+            }else  if(view.getId() == R.id.list_fjlx){
+                i.putExtra("tableToDisplay", FangjianLeixing.TABLE_NAME);
+            }else if(view.getId() == R.id.list_ysdx){
+                i.putExtra("tableToDisplay", YanshouDuixiang.TABLE_NAME);
+            }
+
             i.setClass(TestView.this, ListItem.class);
             startActivity(i);
         }
@@ -111,16 +151,11 @@ public class TestView extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
 			SQLiteDatabase db = LocalAccessor.getInstance(
 					TestView.this.getApplicationContext()).openDB();
 
-
 			db.execSQL("delete from Danyuan where _id >0;");
 			db.execSQL("delete from Louge where _id >0;");
-			db.execSQL("delete from Weixiudan where _id >0;");
-			db.execSQL("delete from Tousudan where _id >0;");
-
 
 
 			db.close();

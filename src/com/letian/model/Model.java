@@ -1,8 +1,12 @@
 package com.letian.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
+import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.BaseHandler;
 import com.letian.model.xmlhandler.HuxingFangjianLeixingHandler;
@@ -13,18 +17,23 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Model {
-    private static int max_count(Context context, String tableName) {
-        int offset = 0;
-        // make sure table created
-        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-        Cursor c = db.query(tableName, null, null, null, null, null, null);
-        offset = c.getCount();
-        c.close();
-        db.close();
-        return offset;
-
+    public static int max_count(Context context, String tableName) {
+        try {
+            int offset = 0;
+            // make sure table created
+            SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+            Cursor c = db.query(tableName, null, null, null, null, null, null);
+            offset = c.getCount();
+            c.close();
+            db.close();
+            return offset;
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     public static ArrayList<? extends Model> turn_xml_into_items(String xml, BaseHandler handler) {
@@ -38,4 +47,41 @@ public class Model {
             throw new RuntimeException(e);
         }
     }
+
+    public static ArrayList<String> inArrayList(Context context, String table) {
+
+        Log.d(Constants.GENERAL_MESSAGE, table);
+
+        try {
+
+            ArrayList<String> res;
+            res = new ArrayList<String>();
+            SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+            Cursor cursor;
+            cursor = db.rawQuery("select * from " + table, null);
+            cursor.moveToFirst();
+
+            cursor.moveToFirst();
+            while (cursor.isAfterLast() != true) {
+                res.add(cursor.getString(2));
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+            db.close();
+            return res;
+
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+            return new ArrayList<String>();
+        }
+    }
+
+    public boolean save_into_db(Context context, String tableName, ContentValues cv) throws LTException {
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        db.insertOrThrow(tableName, null, cv);
+        db.close();
+        return true;
+    }
+
 }

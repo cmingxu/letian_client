@@ -31,7 +31,7 @@
     <string name="network_connection_problem">网络无连接</string>
     <string name="done">选择完成</string>
     <string name="logout">退出</string>
-    <string name="sync_notice">数据同步中， 请不要关闭网络</string>
+    <string name="sync_notice">数据同步中， 请不要关闭程序</string>
     <string name="baoxiu">报修</string>
     <string name="tousu">投诉</string>
     <string name="shoulou">收楼</string>

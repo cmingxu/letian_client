@@ -7,4 +7,5 @@ public class Constants {
     public static final int EACH_SLICE = 100;
     public static final int TIME_INTERVAL = 10000 * 15;
     public static final int NOTIFICATION_ACTIVITY_ID = 1;
+    public static final String GENERAL_MESSAGE = "GENERAL";
 }

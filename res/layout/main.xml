@@ -3,13 +3,13 @@
               android:orientation="vertical" android:layout_width="fill_parent"
               android:layout_height="fill_parent" android:background="@drawable/bg">
     <TableLayout android:layout_width="fill_parent"
-                 android:layout_height="fill_parent" android:layout_marginTop="40dip">
+                 android:layout_height="fill_parent" android:layout_marginTop="80dip">
         <TableRow>
 
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/shoulou" android:id="@+id/shoulou_view"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true"></ImageView>
@@ -21,7 +21,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/setting_view"></ImageView>
@@ -34,7 +34,7 @@
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/shenpi"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/logout"></ImageView>
@@ -46,7 +46,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_2"></ImageView>
@@ -57,7 +57,7 @@
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_3"></ImageView>
@@ -69,7 +69,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_4"></ImageView>
@@ -81,7 +81,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_5"></ImageView>
@@ -92,7 +92,7 @@
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_6"></ImageView>
@@ -104,7 +104,7 @@
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_7"></ImageView>
@@ -121,7 +121,7 @@
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting" android:id="@+id/coming_soon_view_8"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true"></ImageView>
@@ -133,7 +133,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_9"></ImageView>
@@ -145,7 +145,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_10"></ImageView>
@@ -156,7 +156,7 @@
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_11"></ImageView>
@@ -167,7 +167,7 @@
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_12"></ImageView>
@@ -179,7 +179,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_13"></ImageView>
@@ -191,7 +191,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_14"></ImageView>
@@ -202,7 +202,7 @@
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_15"></ImageView>
@@ -214,7 +214,7 @@
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_marginLeft="40dip" android:layout_marginRight="40dip">
+                          android:layout_margin="60dip">
                 <ImageView android:src="@drawable/setting"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_1"></ImageView>
