@@ -10,13 +10,25 @@
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="wrap_content" android:orientation="vertical"
                           android:layout_margin="60dip">
-                <ImageView android:src="@drawable/shoulou" android:id="@+id/shoulou_view"
+                <ImageView android:src="@drawable/shoulou" android:id="@+id/kaifashang_shoulou_view"
                            android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:layout_alignParentTop="true"></ImageView>
-                <TextView android:text="@string/shoulou"
+                <TextView android:text="@string/kaifashang_shoulou"
                           android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:layout_alignParentBottom="true" android:layout_gravity="center_horizontal"/>
 
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content" android:orientation="vertical"
+                          android:layout_margin="60dip">
+                <ImageView android:src="@drawable/setting"
+                           android:layout_width="wrap_content" android:layout_height="wrap_content"
+                           android:layout_alignParentTop="true" android:id="@+id/yezhu_shouloou_view"></ImageView>
+                <TextView android:text="@string/yezhu_shoulou"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
             </LinearLayout>
 
             <LinearLayout android:layout_width="fill_parent"
@@ -55,17 +67,8 @@
                           android:layout_gravity="center_horizontal"
                           android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent"
-                          android:layout_height="wrap_content" android:orientation="vertical"
-                          android:layout_margin="60dip">
-                <ImageView android:src="@drawable/setting"
-                           android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_alignParentTop="true" android:id="@+id/coming_soon_view_3"></ImageView>
-                <TextView android:text="@string/coming_soon"
-                          android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_gravity="center_horizontal"
-                          android:layout_alignParentBottom="true" android:id="@+id/settings_tv"/>
-            </LinearLayout>
+
+
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content" android:orientation="vertical"

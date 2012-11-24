@@ -10,6 +10,7 @@ import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.BaseHandler;
 import com.letian.model.xmlhandler.HuxingFangjianLeixingHandler;
+import com.letian.view.SelectorView;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
@@ -59,11 +60,13 @@ public class Model {
             SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
             Cursor cursor;
             cursor = db.rawQuery("select * from " + table, null);
+            Log.d(SelectorView.LOG_TAG, "select * from " + table)      ;
             cursor.moveToFirst();
 
             cursor.moveToFirst();
             while (cursor.isAfterLast() != true) {
-                res.add(cursor.getString(2));
+                Log.d(SelectorView.LOG_TAG, "wooo"  +cursor.getString(1)) ;
+                res.add(cursor.getString(1));
                 cursor.moveToNext();
             }
 

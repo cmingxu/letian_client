@@ -47,7 +47,7 @@ public class YanshouduixiangHandler extends BaseHandler {
                 currentYanshouDuixiang.dxbh = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("id")){
-                currentYanshouDuixiang._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
+                currentYanshouDuixiang._id = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("ysdx")){
                 yanshouduixiangs.add(currentYanshouDuixiang);

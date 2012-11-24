@@ -45,7 +45,7 @@ public class Louge extends Model {
 //			+ "louges.xml";
 
 
-    public Louge(String lougemingcheng, String lougebianhao, String loupanbianhao, Integer _id) {
+    public Louge(String lougemingcheng,  String loupanbianhao,String lougebianhao, Integer _id) {
         this.lougemingcheng = lougemingcheng;
         this.lougebianhao = lougebianhao;
         this.loupanbianhao = loupanbianhao;

@@ -24,12 +24,12 @@ public class Main extends Activity {
 	private static final String LOG_TAG = "Main_Activityaaa";
 
 	ImageView logout_view;
-    ImageView shoulou_view;
+    ImageView kaifashang_shoulou_view;
     ImageView setting_view;
     ImageView coming_soon_view_1;
     ImageView coming_soon_view_2;
     ImageView coming_soon_view_3;
-    ImageView coming_soon_view_4;
+
     ImageView coming_soon_view_5;
     ImageView coming_soon_view_6;
     ImageView coming_soon_view_7;
@@ -56,12 +56,10 @@ public class Main extends Activity {
         setting_view = (ImageView) findViewById(R.id.setting_view);
         setting_view.setOnClickListener(new SettingListener());
 
-        shoulou_view = (ImageView)findViewById(R.id.shoulou_view);
+        kaifashang_shoulou_view = (ImageView)findViewById(R.id.kaifashang_shoulou_view);
         setting_view = (ImageView)findViewById(R.id.setting_view);
         coming_soon_view_1 = (ImageView)findViewById(R.id.coming_soon_view_1);
         coming_soon_view_2 = (ImageView)findViewById(R.id.coming_soon_view_2);
-        coming_soon_view_3 = (ImageView)findViewById(R.id.coming_soon_view_3);
-        coming_soon_view_4 = (ImageView)findViewById(R.id.coming_soon_view_4);
         coming_soon_view_5 = (ImageView)findViewById(R.id.coming_soon_view_5);
         coming_soon_view_6 = (ImageView)findViewById(R.id.coming_soon_view_6);
         coming_soon_view_7 = (ImageView)findViewById(R.id.coming_soon_view_7);
@@ -74,9 +72,6 @@ public class Main extends Activity {
 //        coming_soon_view_2.setOnClickListener(new ComingSoonListener());
 
         coming_soon_view_2.setOnClickListener(new TestListener());
-        coming_soon_view_3.setOnClickListener(new ComingSoonListener());
-        coming_soon_view_4.setOnClickListener(new ComingSoonListener());
-        coming_soon_view_5.setOnClickListener(new ComingSoonListener());
         coming_soon_view_6.setOnClickListener(new ComingSoonListener());
         coming_soon_view_7.setOnClickListener(new ComingSoonListener());
         coming_soon_view_8.setOnClickListener(new ComingSoonListener());
@@ -86,7 +81,7 @@ public class Main extends Activity {
         coming_soon_view_12.setOnClickListener(new ComingSoonListener());
 
 
-        shoulou_view.setOnClickListener(new Button.OnClickListener() {
+        kaifashang_shoulou_view.setOnClickListener(new Button.OnClickListener() {
 
 
             @Override

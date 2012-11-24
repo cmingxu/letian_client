@@ -23,6 +23,16 @@
                 android:layout_height="wrap_content" android:text="验收对象"></Button>
 
 
+        <Button android:layout_width="wrap_content" android:id="@+id/list_fjlx_ysdx"
+                android:layout_height="wrap_content" android:text="房间类型 验收对象"></Button>
+
+
+        <Button android:layout_width="wrap_content" android:id="@+id/list_ysxm"
+                android:layout_height="wrap_content" android:text="验收项目"></Button>
+
+
+
+
         <Button android:layout_width="wrap_content" android:id="@+id/back"
                 android:layout_height="wrap_content" android:text="返回"></Button>
 

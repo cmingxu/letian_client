@@ -47,6 +47,8 @@ public class DanyuanHandler extends BaseHandler{
             }
             else if (localName.equalsIgnoreCase("louceng")){
             	currentDanyuan.louceng = builder.toString().replaceAll("\\s","");
+            }else if (localName.equalsIgnoreCase("jiange")){
+                currentDanyuan.jiange = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("loucengmingcheng")){
             	currentDanyuan.loucengmingcheng = builder.toString().replaceAll("\\s","");

@@ -54,8 +54,6 @@ public class SettingActivity extends Activity {
         });
     }
 
-
-
     private void tongbu() {
         progressDialog = ProgressDialog.show(SettingActivity.this, this.getResources().getString(R.string.sync_notice), null, true);
         new Thread() {
@@ -78,9 +76,6 @@ public class SettingActivity extends Activity {
                         }
 
                     });
-
-
-
                 }else{
                     get_data_from_server();
 
@@ -95,8 +90,8 @@ public class SettingActivity extends Activity {
 
     public void get_data_from_server() {
         Context context = getApplication();
-        Danyuan.syn(context);
         Louge.syn(context);
+        Danyuan.syn(context);
         FangjianLeixing.syn(context);
         FangjianleixingYanshouduixiang.syn(context);
         Huxing.syn(context);

@@ -2,12 +2,15 @@ package com.letian.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.FangjianLeixingHandler;
 import com.letian.model.xmlhandler.FangjianleixingYanshouduixiangHandler;
+import com.letian.view.SelectorView;
 
 import java.util.ArrayList;
 
@@ -74,6 +77,7 @@ public class FangjianleixingYanshouduixiang extends Model {
             Log.e(Danyuan.LOG_TAG, e.getMessage());
         }
     }
+
 
     public boolean save_into_db() throws LTException {
         ContentValues values = new ContentValues();

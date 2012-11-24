@@ -34,7 +34,8 @@
     <string name="sync_notice">数据同步中， 请不要关闭程序</string>
     <string name="baoxiu">报修</string>
     <string name="tousu">投诉</string>
-    <string name="shoulou">收楼</string>
+    <string name="kaifashang_shoulou">开发商收楼</string>
+    <string name="yezhu_shoulou">业主收楼收楼</string>
     <string name="paizhao">拍照</string>
     <string name="sync_btn">开始同步数据</string>
     <string name="title">金茂家园物业管理终端</string>

@@ -49,7 +49,7 @@ public class YanshouXiangmuHandler extends BaseHandler {
                 currentYanshouXiangmu.xmbh = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("id")){
-                currentYanshouXiangmu._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
+                currentYanshouXiangmu._id = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("ysxm")){
                 yanshouxiangmus.add(currentYanshouXiangmu);

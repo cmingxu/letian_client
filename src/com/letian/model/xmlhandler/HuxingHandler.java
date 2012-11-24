@@ -46,7 +46,7 @@ public class HuxingHandler extends BaseHandler {
             } else if (localName.equalsIgnoreCase("HXBH")){
                 currentHuxing.hxbh = builder.toString().replaceAll("\\s","");
             }
-            else if (localName.equalsIgnoreCase("ID")){
+            else if (localName.equalsIgnoreCase("id")){
                 currentHuxing._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
             }
             else if (localName.equalsIgnoreCase("hx")){

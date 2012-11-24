@@ -18,6 +18,7 @@ import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.DanyuanHandler;
+import com.letian.view.SelectorView;
 
 public class Danyuan extends Model {
 	public Integer _id;
@@ -30,6 +31,7 @@ public class Danyuan extends Model {
 
 	public String zhuhubianhao;
 	public String louceng;
+    public String jiange;
 	public String loucengmingcheng;
 
 	public static final String LOG_TAG = "DANYUAN_MODEL";
@@ -43,17 +45,20 @@ public class Danyuan extends Model {
 			+ "danyuanmingcheng TEXT,"
 			+ "lougebianhao TEXT,"
 			+ "zhuhubianhao TEXT,"
+            + "jiange TEXT,"
 			+ "louceng TEXT,"
 			+ "loucengmingcheng TEXT,"
 			+ "createdTime TEXT" + ");";
 
 
-    public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao) {
+    public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao, String jiange) {
         this._id = _id;
         this.danyuanbianhao = danyuanbianhao;
         this.danyuanmingcheng = danyuanmingcheng;
         this.lougebianhao = lougebianhao;
         this.zhuhubianhao = zhuhubianhao;
+        this.jiange = jiange ;
+
     }
 
     public Danyuan(Context context) {
@@ -102,6 +107,7 @@ public class Danyuan extends Model {
 		values.put("danyuanmingcheng", this.danyuanmingcheng);
 		values.put("lougebianhao", this.lougebianhao);
 		values.put("zhuhubianhao", this.zhuhubianhao);
+        values.put("jiange", this.jiange);
 		values.put("louceng", this.louceng);
 		values.put("loucengmingcheng", this.loucengmingcheng);
 		values.put("createdTime", (new Date()).toString());
@@ -160,58 +166,25 @@ public class Danyuan extends Model {
 		return res;
 	}
 
-	public static Danyuan get_danyuan_with_danyuanbianhao(String bianhao,Context context){
-		Danyuan danyuan = new Danyuan(context);
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql = "select * from Danyuan where danyuanbianhao='"
-				+ bianhao + "'";
-		Cursor cursor = db.rawQuery(sql, null);
-		cursor.moveToFirst();
-		danyuan._id = cursor.getInt(0);
-		danyuan.danyuanbianhao = cursor.getString(1);
-		danyuan.zhuhubianhao = cursor.getString(4);
-		cursor.close();
-	    db.close();
-
-		return danyuan;
-	}
-	
-	public Zhuhu get_zhuhu() {
-		Zhuhu zh;
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql1 = "select * from Zhuhu";
-    	Cursor cursor1 = db.rawQuery(sql1, null);
-		String sql = "select * from Zhuhu where zhuhubianhao	='"
-				+ this.zhuhubianhao + "'";
-		Cursor cursor = db.rawQuery(sql, null);
-		if (cursor == null) {
-			return null;
-		} else {
-			cursor.moveToFirst();
-			zh = new Zhuhu(context);
-			try{
-			zh.zhuhumingcheng = cursor.getString(1);
-			zh.lianxidianhua = cursor.getString(4);
-			zh.shoujihaoma = cursor.getString(3);
-			}catch(Exception e){
-				zh.zhuhumingcheng = "";
-				zh.lianxidianhua = "";
-				zh.shoujihaoma = "";
-			}
-			cursor.close();
-		}
-
-		db.close();
-		return zh;
-	}
-
     public static ArrayList<Danyuan> findAll(Context context){
+        return Danyuan.findAll(context, null);
+    }
+
+    public static ArrayList<Danyuan> findAll(Context context, String where){
         ArrayList<Danyuan> danyuans = new ArrayList<Danyuan>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-        String sql = "select * from Danyuan order by _id DESC";
+        String sql;
+        if (where == null) {
+         sql = "select * from " + TABLE_NAME + " order by _id DESC";
+        }else
+        {
+         sql = "select * from " + TABLE_NAME + " where " + where + " order by _id DESC";
+
+        }
         Cursor cursor;
         try{
             cursor = db.rawQuery(sql,null);
+            Log.d(SelectorView.LOG_TAG, sql);
         }catch(Exception e){
             return danyuans;
         }
@@ -222,7 +195,8 @@ public class Danyuan extends Model {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getString(4)
+                    cursor.getString(4),
+                    cursor.getString(5)
             ));
             cursor.moveToNext();
         }

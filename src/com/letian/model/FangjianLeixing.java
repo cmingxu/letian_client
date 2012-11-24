@@ -2,11 +2,14 @@ package com.letian.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.FangjianLeixingHandler;
+import com.letian.view.SelectorView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +23,7 @@ import java.util.Date;
  */
 public class FangjianLeixing extends Model {
 
-    public int _id;
+    public String _id;
     public String fjmc;
     public String fjbh;
 
@@ -28,6 +31,11 @@ public class FangjianLeixing extends Model {
     public static final String LOG_TAG = "FangjianLeixing";
     public Context context;
 
+    public FangjianLeixing(String _id, String fjmc, String fjbh) {
+        this._id = _id;
+        this.fjmc = fjmc;
+        this.fjbh = fjbh;
+    }
 
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS FangjianLeixing("
             + "id INTEGER PRIMARY KEY,"
@@ -41,6 +49,59 @@ public class FangjianLeixing extends Model {
 
         LocalAccessor.getInstance(this.context).create_db(
                 SQL_CREATE_TABLE_MESSAGE);
+    }
+
+    public static ArrayList<FangjianLeixing> findAllByHuxing(Context context, String huxing){
+        ArrayList<FangjianLeixing> fjlxes = new ArrayList<FangjianLeixing>();
+        int huxing_id;
+        StringBuilder fjlxids = new StringBuilder();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+
+        Cursor cursor;
+        try{
+            String sql;
+            sql = "select * from " + Huxing.TABLE_NAME + " where hxmc = '" + huxing + "';";
+            Log.d(SelectorView.LOG_TAG,sql);
+            cursor = db.rawQuery(sql,null);
+            cursor.moveToFirst();
+            huxing_id = cursor.getInt(1);
+            Log.d(SelectorView.LOG_TAG, "dddddddddd" + cursor.getString(2));
+            Log.d(SelectorView.LOG_TAG, cursor.getString(3));
+
+            sql = "select * from " + HuxingFangjianLeixing.TABLE_NAME +
+                    " where hxid='" + huxing_id + "';";
+            Log.d(SelectorView.LOG_TAG,sql);
+            cursor = db.rawQuery(sql,null);
+            cursor.moveToFirst();
+            fjlxids.append(cursor.getString(3));
+            while(cursor.isAfterLast() != true){
+                fjlxids.append(",");
+                fjlxids.append(cursor.getString(3));
+                cursor.moveToNext();
+            }
+            Log.d(SelectorView.LOG_TAG, fjlxids.toString());
+
+            sql = "select * from " + FangjianLeixing.TABLE_NAME +
+                    " where _id in (" + fjlxids.toString() + ");";
+
+            cursor = db.rawQuery(sql,null);
+            cursor.moveToFirst();
+            while(cursor.isAfterLast() != true){
+                fjlxes.add(new FangjianLeixing(cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)));
+                cursor.moveToNext();
+                }
+
+        }catch(Exception e){
+            return fjlxes;
+        }
+
+
+        cursor.close();
+        db.close();
+
+        return fjlxes;
     }
 
     public static void syn(Context context) {

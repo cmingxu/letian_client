@@ -10,6 +10,7 @@ import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.model.xmlhandler.YanshouduixiangHandler;
+import com.letian.view.SelectorView;
 
 
 import javax.xml.parsers.SAXParser;
@@ -27,7 +28,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class YanshouDuixiang extends Model{
-    public int _id;
+    public String _id;
     public String dxmc;
     public String dxbh;
 
@@ -35,6 +36,11 @@ public class YanshouDuixiang extends Model{
     public static final String TABLE_NAME = "YanshouDuixiang";
     public Context context;
 
+    public YanshouDuixiang(String _id, String dxmc, String dxbh) {
+        this._id = _id;
+        this.dxmc = dxmc;
+        this.dxbh = dxbh;
+    }
 
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YanshouDuixiang("
             + "id INTEGER PRIMARY KEY,"
@@ -87,6 +93,57 @@ public class YanshouDuixiang extends Model{
         values.put("dxbh", this.dxbh);
 
         return super.save_into_db(context, YanshouDuixiang.TABLE_NAME, values);
+    }
+
+
+    public static ArrayList<YanshouDuixiang> findAllByFjlxid(Context context, String fjlxid){
+        ArrayList<YanshouDuixiang> yuanshouduixiangs = new ArrayList<YanshouDuixiang>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        StringBuffer ysdxids = new StringBuffer();
+
+        Cursor cursor;
+        try{
+            String sql;
+            sql = "select * from " + FangjianleixingYanshouduixiang.TABLE_NAME + " where fjlxid ='" +
+                    fjlxid + "';" ;
+            Log.d(SelectorView.LOG_TAG, sql);
+            cursor = db.rawQuery(sql,null);
+            cursor.moveToFirst();
+            Log.d(SelectorView.LOG_TAG,"1111111111"  + cursor.getString(2));
+
+            ysdxids.append(cursor.getString(2));
+            cursor.moveToNext();
+
+            while(cursor.isAfterLast() != true){
+                Log.d(SelectorView.LOG_TAG, cursor.getString(3));
+                ysdxids.append(",");
+                ysdxids.append(cursor.getString(3));
+                cursor.moveToNext();
+            }
+            Log.d(SelectorView.LOG_TAG, ysdxids.toString());
+
+            sql = "select * from " + YanshouDuixiang.TABLE_NAME +
+                    " where _id in (" + ysdxids.toString() + ");";
+            Log.d(SelectorView.LOG_TAG, sql);
+            cursor = db.rawQuery(sql,null);
+            cursor.moveToFirst();
+            while(cursor.isAfterLast() != true){
+                yuanshouduixiangs.add(new YanshouDuixiang(cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3)));
+
+                Log.d(SelectorView.LOG_TAG, "11111 hahah " + cursor.getString(2));
+                cursor.moveToNext();
+            }
+
+        }catch(Exception e){
+            return yuanshouduixiangs;
+        }
+
+
+        cursor.close();
+        db.close();
+        return yuanshouduixiangs;
     }
 
 

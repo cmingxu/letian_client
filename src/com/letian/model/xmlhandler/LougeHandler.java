@@ -55,7 +55,6 @@ public class LougeHandler extends BaseHandler{
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-//        Log.e(Danyuan.LOG_TAG, "sssssssss document");
         louges = new ArrayList<Louge>();
         builder = new StringBuilder();
     }
@@ -69,7 +68,6 @@ public class LougeHandler extends BaseHandler{
     	 if (localName.equalsIgnoreCase("louge")){
     	
     		 this.currentLouge = new Louge(context);
-    		 Log.e("ssssssss", "ssssssssssssssssssssssssss");
         }
        
     }

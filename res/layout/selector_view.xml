@@ -10,25 +10,27 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1">
-
-
-        <ListView
-                android:text="red"
-
-                android:gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:id="@+id/danyuan_list_view"
-                android:layout_weight="1"/>
         <ListView
                 android:text="green"
                 android:gravity="center_horizontal"
-                android:background="#00aa00"
+                android:background="#00aaaa"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/louge_list_view"
 
                 android:layout_weight="1"/>
+
+
+        <ListView
+                android:text="red"
+                android:gravity="center_horizontal"
+                android:background="#00aabb"
+
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/danyuan_list_view"
+                android:layout_weight="1"/>
+
 
         <ListView
                 android:text="green"
@@ -37,7 +39,25 @@
                 android:background="#00aacc"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:id="@+id/louge_list_vie1w"></ListView>
+                android:id="@+id/fangjianleixing_list_view"></ListView>
+
+        <ListView
+            android:text="green"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="#00aadd"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/yanshouduixiang_list_view"></ListView>
+
+        <ListView
+                android:text="green"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="#00aaee"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/yanshouxiangmu_list_view"></ListView>
     </LinearLayout>
 
 

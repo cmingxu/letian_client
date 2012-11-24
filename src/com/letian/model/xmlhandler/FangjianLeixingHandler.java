@@ -48,7 +48,7 @@ public class FangjianLeixingHandler extends BaseHandler {
                 currentFangjianLeixing.fjbh = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("id")){
-                currentFangjianLeixing._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
+                currentFangjianLeixing._id = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("fjlx")){
                 fangjianleixings.add(currentFangjianLeixing);
