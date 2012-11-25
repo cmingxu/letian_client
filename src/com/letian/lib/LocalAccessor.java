@@ -55,7 +55,7 @@ public class LocalAccessor{
 	
 	public void set_server_url(String server_url){
 		SharedPreferences.Editor editor = prefs.edit();
-	      editor.putString("serv    er_url",server_url);
+	      editor.putString("server_url",server_url);
 	      editor.commit();
 	}
 	

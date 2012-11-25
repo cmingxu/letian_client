@@ -29,6 +29,7 @@ public class Login extends Activity {
 	private EditText password;
 	private Button login_button;
 	private Button back_button;
+    private Button setting_button;
 
 	private CheckBox remember_me;
 	private User user;
@@ -46,6 +47,7 @@ public class Login extends Activity {
 		login_button = (Button) findViewById(R.id.login_button);
 		back_button = (Button) findViewById(R.id.back_button);
 		remember_me = (CheckBox) findViewById(R.id.remeber_me);
+        setting_button = (Button) findViewById(R.id.setting_button);
 
 		User last_user = User.last_user(this.getApplicationContext());
 		if (last_user.remember_me == 1) {
@@ -56,6 +58,7 @@ public class Login extends Activity {
 
 		login_button.setOnClickListener(new LoginListener());
 		back_button.setOnClickListener(new BackListener());
+        setting_button.setOnClickListener(new SettingListener());
 
 	}
 
@@ -73,55 +76,49 @@ public class Login extends Activity {
 
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case SHEZHI:
-			shezhi();
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    public class SettingListener implements Button.OnClickListener{
 
-	private void shezhi() {
-		LayoutInflater factory = (LayoutInflater) this.getApplicationContext()
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		final View textEntryView = factory.inflate(
-				R.layout.setting_dialog_layout, null);
-		final EditText addr = (EditText) textEntryView.findViewById(R.id.addr);
-		addr.setText(LocalAccessor.getInstance(this.getApplicationContext())
-				.get_server_url());
+        @Override
+        public void onClick(View view) {
+            LayoutInflater factory = (LayoutInflater) Login.this.getApplicationContext()
+                    .getSystemService(LAYOUT_INFLATER_SERVICE);
+            final View textEntryView = factory.inflate(
+                    R.layout.setting_dialog_layout, null);
+            final EditText addr = (EditText) textEntryView.findViewById(R.id.addr);
+            addr.setText(LocalAccessor.getInstance(Login.this.getApplicationContext())
+                    .get_server_url());
 
-		AlertDialog dlg = new AlertDialog.Builder(Login.this).setTitle(
-				"").setView(textEntryView).setPositiveButton("",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						String text = "";
-						String addr_str = addr.getText().toString().trim();
-						if (addr_str != ""
-								&& User.is_server_reachable(addr_str)) {
-							text = "abc";
-							LocalAccessor.getInstance(
-									Login.this.getApplicationContext())
-									.set_server_url(addr_str);
+            AlertDialog dlg = new AlertDialog.Builder(Login.this).setTitle(
+                    "").setView(textEntryView).setPositiveButton(getResources().getString(R.string.save),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String text = "";
+                            String addr_str = addr.getText().toString().trim();
+                            if (addr_str != ""
+                                    && User.is_server_reachable(addr_str)) {
+                                text = getResources().getString(R.string.save_success);
+                                LocalAccessor.getInstance(
+                                        Login.this.getApplicationContext())
+                                        .set_server_url(addr_str);
 
 
-						} else {
-							text = "woo";
-						}
-						new AlertDialog.Builder(Login.this).setMessage(text)
-								.setPositiveButton(R.string.i_know, null)
-								.show();
-					}
-				}).setNegativeButton("ok",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
+                            } else {
+                                text =getResources().getString(R.string.network_connection_problem);
+                            }
+                            new AlertDialog.Builder(Login.this).setMessage(text)
+                                    .setPositiveButton(R.string.i_know, null)
+                                    .show();
+                        }
+                    }).setNegativeButton("ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
 
-						/* User clicked cancel so do some stuff */
-					}
-				}).create();
-		dlg.show();
-	}
+                            /* User clicked cancel so do some stuff */
+                        }
+                    }).create();
+            dlg.show();
+        }
+    }
 
 	private class LoginListener implements Button.OnClickListener {
 
@@ -162,10 +159,7 @@ public class Login extends Activity {
 				@Override
 				public void run() {
 					try {
-                        Log.d(Login.LOG_TAG, "before");
 						final VerifiedInfo vi = user.verify();
-                        Log.d(Login.LOG_TAG, "after");
-						Log.e(Login.LOG_TAG, vi.verifyMessage);
 
 						if (vi.verifyCode == VerifiedInfo.VERIFY_SUCCESS) {
 
@@ -244,8 +238,6 @@ public class Login extends Activity {
 		case KeyEvent.KEYCODE_HOME:
 			should_capture = true;
 			break;
-		// case KeyEvent.KEYCODE_MENU:
-		// break;
 		}
 		if (should_capture) {
 			return false;

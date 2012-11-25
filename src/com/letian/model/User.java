@@ -93,7 +93,6 @@ public class User extends Model {
         LocalAccessor.getInstance(context).create_db(SQL_CREATE_TABLE_MESSAGE);
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
 
-        // �ж��Ƿ��м�¼
         String sql = "select * from Misc;";
         cursor = db.rawQuery(sql, null);
         if (cursor.getCount() == 0) {
