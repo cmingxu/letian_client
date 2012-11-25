@@ -31,6 +31,11 @@
                 android:layout_height="wrap_content" android:text="验收项目"></Button>
 
 
+        <Button android:layout_width="wrap_content" android:id="@+id/list_record"
+                android:layout_height="wrap_content" android:text="验收结果"></Button>
+
+
+
 
 
         <Button android:layout_width="wrap_content" android:id="@+id/back"

@@ -47,12 +47,12 @@ public class User extends Model {
             xmlString = BaseAuthenicationHttpClient.doRequest(url, this.name,
                     this.password);
         } catch (LTException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 
         VerifiedInfo ret = new VerifiedInfo();
         if (null == xmlString || xmlString.contains("login.failed")) {
-            ret.verifyCode = VerifiedInfo.VERIFY_SUCCESS;
+            ret.verifyCode = VerifiedInfo.VERIFY_ERROR;
             ret.verifyMessage = "登录失败， 检查用户名密码";
         } else {
             ret.verifyCode = VerifiedInfo.VERIFY_SUCCESS;

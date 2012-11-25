@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.HashMap;
 
 import android.util.Log;
@@ -25,14 +23,12 @@ import com.letian.model.LTException;
  *
  */
 public class BaseAuthenicationHttpClient {
-	
- 
 
-
-	
 	 static public String doRequest(String urlString, String name, String password, HashMap<String,String> params) throws LTException
 	 {
 		try{
+            Log.d(Login.LOG_TAG, "doRequest");
+            Log.d(Login.LOG_TAG, urlString);
 	    	URL url = new URL (urlString);
 	        String userPassword = name+":"+password;
 	
@@ -42,7 +38,6 @@ public class BaseAuthenicationHttpClient {
 	        HttpURLConnection uc = (HttpURLConnection) url.openConnection();
 	        uc.setRequestProperty("Authorization", "Basic " + encoding);
 	        uc.setRequestProperty("User-Agent", "Mozilla/5.0");
-	        uc.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
 	        
 	        uc.setDoInput(true);
 	        uc.setDoOutput(true);
@@ -55,16 +50,14 @@ public class BaseAuthenicationHttpClient {
 	        		 buf.append("&").append(key).append("=").append(params.get(key));
 	        	}
 	        	buf.deleteCharAt(0);
-	            uc.getOutputStream().write(buf.toString().getBytes("UTF-8"));  
+	            uc.getOutputStream().write(buf.toString().getBytes("UTF-8"));
 	            uc.getOutputStream().close();  
 	        }  
 	  
 	        InputStream content = uc.getInputStream();
 	        BufferedReader in = new BufferedReader (new InputStreamReader (content,"UTF-8"));
-	        String line = in.readLine();//will refactory
-	//	          while ((line = in.readLine()) != null) {
-	//	            System.out.println (line);
-	//	            }
+	        String line = in.readLine();
+
 	        in.close();
 	        return line.trim();
 		}catch(IOException e){

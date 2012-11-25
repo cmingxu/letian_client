@@ -1,6 +1,17 @@
 package com.letian.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import com.letian.lib.BaseAuthenicationHttpClient;
+import com.letian.lib.LocalAccessor;
+import com.letian.view.SelectorView;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,11 +21,57 @@ import android.content.Context;
  * To change this template use File | Settings | File Templates.
  */
 public class YfRecord extends Model {
-
     public boolean result;
     public String reason;
-
+    public String louge_bh;
     public String louge;
+    public String fangjianleixing;
+    public String shoulouduixiang;
+    public String shoulouxiangmu;
+    public String danyuan;
+    public String huxing;
+    public String danyuan_id;
+
+    public String getDanyuan_bh() {
+        return danyuan_bh;
+    }
+
+    public void setDanyuan_bh(String danyuan_bh) {
+        this.danyuan_bh = danyuan_bh;
+    }
+
+    public String danyuan_bh;
+    public String huxing_id;
+    public String fangjianleixing_id;
+    public String shoulouduixiang_id;
+    public String shoulouxiangmu_id;
+
+
+    public static final String LOG_TAG = "YfRecordModel";
+    public static final String TABLE_NAME = "YfRecord";
+
+
+    private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YfRecord("
+            + "id INTEGER PRIMARY KEY,"
+            + "result INTEGER,"
+            + "reason TEXT,"
+            + "louge_bh  TEXT,"
+            + "louge TEXT,"
+            + "fangjianleixing TEXT,"
+            + "shoulouduixiang TEXT,"
+            + "shoulouxiangmu TEXT,"
+            + "danyuan TEXT,"
+            + "huxing TEXT,"
+            + "danyuan_id TEXT,"
+            + "huxing_id TEXT,"
+            + "fangjianleixing_id TEXT,"
+            + "shoulouduixiang_id TEXT,"
+            + "shoulouxiangmu_id TEXT,"
+            + "save_to_server INTEGER,"
+            + "danyuan_bh TEXT"
+            + ");";
+
+
 
     public boolean isResult() {
         return result;
@@ -39,13 +96,6 @@ public class YfRecord extends Model {
     public void setLouge_bh(String louge_bh) {
         this.louge_bh = louge_bh;
     }
-
-    public String louge_bh;
-    public String danyuan;
-    public String huxing;
-    public String fangjianleixing;
-    public String shoulouduixiang;
-    public String shoulouxiangmu;
 
     public Context context;
 
@@ -89,11 +139,6 @@ public class YfRecord extends Model {
         this.shoulouxiangmu_id = shoulouxiangmu_id;
     }
 
-    public String danyuan_id;
-    public String huxing_id;
-    public String fangjianleixing_id;
-    public String shoulouduixiang_id;
-    public String shoulouxiangmu_id;
 
     public YfRecord(Context context) {
         this.context = context;
@@ -145,6 +190,115 @@ public class YfRecord extends Model {
 
     public void setLouge(String louge) {
         this.louge = louge;
+    }
+
+
+    public boolean save_to_db(){
+
+        LocalAccessor.getInstance(this.context).create_db(
+                SQL_CREATE_TABLE_MESSAGE);
+        ContentValues values = new ContentValues();
+        values.put("result", this.result);
+        values.put("reason", this.reason);
+        values.put("louge_bh", this.louge_bh);
+        values.put("louge", this.louge);
+        values.put("fangjianleixing", this.fangjianleixing);
+        values.put("shoulouduixiang", this.shoulouduixiang);
+        values.put("shoulouxiangmu", this.shoulouxiangmu);
+        values.put("danyuan", this.danyuan);
+        values.put("huxing", this.huxing);
+        values.put("danyuan_id", this.danyuan_id);
+        values.put("huxing_id", this.huxing_id);
+        values.put("fangjianleixing_id", this.fangjianleixing_id);
+        values.put("shoulouduixiang_id", this.shoulouduixiang_id);
+        values.put("shoulouxiangmu_id", this.shoulouxiangmu_id);
+        values.put("save_to_server", 0);
+        values.put("danyuan_bh", this.danyuan_bh);
+
+
+        try {
+            return super.save_into_db(context, YfRecord.TABLE_NAME, values);
+        } catch (LTException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+
+    public boolean save_to_server(Context context){
+        String url = LocalAccessor.getInstance(context).get_server_url() + "/kfs_yfs";
+        String xmlString = null;
+
+        HashMap<String, String> params = new HashMap<String, String>();
+//                params.put("a", "c");
+        params.put("yf[result]", this.result ? "ok" : "not_ok");
+        params.put("yf[reason]", this.reason);
+        params.put("yf[louge_bh]", this.louge_bh);
+        params.put("yf[louge]", this.louge);
+        params.put("yf[fangjianleixing]", this.fangjianleixing);
+        params.put("yf[shoulouduixiang]", this.shoulouduixiang);
+        params.put("yf[shoulouxiangmu]", this.shoulouxiangmu);
+        params.put("yf[danyuan]", this.danyuan);
+        params.put("yf[huxing]", this.huxing);
+        params.put("yf[danyuan_id]", this.danyuan_id);
+        params.put("yf[huxing_id]", this.huxing_id);
+        params.put("yf[fangjianleixing_id]", this.fangjianleixing_id);
+        params.put("yf[shoulouduixiang_id]", this.shoulouduixiang_id);
+        params.put("yf[shoulouxiangmu_id]", this.shoulouxiangmu_id);
+        params.put("yf[danyuan_bh]", this.danyuan_bh);
+
+
+        try {
+            xmlString = BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
+                    User.current_user.password, params);
+        } catch (LTException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public static ArrayList<YfRecord> findAll(Context context){
+        ArrayList<YfRecord> records = new ArrayList<YfRecord>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql;
+        sql = "select * from " + TABLE_NAME + " order by _id DESC";
+
+        Cursor cursor;
+        try{
+            cursor = db.rawQuery(sql,null);
+            Log.d(SelectorView.LOG_TAG, sql);
+        }catch(Exception e){
+            return records;
+        }
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() != true){
+            Log.d(YfRecord.LOG_TAG, cursor.getString(3));
+            YfRecord r = new YfRecord( context  );
+            r.setResult(cursor.getString(1) == "1" ? true : false);
+            r.setReason(cursor.getString(2));
+            r.setLouge_bh(cursor.getString(3));
+            r.setLouge(cursor.getString(4));
+            r.setFangjianleixing(cursor.getString(5));
+            r.setShoulouduixiang(cursor.getString(6));
+            r.setShoulouxiangmu(cursor.getString(7));
+            r.setDanyuan(cursor.getString(8));
+            r.setHuxing(cursor.getString(9));
+            r.setHuxing_id(cursor.getString(10));
+            r.setFangjianleixing_id(cursor.getString(11));
+            r.setShoulouduixiang_id(cursor.getString(12));
+            r.setShoulouxiangmu_id(cursor.getString(13));
+            r.setDanyuan_bh(cursor.getString(14));
+
+            records.add(r);
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return records;
+
     }
 
 

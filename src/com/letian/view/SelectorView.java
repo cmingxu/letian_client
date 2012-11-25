@@ -1,12 +1,17 @@
 package com.letian.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
+import com.letian.Main;
 import com.letian.R;
 import com.letian.model.*;
 
@@ -43,6 +48,10 @@ public class SelectorView extends Activity {
 
     RadioButton okRadio;
     RadioButton badRadio;
+
+
+    private ProgressDialog progressDialog;
+    private Handler handler = new Handler();
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -202,10 +211,47 @@ public class SelectorView extends Activity {
 
         @Override
         public void onClick(View view) {
+            progressDialog = ProgressDialog.show(SelectorView.this, "保存中， 请稍候...",
+                    null, true);
             record.setResult(okRadio.isChecked());
             record.setReason(reasonText.getText().toString());
             reasonText.setText("");
 
+            new Thread() {
+                @Override
+                public void run() {
+//                    try {
+
+                        record.save_to_db();
+                        if(record.save_to_server(SelectorView.this.getApplicationContext()))
+                        {
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    new AlertDialog.Builder(SelectorView.this).setMessage(
+                                            "保存成功!").setPositiveButton("Okay",
+                                            null).show();
+
+                                }
+                            });
+
+                        }
+//                    } catch (Exception e) {
+//
+//                        e.printStackTrace();
+//
+//                        handler.post(new Runnable() {
+//                            public void run() {
+//                                new AlertDialog.Builder(SelectorView.this).setMessage(
+//                                        "网络好像不太给力, 稍后尝试").setPositiveButton("Okay",
+//                                        null).show();
+//
+//                            }
+//                        });
+//
+//                    }
+                    progressDialog.dismiss();
+                }
+            }.start();
             window.dismiss();
         }
     }
