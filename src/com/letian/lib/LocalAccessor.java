@@ -46,11 +46,11 @@ public class LocalAccessor{
 	}
 	
 	public String get_server_url(){
-		return prefs.getString("server_url", "http://10.0.2.2:3000");
+		return prefs.getString("server_url", Constants.SERVER_PATH);
 	}
 	
 	public String get_file_upload_path(String models,String id){
-		return prefs.getString("server_url", "http://10.0.2.2:3000") + "/" + models + "/" + id + "/upload_file";
+		return prefs.getString("server_url", Constants.SERVER_PATH) + "/" + models + "/" + id + "/upload_file";
 	}
 	
 	public void set_server_url(String server_url){

@@ -1,6 +1,8 @@
 package com.letian;
 
+import android.os.Looper;
 import com.letian.lib.LocalAccessor;
+import com.letian.lib.NetworkConnection;
 import com.letian.model.User;
 import com.letian.model.VerifiedInfo;
 
@@ -21,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import com.letian.view.SelectorView;
 
 public class Login extends Activity {
 	public static final String LOG_TAG = "Login_Activty";
@@ -28,10 +31,8 @@ public class Login extends Activity {
 	private EditText login;
 	private EditText password;
 	private Button login_button;
-	private Button back_button;
     private Button setting_button;
 
-	private CheckBox remember_me;
 	private User user;
 	private ProgressDialog progressDialog;
 	private Handler handler = new Handler();
@@ -45,36 +46,19 @@ public class Login extends Activity {
 		login = (EditText) findViewById(R.id.login);
 		password = (EditText) findViewById(R.id.password);
 		login_button = (Button) findViewById(R.id.login_button);
-		back_button = (Button) findViewById(R.id.back_button);
-		remember_me = (CheckBox) findViewById(R.id.remeber_me);
         setting_button = (Button) findViewById(R.id.setting_button);
 
 		User last_user = User.last_user(this.getApplicationContext());
 		if (last_user.remember_me == 1) {
 			login.setText(last_user.name);
 			password.setText(last_user.password);
-			remember_me.setChecked(true);
 		}
 
 		login_button.setOnClickListener(new LoginListener());
-		back_button.setOnClickListener(new BackListener());
         setting_button.setOnClickListener(new SettingListener());
 
 	}
 
-	class BackListener implements Button.OnClickListener{
-		@Override
-		public void onClick(View arg0) {
-			Login.this.finish();
-		}
-
-	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, SHEZHI, 0, "设置");
-		return super.onCreateOptionsMenu(menu);
-
-	}
 
     public class SettingListener implements Button.OnClickListener{
 
@@ -92,24 +76,57 @@ public class Login extends Activity {
                     "").setView(textEntryView).setPositiveButton(getResources().getString(R.string.save),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            String text = "";
-                            String addr_str = addr.getText().toString().trim();
-                            if (addr_str != ""
-                                    && User.is_server_reachable(addr_str)) {
-                                text = getResources().getString(R.string.save_success);
-                                LocalAccessor.getInstance(
-                                        Login.this.getApplicationContext())
-                                        .set_server_url(addr_str);
 
+                            progressDialog = ProgressDialog.show(Login.this, "",
+                                    null, true);
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        String addr_str = addr.getText().toString().trim();
+                                        String text = "";
+                                        if (addr_str != ""
+                                                && User.is_server_reachable(addr_str)) {
+                                            text = getResources().getString(R.string.save_success);
+                                            LocalAccessor.getInstance(
+                                                    Login.this.getApplicationContext())
+                                                    .set_server_url(addr_str);
 
-                            } else {
-                                text =getResources().getString(R.string.network_connection_problem);
-                            }
-                            new AlertDialog.Builder(Login.this).setMessage(text)
-                                    .setPositiveButton(R.string.i_know, null)
-                                    .show();
+                                        } else {
+                                            text = getResources().getString(R.string.network_connection_problem);
+                                            handler.post(new Runnable() {
+                                                public void run() {
+                                                    new AlertDialog.Builder(Login.this)
+                                                            .setMessage("")
+                                                            .setPositiveButton("Okay", null)
+                                                            .show();
+
+                                                }
+                                            });
+                                        }
+
+                                        new AlertDialog.Builder(Login.this).setMessage(text)
+                                                .setPositiveButton(R.string.i_know, null)
+                                                .show();
+
+                                    } catch (Exception e) {
+
+                                        Looper.prepare();
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                new AlertDialog.Builder(Login.this).setMessage(
+                                                        "服务器地址设置出错或者网络无连接！").setPositiveButton("",
+                                                        null).show();
+
+                                            }
+                                        });
+                                        Looper.loop();
+                                    }
+                                    progressDialog.dismiss();
+                                }
+                            }.start();
                         }
-                    }).setNegativeButton("ok",
+                    }).setNegativeButton(getResources().getText(R.string.cancel),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
@@ -129,24 +146,22 @@ public class Login extends Activity {
 			user.password = password.getText().toString().trim();
 
 
-			user.remember_me = remember_me.isChecked() ? 1 : 0;
 
-
-//			if (NetworkConnection.getInstance(
-//					Login.this.getApplicationContext()).NetworkNotAvailable()) {
-//				Log.e(Login.LOG_TAG, "network can not be reach");
-//				new AlertDialog.Builder(Login.this).setMessage(
-//						getResources().getString(
-//								R.string.net_work_can_not_be_found))
-//						.setPositiveButton(R.string.i_know, null).show();
-//			} else if (user.name.length() == 0 || user.password.length() == 0) {
-//				new AlertDialog.Builder(Login.this).setMessage(
-//						getResources().getString(
-//								R.string.field_should_not_blank))
-//						.setPositiveButton(R.string.i_know, null).show();
-//			} else {
+			if (NetworkConnection.getInstance(
+                    Login.this.getApplicationContext()).NetworkNotAvailable()) {
+				Log.e(Login.LOG_TAG, "network can not be reach");
+				new AlertDialog.Builder(Login.this).setMessage(
+						getResources().getString(
+								R.string.net_work_can_not_be_found))
+						.setPositiveButton(R.string.i_know, null).show();
+			} else if (user.name.length() == 0 || user.password.length() == 0) {
+				new AlertDialog.Builder(Login.this).setMessage(
+						getResources().getString(
+								R.string.field_should_not_blank))
+						.setPositiveButton(R.string.i_know, null).show();
+			} else {
 				doLogin();
-//			}
+			}
 
 		}
 
@@ -165,9 +180,7 @@ public class Login extends Activity {
 
 							User.set_current_user(user, Login.this.getApplicationContext());
 
-
 							Intent i = new Intent(Login.this, Main.class);
-
 							startActivity(i);
 							finish();
 						} else {

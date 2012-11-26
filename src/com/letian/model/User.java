@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -12,14 +14,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.letian.lib.Base64;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
+import com.letian.view.SelectorView;
 
 public class User extends Model {
 
     private static final String LOG_TAG = "Model";
-    private static final String default_data = "insert into  Misc values(1,'System','123',0,'http://10.0.2.2:3000/');";
+    private static final String default_data = "insert into  Misc values(1,'System','123',0,' " + Constants.SERVER_PATH + "');";
     public String name;
     public int remember_me;
     public String password;
@@ -42,6 +46,8 @@ public class User extends Model {
 
         String url = LocalAccessor.getInstance(context).get_server_url() + "/session/verify";
         String xmlString = null;
+
+        Log.d(SelectorView.LOG_TAG, url);
 
         try {
             xmlString = BaseAuthenicationHttpClient.doRequest(url, this.name,
@@ -110,28 +116,27 @@ public class User extends Model {
     }
 
     public static boolean is_server_reachable(String addr) {
+
+        boolean isConn = false;
+        URL url;
+        HttpURLConnection conn = null;
         try {
-
-            URL url = new URL(addr);
-
-            URLConnection uc = url.openConnection();
-            uc.setConnectTimeout(Constants.TIMEOUT);
-            uc.setRequestProperty("User-Agent", "Mozilla/5.0");
-
-            InputStream content = uc.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(content, "UTF-8"));
-
-            String line = "";//will refactory
-            StringBuilder sb = new StringBuilder("");
-            while ((line = in.readLine()) != null) {
-                sb.append(line);
+            url = new URL(addr);
+            conn = (HttpURLConnection)url.openConnection();
+            conn.setConnectTimeout(1000*5);
+            if(conn.getResponseCode()==200){
+                isConn = true;
             }
 
-            in.close();
-        } catch (IOException e) {
-            return false;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            conn.disconnect();
         }
-        return true;
+        return isConn;
+
     }
 
     public String name() {

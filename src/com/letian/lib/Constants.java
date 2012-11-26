@@ -8,4 +8,5 @@ public class Constants {
     public static final int TIME_INTERVAL = 10000 * 15;
     public static final int NOTIFICATION_ACTIVITY_ID = 1;
     public static final String GENERAL_MESSAGE = "GENERAL";
+    public static final String SERVER_PATH = "http://192.168.0.102:3000";
 }
