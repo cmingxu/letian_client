@@ -104,10 +104,8 @@ public class User extends Model {
         if (cursor.getCount() == 0) {
             db.execSQL(default_data);
         }
-        // �ٴβ�ѯ
         cursor = db.rawQuery(sql, null);
         cursor.moveToLast();
-        // �����û�
         user = new User(cursor.getString(1), cursor.getString(2));
         user.remember_me = cursor.getInt(3);
         cursor.close();
@@ -115,27 +113,17 @@ public class User extends Model {
         return user;
     }
 
-    public static boolean is_server_reachable(String addr) {
+    public static boolean is_server_reachable(String addr) throws IOException {
+        boolean result = false;
+        URL url = null;
+        HttpURLConnection connection = null;
+        InputStreamReader in = null;
+        url = new URL(addr);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setConnectTimeout(5 * 1000);
+        result = (connection.getResponseCode() == 200);
 
-        boolean isConn = false;
-        URL url;
-        HttpURLConnection conn = null;
-        try {
-            url = new URL(addr);
-            conn = (HttpURLConnection)url.openConnection();
-            conn.setConnectTimeout(1000*5);
-            if(conn.getResponseCode()==200){
-                isConn = true;
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            conn.disconnect();
-        }
-        return isConn;
+        return result;
 
     }
 

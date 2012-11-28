@@ -111,13 +111,9 @@ public class Main extends Activity {
     private class ComingSoonListener implements View.OnClickListener{
         @Override
         public void onClick(View arg0) {
-
             Intent intent = new Intent();
             intent.setClass(Main.this, ComingSoon.class);
             Main.this.startActivity(intent);
-            Main.this.finish();
-
-
         }
     }
 

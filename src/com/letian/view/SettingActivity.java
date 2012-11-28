@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.NetworkConnection;
@@ -32,17 +33,18 @@ public class SettingActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState) ;
+        handler = new Handler();
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
-        syncBtn = (Button)findViewById(R.id.sync_xml_btn);
-        backBtn = (Button)findViewById(R.id.setting_back);
-        syncBtn.setOnClickListener(new Button.OnClickListener(){
+        syncBtn = (Button) findViewById(R.id.sync_xml_btn);
+        backBtn = (Button) findViewById(R.id.setting_back);
+        syncBtn.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tongbu();
             }
         });
-        backBtn.setOnClickListener(new Button.OnClickListener(){
+        backBtn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -63,7 +65,7 @@ public class SettingActivity extends Activity {
                         SettingActivity.this.getApplicationContext())
                         .isNetworkAvailable()) {
                     Log.e(SettingActivity.LOG_TAG, "network can not be reach");
-                    handler.post(new Runnable(){
+                    handler.post(new Runnable() {
 
                         @Override
                         public void run() {
@@ -76,7 +78,7 @@ public class SettingActivity extends Activity {
                         }
 
                     });
-                }else{
+                } else {
                     get_data_from_server();
 
                 }
@@ -90,15 +92,26 @@ public class SettingActivity extends Activity {
 
     public void get_data_from_server() {
         Context context = getApplication();
-        Louge.syn(context);
-        Danyuan.syn(context);
-        FangjianLeixing.syn(context);
-        FangjianleixingYanshouduixiang.syn(context);
-        Huxing.syn(context);
-        HuxingFangjianLeixing.syn(context);
-        YanshouDuixiang.syn(context);
-        YanshouXiangmu.syn(context);
+        try {
+            Louge.syn(context);
 
+            Danyuan.syn(context);
+
+            FangjianLeixing.syn(context);
+            FangjianleixingYanshouduixiang.syn(context);
+            Huxing.syn(context);
+            HuxingFangjianLeixing.syn(context);
+            YanshouDuixiang.syn(context);
+            YanshouXiangmu.syn(context);
+        } catch (Exception e) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(SettingActivity.this.getApplicationContext(),
+                            "同步出错， 请检查网络！", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
 

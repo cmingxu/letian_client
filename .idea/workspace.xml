@@ -25,22 +25,18 @@
     </option>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="SelectorViewTag" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Login_Activty" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef7018b6-1e1b-4b51-a5a0-1e36d9abb4db" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/letian/R.java" afterPath="$PROJECT_DIR$/gen/com/letian/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/login.xml" afterPath="$PROJECT_DIR$/res/layout/login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/setting_dialog_layout.xml" afterPath="$PROJECT_DIR$/res/layout/setting_dialog_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/Login.java" afterPath="$PROJECT_DIR$/src/com/letian/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/lib/Constants.java" afterPath="$PROJECT_DIR$/src/com/letian/lib/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/lib/LocalAccessor.java" afterPath="$PROJECT_DIR$/src/com/letian/lib/LocalAccessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/Main.java" afterPath="$PROJECT_DIR$/src/com/letian/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/model/Danyuan.java" afterPath="$PROJECT_DIR$/src/com/letian/model/Danyuan.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/model/Louge.java" afterPath="$PROJECT_DIR$/src/com/letian/model/Louge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/model/User.java" afterPath="$PROJECT_DIR$/src/com/letian/model/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/letian/view/SettingActivity.java" afterPath="$PROJECT_DIR$/src/com/letian/view/SettingActivity.java" />
     </list>
     <ignored path="letian_client.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,55 +99,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="shoulou.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/shoulou.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/login.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="53" selection-start="2588" selection-end="2588" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setting_dialog_layout.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/setting_dialog_layout.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="62" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Login.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/letian/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="23" selection-start="4376" selection-end="4376" vertical-scroll-proportion="0.0">
+            <state line="107" column="46" selection-start="4286" selection-end="4286" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#2597#5569#0" expanded="true" />
-                <element signature="e#3891#4398#0" expanded="true" />
-                <element signature="e#4857#5291#0" expanded="true" />
-                <element signature="e#5248#5249#0" expanded="true" />
-                <element signature="e#5546#5547#0" expanded="true" />
-                <element signature="e#7411#7625#0" expanded="true" />
-                <element signature="e#7615#7616#0" expanded="true" />
-                <element signature="e#7747#7937#0" expanded="true" />
-                <element signature="e#7928#7929#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1806#2013#0" expanded="true" />
+                <element signature="e#2002#2003#0" expanded="true" />
+                <element signature="e#2835#4407#0" expanded="true" />
+                <element signature="e#4384#4385#0" expanded="true" />
+                <element signature="e#4488#4734#0" expanded="true" />
+                <element signature="e#4711#4712#0" expanded="true" />
+                <element signature="e#6761#6963#0" expanded="true" />
+                <element signature="e#6932#6933#0" expanded="true" />
+                <element signature="e#7136#7314#0" expanded="true" />
+                <element signature="e#7287#7288#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/view/SettingActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="56" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#3389#3651#0" expanded="true" />
+                <element signature="e#3636#3637#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Danyuan.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/model/Danyuan.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="81" column="90" selection-start="2549" selection-end="2549" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2342#2351#0" expanded="true" />
+                <element signature="e#3910#3926#0" expanded="true" />
+                <element signature="e#4911#4919#0" expanded="true" />
+                <element signature="e#5793#5802#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="113" column="0" selection-start="3992" selection-end="3992" vertical-scroll-proportion="0.45510203">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Louge.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/model/Louge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="97" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2062#2069#0" expanded="true" />
+                <element signature="e#3229#3236#0" expanded="true" />
+                <element signature="e#3992#4008#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerifiedInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/letian/model/VerifiedInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,25 +182,16 @@
       <file leaf-file-name="SelectorView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/letian/view/SelectorView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="66" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
+            <state line="111" column="42" selection-start="4225" selection-end="4225" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="28" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="User.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/letian/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="79" selection-start="3576" selection-end="3576" vertical-scroll-proportion="0.086021505">
+            <state line="88" column="17" selection-start="2580" selection-end="2602" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -186,7 +200,7 @@
       <file leaf-file-name="BaseAuthenicationHttpClient.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="45" selection-start="2129" selection-end="2129" vertical-scroll-proportion="0.0">
+            <state line="97" column="0" selection-start="1996" selection-end="2811" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -221,10 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/reason_form.xml" />
-        <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/letian/Main.java" />
-        <option value="$PROJECT_DIR$/res/layout/test_view.xml" />
         <option value="$PROJECT_DIR$/src/com/letian/view/TestView.java" />
         <option value="$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java" />
         <option value="$PROJECT_DIR$/src/com/letian/view/SelectorView.java" />
@@ -237,6 +247,10 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/letian/model/User.java" />
         <option value="$PROJECT_DIR$/src/com/letian/Login.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/model/Danyuan.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/model/Louge.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/view/SettingActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/letian/Main.java" />
       </list>
     </option>
   </component>
@@ -275,6 +289,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -285,16 +309,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Letian_client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -448,24 +462,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="letian_client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="letian_client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-hdpi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -729,7 +725,6 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.6706949" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27170417" sideWeight="0.8006042" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973205" sideWeight="0.6706949" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997986" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -737,14 +732,15 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959217" sideWeight="0.7123623" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282981" sideWeight="0.49356914" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.449144" sideWeight="0.49785638" order="10" side_tool="false" content_ui="tabs" x="27" y="404" width="1866" height="343" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.449144" sideWeight="0.49785638" order="10" side_tool="false" content_ui="tabs" x="27" y="404" width="1866" height="343" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.6706949" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.6706949" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919614" sideWeight="0.71299094" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28700906" sideWeight="0.4914255" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919614" sideWeight="0.550856" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28700906" sideWeight="0.4914255" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27170417" sideWeight="0.8006042" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -810,31 +806,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/logo.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/bg.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/chaxun.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/notice.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/renwu.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/shenpi.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -847,73 +818,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/login.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="53" selection-start="2588" selection-end="2588" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="47" column="53" selection-start="2588" selection-end="2588" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/setting_dialog_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="62" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="28" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.0">
+        <state line="42" column="28" selection-start="1731" selection-end="1731" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="17" selection-start="2580" selection-end="2602" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/lib/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="5" column="28" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/lib/BaseAuthenicationHttpClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="45" selection-start="2129" selection-end="2129" vertical-scroll-proportion="0.0">
+        <state line="97" column="0" selection-start="1996" selection-end="2811" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/model/VerifiedInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="18" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/view/SelectorView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="66" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
+        <state line="111" column="42" selection-start="4225" selection-end="4225" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/letian/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="23" selection-start="4376" selection-end="4376" vertical-scroll-proportion="0.0">
+        <state line="107" column="46" selection-start="4286" selection-end="4286" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#2597#5569#0" expanded="true" />
-            <element signature="e#3891#4398#0" expanded="true" />
-            <element signature="e#4857#5291#0" expanded="true" />
-            <element signature="e#5248#5249#0" expanded="true" />
-            <element signature="e#5546#5547#0" expanded="true" />
-            <element signature="e#7411#7625#0" expanded="true" />
-            <element signature="e#7615#7616#0" expanded="true" />
-            <element signature="e#7747#7937#0" expanded="true" />
-            <element signature="e#7928#7929#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1806#2013#0" expanded="true" />
+            <element signature="e#2002#2003#0" expanded="true" />
+            <element signature="e#2835#4407#0" expanded="true" />
+            <element signature="e#4384#4385#0" expanded="true" />
+            <element signature="e#4488#4734#0" expanded="true" />
+            <element signature="e#4711#4712#0" expanded="true" />
+            <element signature="e#6761#6963#0" expanded="true" />
+            <element signature="e#6932#6933#0" expanded="true" />
+            <element signature="e#7136#7314#0" expanded="true" />
+            <element signature="e#7287#7288#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/model/Louge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="40" column="97" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2062#2069#0" expanded="true" />
+            <element signature="e#3229#3236#0" expanded="true" />
+            <element signature="e#3992#4008#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/setting_dialog_layout.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/view/SettingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="62" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="58" column="56" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#3389#3651#0" expanded="true" />
+            <element signature="e#3636#3637#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/letian/model/User.java">
+    <entry file="file://$PROJECT_DIR$/src/com/letian/model/Danyuan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="79" selection-start="3576" selection-end="3576" vertical-scroll-proportion="0.086021505">
+        <state line="81" column="90" selection-start="2549" selection-end="2549" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2342#2351#0" expanded="true" />
+            <element signature="e#3910#3926#0" expanded="true" />
+            <element signature="e#4911#4919#0" expanded="true" />
+            <element signature="e#5793#5802#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/letian/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="0" selection-start="3992" selection-end="3992" vertical-scroll-proportion="0.45510203">
           <folding />
         </state>
       </provider>

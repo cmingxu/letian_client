@@ -21,34 +21,34 @@ import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.view.SelectorView;
 
 public class Danyuan extends Model {
-	public Integer _id;
+    public Integer _id;
 
-	public String danyuanbianhao;
+    public String danyuanbianhao;
 
-	public String danyuanmingcheng;
+    public String danyuanmingcheng;
 
-	public String lougebianhao;
+    public String lougebianhao;
 
-	public String zhuhubianhao;
-	public String louceng;
+    public String zhuhubianhao;
+    public String louceng;
     public String jiange;
-	public String loucengmingcheng;
+    public String loucengmingcheng;
 
-	public static final String LOG_TAG = "DANYUAN_MODEL";
+    public static final String LOG_TAG = "DANYUAN_MODEL";
     public static final String TABLE_NAME = "DANYUAN";
-	public Context context;
+    public Context context;
 
 
-	private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS Danyuan("
-			+ "_id INTEGER PRIMARY KEY,"
-			+ "danyuanbianhao TEXT,"
-			+ "danyuanmingcheng TEXT,"
-			+ "lougebianhao TEXT,"
-			+ "zhuhubianhao TEXT,"
+    private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS Danyuan("
+            + "_id INTEGER PRIMARY KEY,"
+            + "danyuanbianhao TEXT,"
+            + "danyuanmingcheng TEXT,"
+            + "lougebianhao TEXT,"
+            + "zhuhubianhao TEXT,"
             + "jiange TEXT,"
-			+ "louceng TEXT,"
-			+ "loucengmingcheng TEXT,"
-			+ "createdTime TEXT" + ");";
+            + "louceng TEXT,"
+            + "loucengmingcheng TEXT,"
+            + "createdTime TEXT" + ");";
 
 
     public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao, String jiange) {
@@ -57,139 +57,135 @@ public class Danyuan extends Model {
         this.danyuanmingcheng = danyuanmingcheng;
         this.lougebianhao = lougebianhao;
         this.zhuhubianhao = zhuhubianhao;
-        this.jiange = jiange ;
+        this.jiange = jiange;
 
     }
 
     public Danyuan(Context context) {
-		this.context = context;
+        this.context = context;
 
-		LocalAccessor.getInstance(this.context).create_db(
-				SQL_CREATE_TABLE_MESSAGE);
-	}
+        LocalAccessor.getInstance(this.context).create_db(
+                SQL_CREATE_TABLE_MESSAGE);
+    }
 
-	public static void syn(Context context) {
+    public static void syn(Context context) throws LTException {
         Log.d(LOG_TAG, "syn start danyuan");
-		// get xml
-		String xml;
-		String url = LocalAccessor.getInstance(context).get_server_url() + "/danyuans.xml";
+        // get xml
+        String xml;
+        String url = LocalAccessor.getInstance(context).get_server_url() + "/danyuans.xml";
 
-		ArrayList<Danyuan> items = new ArrayList<Danyuan>();
-		try {
-			while (true) {
+        ArrayList<Danyuan> items = new ArrayList<Danyuan>();
+        while (true) {
 
-				int offset = Model.max_count(context, "Danyuan");
-                Log.d(LOG_TAG, "syn start danyuan");
-                String params = "?offset=" + offset + "&limit="
-						+ Constants.EACH_SLICE;
-				xml = BaseAuthenicationHttpClient.doRequest(url + params,
-						User.current_user.name, User.current_user.password);
+            int offset = Model.max_count(context, "Danyuan");
+            Log.d(LOG_TAG, "syn start danyuan");
+            String params = "?offset=" + offset + "&limit="
+                    + Constants.EACH_SLICE;
+            xml = BaseAuthenicationHttpClient.doRequest(url + params,
+                    User.current_user.name, User.current_user.password);
 
-				items = (ArrayList<Danyuan>)Model.turn_xml_into_items(xml, new DanyuanHandler(context));
-				for (Danyuan d : items) {
-                        Log.d(LOG_TAG, d.danyuanbianhao);
-						d.save_into_db();
-				}
-				if (items.size() < Constants.EACH_SLICE) {
-					break;
-				}
+            items = (ArrayList<Danyuan>) Model.turn_xml_into_items(xml, new DanyuanHandler(context));
+            for (Danyuan d : items) {
+                Log.d(LOG_TAG, d.danyuanbianhao);
+                d.save_into_db();
+            }
+            if (items.size() < Constants.EACH_SLICE) {
+                break;
+            }
 
-			}
-		} catch (Exception e) {// "received authentication challenge is null"
-			Log.e(Danyuan.LOG_TAG, e.getMessage());
-		}
-	}
+        }
+
+    }
 
 
-	public boolean save_into_db() throws LTException {
-		ContentValues values = new ContentValues();
-		values.put("danyuanbianhao", this.danyuanbianhao);
-		values.put("danyuanmingcheng", this.danyuanmingcheng);
-		values.put("lougebianhao", this.lougebianhao);
-		values.put("zhuhubianhao", this.zhuhubianhao);
+    public boolean save_into_db() throws LTException {
+        ContentValues values = new ContentValues();
+        values.put("danyuanbianhao", this.danyuanbianhao);
+        values.put("danyuanmingcheng", this.danyuanmingcheng);
+        values.put("lougebianhao", this.lougebianhao);
+        values.put("zhuhubianhao", this.zhuhubianhao);
         values.put("jiange", this.jiange);
-		values.put("louceng", this.louceng);
-		values.put("loucengmingcheng", this.loucengmingcheng);
-		values.put("createdTime", (new Date()).toString());
+        values.put("louceng", this.louceng);
+        values.put("loucengmingcheng", this.loucengmingcheng);
+        values.put("createdTime", (new Date()).toString());
 
-	    return super.save_into_db(context, Danyuan.TABLE_NAME, values);
-	}
+        return super.save_into_db(context, Danyuan.TABLE_NAME, values);
+    }
 
 
-	public static HashMap<String, String> mingcheng_bianhao_map(
-			Context context, String loucengmingcheng, String lougebianhao) {
-		HashMap<String, String> res = new HashMap<String, String>();
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql = "select * from Danyuan where loucengmingcheng = '"
-				+ loucengmingcheng.replaceAll("\\s*", "")
-				+ "' and lougebianhao='" + lougebianhao.replaceAll("\\s*", "")
-				+ "' order by _id DESC";
-		Cursor cursor;
-		try{
-			cursor = db.rawQuery(sql,null);
-		}catch(Exception e){
-			return res;
-		}
-		Log.e("maobing", Integer.toString(cursor.getCount()));
-		cursor.moveToFirst();
-		while (cursor.isAfterLast() != true) {
-			res.put(cursor.getString(2), cursor.getString(1));
-			cursor.moveToNext();
-		}
+    public static HashMap<String, String> mingcheng_bianhao_map(
+            Context context, String loucengmingcheng, String lougebianhao) {
+        HashMap<String, String> res = new HashMap<String, String>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql = "select * from Danyuan where loucengmingcheng = '"
+                + loucengmingcheng.replaceAll("\\s*", "")
+                + "' and lougebianhao='" + lougebianhao.replaceAll("\\s*", "")
+                + "' order by _id DESC";
+        Cursor cursor;
+        try {
+            cursor = db.rawQuery(sql, null);
+        } catch (Exception e) {
+            return res;
+        }
+        Log.e("maobing", Integer.toString(cursor.getCount()));
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() != true) {
+            res.put(cursor.getString(2), cursor.getString(1));
+            cursor.moveToNext();
+        }
 
-		cursor.close();
-		db.close();
-		return res;
-	}
+        cursor.close();
+        db.close();
+        return res;
+    }
 
-	public static ArrayList<String> distinct_louceng(Context context,
-			String louge_bianhao) {
-		ArrayList<String> res = new ArrayList<String>();
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		Cursor cursor = db.rawQuery("select * from Danyuan", null);
-		cursor.moveToFirst();
+    public static ArrayList<String> distinct_louceng(Context context,
+                                                     String louge_bianhao) {
+        ArrayList<String> res = new ArrayList<String>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        Cursor cursor = db.rawQuery("select * from Danyuan", null);
+        cursor.moveToFirst();
 
-		
-		String sql = "select distinct(loucengmingcheng) from Danyuan where lougebianhao = '"
-				+ louge_bianhao.replaceAll("\\s*", "") + "' order by _id DESC";
 
-		 cursor = db.rawQuery(sql, null);
+        String sql = "select distinct(loucengmingcheng) from Danyuan where lougebianhao = '"
+                + louge_bianhao.replaceAll("\\s*", "") + "' order by _id DESC";
 
-		cursor.moveToFirst();
-		while (cursor.isAfterLast() != true) {
-			res.add(cursor.getString(0));
-			cursor.moveToNext();
-		}
+        cursor = db.rawQuery(sql, null);
 
-		cursor.close();
-		db.close();
-		return res;
-	}
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() != true) {
+            res.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
 
-    public static ArrayList<Danyuan> findAll(Context context){
+        cursor.close();
+        db.close();
+        return res;
+    }
+
+    public static ArrayList<Danyuan> findAll(Context context) {
         return Danyuan.findAll(context, null);
     }
 
-    public static ArrayList<Danyuan> findAll(Context context, String where){
+    public static ArrayList<Danyuan> findAll(Context context, String where) {
         ArrayList<Danyuan> danyuans = new ArrayList<Danyuan>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         if (where == null) {
-         sql = "select * from " + TABLE_NAME + " order by _id DESC";
-        }else
-        {
-         sql = "select * from " + TABLE_NAME + " where " + where + " order by _id DESC";
+            sql = "select * from " + TABLE_NAME + " order by _id DESC";
+        } else {
+            sql = "select * from " + TABLE_NAME + " where " + where + " order by _id DESC";
 
         }
         Cursor cursor;
-        try{
-            cursor = db.rawQuery(sql,null);
+        try {
+            cursor = db.rawQuery(sql, null);
             Log.d(SelectorView.LOG_TAG, sql);
-        }catch(Exception e){
+        } catch (Exception e) {
             return danyuans;
         }
         cursor.moveToFirst();
-        while(cursor.isAfterLast() != true){
+        while (cursor.isAfterLast() != true) {
             danyuans.add(new Danyuan(
                     cursor.getInt(0),
                     cursor.getString(1),
