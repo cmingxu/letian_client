@@ -24,9 +24,7 @@ import com.letian.model.LTException;
  */
 public class BaseAuthenicationHttpClient {
 
-	 static public String doRequest(String urlString, String name, String password, HashMap<String,String> params) throws LTException
-	 {
-		try{
+	 static public String doRequest(String urlString, String name, String password, HashMap<String,String> params) throws LTException, IOException {
             Log.d(Login.LOG_TAG, "doRequest");
             Log.d(Login.LOG_TAG, urlString);
 	    	URL url = new URL (urlString);
@@ -38,7 +36,8 @@ public class BaseAuthenicationHttpClient {
 	        HttpURLConnection uc = (HttpURLConnection) url.openConnection();
 	        uc.setRequestProperty("Authorization", "Basic " + encoding);
 	        uc.setRequestProperty("User-Agent", "Mozilla/5.0");
-	        
+
+            uc.setConnectTimeout(5 * 1000);
 	        uc.setDoInput(true);
 	        uc.setDoOutput(true);
 	        uc.setRequestMethod("POST");
@@ -60,16 +59,12 @@ public class BaseAuthenicationHttpClient {
 
 	        in.close();
 	        return line.trim();
-		}catch(IOException e){
-			throw new LTException(e);
-		}
+
 
 	 }
 	 
 	 static public String doRequest(String urlString, String name, String password) throws LTException
 	 {
-         Log.d(Login.LOG_TAG, "doRequest");
-         Log.d(Login.LOG_TAG, urlString);
 
          try{
 	        URL url = new URL (urlString);

@@ -49,6 +49,10 @@ public class SelectorView extends Activity {
     RadioButton okRadio;
     RadioButton badRadio;
 
+    ArrayList<String> danyuans = new ArrayList<String>();
+    ArrayList<String> fjlxes = new ArrayList<String>();
+    ArrayList<String> ysdxes = new ArrayList<String>();
+    ArrayList<String> ysxms = new ArrayList<String>();
 
     private ProgressDialog progressDialog;
     private Handler handler = new Handler();
@@ -88,8 +92,9 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setLouge(louge_datas.get(i).lougemingcheng);
             record.setLouge_bh(louge_datas.get(i).lougebianhao);
-            ArrayList<String> danyuans = new ArrayList<String>();
+
             danyuan_datas = Danyuan.findAll(getApplicationContext(), "lougebianhao = '" + louge_datas.get(i).lougebianhao + "'");
+            danyuans = new ArrayList<String>();
             for(Danyuan danyuan : danyuan_datas){
                 danyuans.add(danyuan.danyuanmingcheng + "(" + danyuan.jiange + ")");
             }
@@ -101,7 +106,20 @@ public class SelectorView extends Activity {
             danyuan_list_view.setAdapter(d);
             danyuan_list_view.invalidate();
 
+
+            emptyLisView(fangjianleixing_list_view);
+            emptyLisView(yanshouduixiang_list_view);
+            emptyLisView(yanshouxiangmu_list_view);
+
         }
+    }
+
+    public void emptyLisView(ListView toBeEmpty){
+        ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
+                android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<String>());
+        toBeEmpty.setAdapter(d);
+        toBeEmpty.invalidate();
     }
 
     private class DanyuanOnItemClickListener implements AdapterView.OnItemClickListener{
@@ -110,9 +128,10 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setDanyuan(danyuan_datas.get(i).danyuanmingcheng);
             record.setDanyuan_id(danyuan_datas.get(i).danyuanbianhao);
-            ArrayList<String> fjlxes = new ArrayList<String>();
+
             fangjianleixing_datas = FangjianLeixing.findAllByHuxing(getApplicationContext(), danyuan_datas.get(i).jiange);
             Log.d(SelectorView.LOG_TAG, "" + fangjianleixing_datas.size());
+            fjlxes = new ArrayList<String>();
             for(FangjianLeixing fjlx : fangjianleixing_datas){
                 fjlxes.add(fjlx.fjmc);
             }
@@ -125,6 +144,9 @@ public class SelectorView extends Activity {
             fangjianleixing_list_view.invalidate();
 
 
+            emptyLisView(yanshouduixiang_list_view);
+            emptyLisView(yanshouxiangmu_list_view);
+
        }
     }
 
@@ -133,7 +155,7 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setFangjianleixing(fangjianleixing_datas.get(i).fjmc);
             record.setFangjianleixing_id(fangjianleixing_datas.get(i)._id);
-            ArrayList<String> ysdxes = new ArrayList<String>();
+            ysdxes = new ArrayList<String>();
             yanshouduixiang_datas = YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fangjianleixing_datas.get(i)._id));
             for(YanshouDuixiang ysdx : yanshouduixiang_datas){
                 ysdxes.add(ysdx.dxmc);
@@ -146,7 +168,7 @@ public class SelectorView extends Activity {
             yanshouduixiang_list_view.setAdapter(d);
             yanshouduixiang_list_view.invalidate();
 
-
+            emptyLisView(yanshouxiangmu_list_view);
         }
 
     }
@@ -157,7 +179,7 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setShoulouduixiang(yanshouduixiang_datas.get(i).dxmc);
             record.setShoulouduixiang_id(yanshouduixiang_datas.get(i)._id);
-            ArrayList<String> ysxms = new ArrayList<String>();
+            ysxms = new ArrayList<String>();
             yanshouXiangmu_datas = YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(yanshouduixiang_datas.get(i)._id));
             for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
                 ysxms.add(ysxm.xmmc);
@@ -192,11 +214,19 @@ public class SelectorView extends Activity {
             LayoutInflater lay = LayoutInflater.from(this);
             View v = lay.inflate(R.layout.reason_form, null);
             submit = (Button) v.findViewById(R.id.submit);
+            cancel = (Button) v.findViewById(R.id.cancel);
 
             reasonText = (EditText)v.findViewById(R.id.reason_text_view);
             submit.setOnClickListener(new SubmitListener());
             okRadio = (RadioButton)v.findViewById(R.id.radioOk);
 
+            cancel.setOnClickListener(new Button.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    window.dismiss();
+                }
+            });
             window = new PopupWindow(v, 500,260);
         }
 
@@ -220,7 +250,7 @@ public class SelectorView extends Activity {
             new Thread() {
                 @Override
                 public void run() {
-//                    try {
+                    try {
 
                         record.save_to_db();
                         if(record.save_to_server(SelectorView.this.getApplicationContext()))
@@ -235,20 +265,20 @@ public class SelectorView extends Activity {
                             });
 
                         }
-//                    } catch (Exception e) {
-//
-//                        e.printStackTrace();
-//
-//                        handler.post(new Runnable() {
-//                            public void run() {
-//                                new AlertDialog.Builder(SelectorView.this).setMessage(
-//                                        "网络好像不太给力, 稍后尝试").setPositiveButton("Okay",
-//                                        null).show();
-//
-//                            }
-//                        });
-//
-//                    }
+                    } catch (Exception e) {
+
+                        e.printStackTrace();
+
+                        handler.post(new Runnable() {
+                            public void run() {
+                                new AlertDialog.Builder(SelectorView.this).setMessage(
+                                        "网络好像不太给力, 稍后尝试").setPositiveButton("Okay",
+                                        null).show();
+
+                            }
+                        });
+
+                    }
                     progressDialog.dismiss();
                 }
             }.start();

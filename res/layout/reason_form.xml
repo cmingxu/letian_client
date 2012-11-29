@@ -11,7 +11,7 @@
                 android:layout_margin="20px"
             >
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/radioOk" android:text="合格" android:checked="true"></RadioButton>
+                     android:id="@+id/radioOk" android:text="没问题" android:checked="true"></RadioButton>
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:id="@+id/radioBad" android:text="有问题"></RadioButton>
     </RadioGroup>
@@ -28,6 +28,12 @@
         </EditText>
 
 
+        <LinearLayout android:layout_height="wrap_content"
+                      android:layout_width="fill_parent"
+                      android:orientation="horizontal"
+                      android:gravity="center_horizontal"
+                >
+
             <Button
                     android:id="@+id/submit"
                     android:layout_width="wrap_content"
@@ -37,5 +43,25 @@
 
                     />
 
+            <Button
+                    android:id="@+id/take_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拍照"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dip"
+
+                    />
+
+            <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dip"
+
+                    />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -21,14 +21,12 @@ import com.letian.view.TestView;
 
 public class Main extends Activity {
 
-	private static final String LOG_TAG = "Main_Activityaaa";
 
 	ImageView logout_view;
     ImageView kaifashang_shoulou_view;
     ImageView setting_view;
     ImageView coming_soon_view_1;
     ImageView coming_soon_view_2;
-    ImageView coming_soon_view_3;
 
     ImageView coming_soon_view_5;
     ImageView coming_soon_view_6;
@@ -39,9 +37,6 @@ public class Main extends Activity {
     ImageView coming_soon_view_11;
     ImageView coming_soon_view_12;
 
-    private Context ctx;
-	private Handler handler = new Handler();
-	private ProgressDialog progressDialog = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +64,6 @@ public class Main extends Activity {
         coming_soon_view_11 = (ImageView)findViewById(R.id.coming_soon_view_11);
         coming_soon_view_12 = (ImageView)findViewById(R.id.coming_soon_view_12);
 
-//        coming_soon_view_2.setOnClickListener(new ComingSoonListener());
 
         coming_soon_view_2.setOnClickListener(new TestListener());
         coming_soon_view_6.setOnClickListener(new ComingSoonListener());
@@ -102,8 +96,6 @@ public class Main extends Activity {
             intent.setClass(Main.this, TestView.class);
             Main.this.startActivity(intent);
 
-
-
         }
     }
 
@@ -124,8 +116,6 @@ public class Main extends Activity {
             Intent intent = new Intent();
             intent.setClass(Main.this, SettingActivity.class);
             Main.this.startActivity(intent);
-            Main.this.finish();
-
 
         }
     }
@@ -147,24 +137,5 @@ public class Main extends Activity {
 	}
 
 	
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		Log.e("onKeyDown:", " keyCode=" + keyCode + " KeyEvent=" + event);
-		boolean should_capture = false;
-		switch (keyCode) {
-		
-		case KeyEvent.KEYCODE_BACK:
-			should_capture = true;
-			break;
 
-		case KeyEvent.KEYCODE_HOME:
-			should_capture = true;
-			break;
-				}
-		if (should_capture) {
-			return false;
-		}
-		return super.onKeyDown(keyCode, event);
-
-	}
 }

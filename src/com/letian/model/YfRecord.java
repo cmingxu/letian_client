@@ -9,6 +9,7 @@ import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.LocalAccessor;
 import com.letian.view.SelectorView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -226,12 +227,11 @@ public class YfRecord extends Model {
     }
 
 
-    public boolean save_to_server(Context context){
+    public boolean save_to_server(Context context) throws IOException, LTException {
         String url = LocalAccessor.getInstance(context).get_server_url() + "/kfs_yfs";
         String xmlString = null;
 
         HashMap<String, String> params = new HashMap<String, String>();
-//                params.put("a", "c");
         params.put("yf[result]", this.result ? "ok" : "not_ok");
         params.put("yf[reason]", this.reason);
         params.put("yf[louge_bh]", this.louge_bh);
@@ -249,12 +249,9 @@ public class YfRecord extends Model {
         params.put("yf[danyuan_bh]", this.danyuan_bh);
 
 
-        try {
-            xmlString = BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
+        BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
                     User.current_user.password, params);
-        } catch (LTException e) {
-            e.printStackTrace();
-        }
+
 
         return true;
     }
