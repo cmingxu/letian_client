@@ -3,19 +3,24 @@ package com.letian.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.letian.Main;
 import com.letian.R;
 import com.letian.model.*;
 
 import java.util.ArrayList;
+
+import static com.letian.R.color.red;
 
 /**
  * Created with IntelliJ IDEA.
@@ -185,11 +190,23 @@ public class SelectorView extends Activity {
                 ysxms.add(ysxm.xmmc);
             }
 
-            ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
+            ArrayAdapter yxa = new ArrayAdapter(getApplicationContext(),
                     android.R.layout.simple_expandable_list_item_1,
-                    ysxms);
+                    ysdxes);
 
-            yanshouxiangmu_list_view.setAdapter(d);
+            yanshouxiangmu_list_view.setAdapter(yxa);
+
+            for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
+                record.shoulouxiangmu = ysxm.xmmc;
+                record.shoulouxiangmu_id = ysxm._id;
+                Log.d(SelectorView.LOG_TAG, " " + record.existInDb(SelectorView.this.getApplicationContext()));
+                if (record.existInDb(SelectorView.this.getApplicationContext())){
+
+                }
+                ysxms.add(ysxm.xmmc);
+            }
+            record.shoulouxiangmu = null;
+            record.shoulouxiangmu_id = null;
             yanshouxiangmu_list_view.invalidate();
         }
 
@@ -283,6 +300,39 @@ public class SelectorView extends Activity {
                 }
             }.start();
             window.dismiss();
+        }
+    }
+
+    private class YanshouXiangmuAdapter extends BaseAdapter{
+        ArrayList<YanshouXiangmu> ysxms;
+        private Context context;
+
+        private YanshouXiangmuAdapter(Context ctx, ArrayList<YanshouXiangmu> ysxms) {
+            this.context = ctx;
+            this.ysxms = ysxms;
+
+        }
+
+        @Override
+        public int getCount() {
+            return ysxms.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return ysxms.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            TextView tv = (TextView) SelectorView.this.findViewById(android.R.layout.simple_expandable_list_item_1);
+            tv.setText(ysxms.get(i).xmmc);
+            return  tv;
         }
     }
 

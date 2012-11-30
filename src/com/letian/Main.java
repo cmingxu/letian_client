@@ -20,8 +20,6 @@ import com.letian.view.SettingActivity;
 import com.letian.view.TestView;
 
 public class Main extends Activity {
-
-
 	ImageView logout_view;
     ImageView kaifashang_shoulou_view;
     ImageView setting_view;
@@ -42,7 +40,6 @@ public class Main extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
 
 		this.setTitle(getResources().getString(R.string.app_name));
 		logout_view = (ImageView) findViewById(R.id.logout);

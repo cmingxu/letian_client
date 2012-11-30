@@ -32,6 +32,7 @@ public class YfRecord extends Model {
     public String danyuan;
     public String huxing;
     public String danyuan_id;
+    public boolean saved;
 
     public String getDanyuan_bh() {
         return danyuan_bh;
@@ -296,6 +297,41 @@ public class YfRecord extends Model {
         db.close();
         return records;
 
+    }
+
+    public boolean existInDb(Context context){
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql;
+        sql = "select * from " + TABLE_NAME + " where "
+                + " louge_bh = '" + this.louge_bh + "' and "
+                + " louge = '" + this.louge + "' and "
+                + " fangjianleixing = '" + this.fangjianleixing + "' and "
+                + " shoulouduixiang = '" + this.shoulouduixiang + "' and "
+                + " shoulouxiangmu = '" + this.shoulouxiangmu + "' and "
+                + " danyuan = '" + this.danyuan + "' and "
+                + " huxing = '" + this.huxing + "' and "
+                + " danyuan_id = '" + this.danyuan_id + "' and "
+                + " huxing_id = '" + this.huxing_id + "' and "
+                + " fangjianleixing_id = '" + this.fangjianleixing_id + "' and "
+                + " shoulouduixiang_id = '" + this.shoulouduixiang_id + "' and "
+                + " shoulouxiangmu_id = '" + this.shoulouxiangmu_id + "'; ";
+
+        Cursor cursor;
+        try{
+            cursor = db.rawQuery(sql,null);
+            Log.d(SelectorView.LOG_TAG, sql);
+        }catch(Exception e){
+            return false;
+        }
+        cursor.moveToFirst();
+        if(cursor.isLast()){
+            return false;
+        }else {
+            this.reason = cursor.getString(2);
+            this.result = Boolean.valueOf(Integer.toString(cursor.getInt(1)));
+            this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(16)));
+            return true;
+        }
     }
 
 

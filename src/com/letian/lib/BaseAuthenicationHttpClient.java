@@ -89,6 +89,7 @@ public class BaseAuthenicationHttpClient {
 	        	sb.append(line);
 	        }
 	        in.close();
+
 	        return sb.toString();
 		 }catch(IOException e){
 			 throw new LTException(e);

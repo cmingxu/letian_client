@@ -158,6 +158,7 @@ public final class R {
         public static final int unit_chooser_dialog_title=0x7f080059;
         public static final int unit_text=0x7f08005b;
         public static final int yanshouduixiang_list_view=0x7f08003e;
+        public static final int yanshouxiangmu=0x7f08005d;
         public static final int yanshouxiangmu_list_view=0x7f08003f;
         public static final int yezhu_shouloou_view=0x7f08001f;
         public static final int zhuhumingcheng=0x7f080005;
@@ -187,6 +188,7 @@ public final class R {
         public static final int unit_chooser_dialog=0x7f030015;
         public static final int unit_chooser_dialog_items=0x7f030016;
         public static final int unit_list_item=0x7f030017;
+        public static final int yanshouxiangmu_item=0x7f030018;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
