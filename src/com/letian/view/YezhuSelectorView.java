@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.letian.Main;
 import com.letian.R;
 import com.letian.model.*;
 
@@ -26,32 +23,26 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.letian.R.color.red;
-
 /**
  * Created with IntelliJ IDEA.
  * User: xcm
- * Date: 12-11-23
- * Time: 下午2:23
+ * Date: 12-12-1
+ * Time: 下午1:16
  * To change this template use File | Settings | File Templates.
  */
-public class SelectorView extends Activity {
-    public static final String LOG_TAG = "SelectorViewTag";
-    public YfRecord record;
+public class YezhuSelectorView extends Activity {
 
-    private ListView louge_list_view;
-    private ListView danyuan_list_view;
-    private ListView fangjianleixing_list_view;
-    private ListView yanshouduixiang_list_view;
-    private ListView yanshouxiangmu_list_view;
+    public static final String LOG_TAG = "YezhuSelectorView";
+    public YzYfRecord record;
+
+    private ListView yezhu_louge_list_view;
+    private ListView yezhu_danyuan_list_view;
+    private ListView yezhu_fangjianleixing_list_view;
 
     private ArrayList<Louge> louge_datas;
     private ArrayList<Danyuan> danyuan_datas;
     private ArrayList<FangjianLeixing> fangjianleixing_datas;
-    private ArrayList<YanshouDuixiang> yanshouduixiang_datas;
-    private ArrayList<YanshouXiangmu>  yanshouXiangmu_datas;
 
-    int onSelectedViewColor = R.color.red;
 
     PopupWindow window ;
 
@@ -62,33 +53,24 @@ public class SelectorView extends Activity {
     EditText reasonText;
 
     RadioButton okRadio;
-    RadioButton badRadio;
 
     ArrayList<String> danyuans = new ArrayList<String>();
     ArrayList<String> fjlxes = new ArrayList<String>();
-    ArrayList<String> ysdxes = new ArrayList<String>();
-    ArrayList<String> ysxms = new ArrayList<String>();
 
     private ProgressDialog progressDialog;
     private Handler handler = new Handler();
 
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 
-    private Uri fileUri;
-
-
 
     public void onCreate(Bundle savedInstanceState) {
 
-        this.record = new YfRecord(getApplicationContext());
+        this.record = new YzYfRecord(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.selector_view);
-        louge_list_view = (ListView)findViewById(R.id.louge_list_view);
-        danyuan_list_view = (ListView)findViewById(R.id.danyuan_list_view);
-        fangjianleixing_list_view = (ListView)findViewById(R.id.fangjianleixing_list_view);
-        yanshouduixiang_list_view = (ListView)findViewById(R.id.yanshouduixiang_list_view);
-        yanshouxiangmu_list_view  = (ListView)findViewById(R.id.yanshouxiangmu_list_view);
-
+        setContentView(R.layout.yezhu_list_view);
+        yezhu_louge_list_view = (ListView)findViewById(R.id.yezhu_louge_list_view);
+        yezhu_danyuan_list_view = (ListView)findViewById(R.id.yezhu_danyuan_list_view);
+        yezhu_fangjianleixing_list_view = (ListView)findViewById(R.id.yezhu_fangjianleixing_list_view);
         louge_datas = Louge.findAll(getApplicationContext());
 
         ArrayList<String> louges = new ArrayList<String>();
@@ -99,12 +81,10 @@ public class SelectorView extends Activity {
                 android.R.layout.simple_expandable_list_item_1,
                 louges);
 
-        louge_list_view.setAdapter(a);
-        louge_list_view.setOnItemClickListener(new LougeOnItemClickListener());
-        danyuan_list_view.setOnItemClickListener(new DanyuanOnItemClickListener());
-        fangjianleixing_list_view.setOnItemClickListener(new FangjianLeixingOnItemClickListener());
-        yanshouduixiang_list_view.setOnItemClickListener(new YanshouduixiangOnItemClickListener());
-        yanshouxiangmu_list_view.setOnItemClickListener(new YanshouxiangmuOnItemClickListener());
+        yezhu_louge_list_view.setAdapter(a);
+        yezhu_louge_list_view.setOnItemClickListener(new LougeOnItemClickListener());
+        yezhu_danyuan_list_view.setOnItemClickListener(new DanyuanOnItemClickListener());
+        yezhu_fangjianleixing_list_view.setOnItemClickListener(new FangjianLeixingOnItemClickListener());
 
     }
 
@@ -124,12 +104,10 @@ public class SelectorView extends Activity {
                     android.R.layout.simple_expandable_list_item_1,
                     danyuans);
 
-            danyuan_list_view.setAdapter(d);
-            danyuan_list_view.invalidate();
+            yezhu_danyuan_list_view.setAdapter(d);
+            yezhu_danyuan_list_view.invalidate();
 
-            emptyLisView(fangjianleixing_list_view);
-            emptyLisView(yanshouduixiang_list_view);
-            emptyLisView(yanshouxiangmu_list_view);
+            emptyLisView(yezhu_fangjianleixing_list_view);
 
         }
     }
@@ -160,14 +138,12 @@ public class SelectorView extends Activity {
                     android.R.layout.simple_expandable_list_item_1,
                     fjlxes);
 
-            fangjianleixing_list_view.setAdapter(d);
-            fangjianleixing_list_view.invalidate();
+            yezhu_fangjianleixing_list_view.setAdapter(d);
+            yezhu_fangjianleixing_list_view.invalidate();
 
 
-            emptyLisView(yanshouduixiang_list_view);
-            emptyLisView(yanshouxiangmu_list_view);
 
-       }
+        }
     }
 
     private class FangjianLeixingOnItemClickListener implements AdapterView.OnItemClickListener{
@@ -176,71 +152,11 @@ public class SelectorView extends Activity {
             record.setFangjianleixing(fangjianleixing_datas.get(i).fjmc);
             record.setFangjianleixing_id(fangjianleixing_datas.get(i)._id);
 
-            ysdxes = new ArrayList<String>();
-            yanshouduixiang_datas = YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fangjianleixing_datas.get(i)._id));
-            for(YanshouDuixiang ysdx : yanshouduixiang_datas){
-                ysdxes.add(ysdx.dxmc);
-            }
-
-            ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
-                    android.R.layout.simple_expandable_list_item_1,
-                    ysdxes);
-
-            yanshouduixiang_list_view.setAdapter(d);
-            yanshouduixiang_list_view.invalidate();
-
-            emptyLisView(yanshouxiangmu_list_view);
-        }
-
-    }
-
-    private class YanshouduixiangOnItemClickListener implements AdapterView.OnItemClickListener{
-
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            record.setShoulouduixiang(yanshouduixiang_datas.get(i).dxmc);
-            record.setShoulouduixiang_id(yanshouduixiang_datas.get(i)._id);
-
-            ysxms = new ArrayList<String>();
-            yanshouXiangmu_datas = YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(yanshouduixiang_datas.get(i)._id));
-            for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
-                record.shoulouxiangmu = ysxm.xmmc;
-                record.shoulouxiangmu_id = ysxm._id;
-                if (record.existInDb(SelectorView.this.getApplicationContext())){
-                    ysxms.add("[验完]" + ysxm.xmmc );
-                }
-                else{
-                    ysxms.add(ysxm.xmmc);
-                }
-            }
-
-            ArrayAdapter yxa = new ArrayAdapter(getApplicationContext(),
-                    android.R.layout.simple_expandable_list_item_1,
-                    ysxms);
-
-
-            yanshouxiangmu_list_view.setAdapter(yxa);
-            yanshouxiangmu_list_view.invalidate();
-
-
+            popAwindow(yezhu_fangjianleixing_list_view);
 
         }
 
     }
-
-    private class YanshouxiangmuOnItemClickListener implements AdapterView.OnItemClickListener{
-
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            record.setShoulouxiangmu(yanshouXiangmu_datas.get(i).xmmc);
-            record.setShoulouxiangmu_id(yanshouXiangmu_datas.get(i)._id);
-
-            popAwindow(yanshouduixiang_list_view);
-
-        }
-    }
-
 
     private void popAwindow(View parent) {
         if (window == null) {
@@ -277,7 +193,7 @@ public class SelectorView extends Activity {
 
         @Override
         public void onClick(View view) {
-            progressDialog = ProgressDialog.show(SelectorView.this, "保存中， 请稍候...",
+            progressDialog = ProgressDialog.show(YezhuSelectorView.this, "保存中， 请稍候...",
                     null, true);
             record.setResult(okRadio.isChecked());
             record.setReason(reasonText.getText().toString());
@@ -289,11 +205,11 @@ public class SelectorView extends Activity {
                     try {
 
                         record.save_to_db();
-                        if(record.save_to_server(SelectorView.this.getApplicationContext()))
+                        if(record.save_to_server(YezhuSelectorView.this.getApplicationContext()))
                         {
                             handler.post(new Runnable() {
                                 public void run() {
-                                    new AlertDialog.Builder(SelectorView.this).setMessage(
+                                    new AlertDialog.Builder(YezhuSelectorView.this).setMessage(
                                             "保存成功!").setPositiveButton("Okay",
                                             null).show();
 
@@ -307,7 +223,7 @@ public class SelectorView extends Activity {
 
                         handler.post(new Runnable() {
                             public void run() {
-                                new AlertDialog.Builder(SelectorView.this).setMessage(
+                                new AlertDialog.Builder(YezhuSelectorView.this).setMessage(
                                         "网络好像不太给力, 稍后尝试").setPositiveButton("Okay",
                                         null).show();
 
@@ -321,40 +237,6 @@ public class SelectorView extends Activity {
             window.dismiss();
         }
     }
-
-    private class YanshouXiangmuAdapter extends BaseAdapter{
-        ArrayList<YanshouXiangmu> ysxms;
-        private Context context;
-
-        private YanshouXiangmuAdapter(Context ctx, ArrayList<YanshouXiangmu> ysxms) {
-            this.context = ctx;
-            this.ysxms = ysxms;
-
-        }
-
-        @Override
-        public int getCount() {
-            return ysxms.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return ysxms.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            TextView tv = (TextView) SelectorView.this.findViewById(android.R.layout.simple_expandable_list_item_1);
-            tv.setText(ysxms.get(i).xmmc);
-            return  tv;
-        }
-    }
-
     private class TakePicClickListener implements Button.OnClickListener{
 
         @Override
@@ -375,14 +257,10 @@ public class SelectorView extends Activity {
     @Override
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE) {
-
             if (resultCode == RESULT_OK) {
 
-
             } else if (resultCode == RESULT_CANCELED) {
-
 
             } else {
 
@@ -392,6 +270,5 @@ public class SelectorView extends Activity {
         }
 
     }
-
 
 }

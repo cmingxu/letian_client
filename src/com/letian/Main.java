@@ -14,16 +14,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.letian.view.ComingSoon;
-import com.letian.view.SelectorView;
-import com.letian.view.SettingActivity;
-import com.letian.view.TestView;
+import com.letian.view.*;
 
 public class Main extends Activity {
 	ImageView logout_view;
     ImageView kaifashang_shoulou_view;
     ImageView setting_view;
-    ImageView coming_soon_view_1;
+    ImageView yezhu_shoulou_view;
     ImageView coming_soon_view_2;
 
     ImageView coming_soon_view_5;
@@ -50,11 +47,10 @@ public class Main extends Activity {
 
         kaifashang_shoulou_view = (ImageView)findViewById(R.id.kaifashang_shoulou_view);
         setting_view = (ImageView)findViewById(R.id.setting_view);
-        coming_soon_view_1 = (ImageView)findViewById(R.id.coming_soon_view_1);
+        yezhu_shoulou_view = (ImageView)findViewById(R.id.yezhu_shouloou_view);
         coming_soon_view_2 = (ImageView)findViewById(R.id.coming_soon_view_2);
         coming_soon_view_5 = (ImageView)findViewById(R.id.coming_soon_view_5);
         coming_soon_view_6 = (ImageView)findViewById(R.id.coming_soon_view_6);
-        coming_soon_view_7 = (ImageView)findViewById(R.id.coming_soon_view_7);
         coming_soon_view_8 = (ImageView)findViewById(R.id.coming_soon_view_8);
         coming_soon_view_9 = (ImageView)findViewById(R.id.coming_soon_view_9);
         coming_soon_view_10 = (ImageView)findViewById(R.id.coming_soon_view_10);
@@ -64,7 +60,6 @@ public class Main extends Activity {
 
         coming_soon_view_2.setOnClickListener(new TestListener());
         coming_soon_view_6.setOnClickListener(new ComingSoonListener());
-        coming_soon_view_7.setOnClickListener(new ComingSoonListener());
         coming_soon_view_8.setOnClickListener(new ComingSoonListener());
         coming_soon_view_9.setOnClickListener(new ComingSoonListener());
         coming_soon_view_10.setOnClickListener(new ComingSoonListener());
@@ -82,6 +77,17 @@ public class Main extends Activity {
                 Main.this.startActivity(intent);
             }
         });
+        yezhu_shoulou_view.setOnClickListener(new Button.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(Main.this, YezhuSelectorView.class);
+                Main.this.startActivity(intent);
+            }
+        });
+
 
     }
 

@@ -22,16 +22,13 @@ import java.util.HashMap;
  * Time: 下午4:59
  * To change this template use File | Settings | File Templates.
  */
-public class YfRecord extends Model {
+public class YzYfRecord extends Model {
     public boolean result;
     public String reason;
     public String louge_bh;
     public String louge;
     public String fangjianleixing;
-    public String shoulouduixiang;
-    public String shoulouxiangmu;
     public String danyuan;
-    public String huxing;
     public String danyuan_id;
     public boolean saved;
 
@@ -46,12 +43,10 @@ public class YfRecord extends Model {
     public String danyuan_bh;
     public String huxing_id;
     public String fangjianleixing_id;
-    public String shoulouduixiang_id;
-    public String shoulouxiangmu_id;
 
 
-    public static final String LOG_TAG = "YfRecordModel";
-    public static final String TABLE_NAME = "YfRecord";
+    public static final String LOG_TAG = "YzYfRecord";
+    public static final String TABLE_NAME = "YzYfRecord";
 
 
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YfRecord("
@@ -61,15 +56,11 @@ public class YfRecord extends Model {
             + "louge_bh  TEXT,"
             + "louge TEXT,"
             + "fangjianleixing TEXT,"
-            + "shoulouduixiang TEXT,"
-            + "shoulouxiangmu TEXT,"
             + "danyuan TEXT,"
             + "huxing TEXT,"
             + "danyuan_id TEXT,"
             + "huxing_id TEXT,"
             + "fangjianleixing_id TEXT,"
-            + "shoulouduixiang_id TEXT,"
-            + "shoulouxiangmu_id TEXT,"
             + "save_to_server INTEGER,"
             + "danyuan_bh TEXT"
             + ");";
@@ -126,24 +117,9 @@ public class YfRecord extends Model {
         this.fangjianleixing_id = fangjianleixing_id;
     }
 
-    public String getShoulouduixiang_id() {
-        return shoulouduixiang_id;
-    }
-
-    public void setShoulouduixiang_id(String shoulouduixiang_id) {
-        this.shoulouduixiang_id = shoulouduixiang_id;
-    }
-
-    public String getShoulouxiangmu_id() {
-        return shoulouxiangmu_id;
-    }
-
-    public void setShoulouxiangmu_id(String shoulouxiangmu_id) {
-        this.shoulouxiangmu_id = shoulouxiangmu_id;
-    }
 
 
-    public YfRecord(Context context) {
+    public YzYfRecord(Context context) {
         this.context = context;
     }
 
@@ -155,13 +131,6 @@ public class YfRecord extends Model {
         this.danyuan = danyuan;
     }
 
-    public String getHuxing() {
-        return huxing;
-    }
-
-    public void setHuxing(String huxing) {
-        this.huxing = huxing;
-    }
 
     public String getFangjianleixing() {
         return fangjianleixing;
@@ -171,21 +140,6 @@ public class YfRecord extends Model {
         this.fangjianleixing = fangjianleixing;
     }
 
-    public String getShoulouduixiang() {
-        return shoulouduixiang;
-    }
-
-    public void setShoulouduixiang(String shoulouduixiang) {
-        this.shoulouduixiang = shoulouduixiang;
-    }
-
-    public String getShoulouxiangmu() {
-        return shoulouxiangmu;
-    }
-
-    public void setShoulouxiangmu(String shoulouxiangmu) {
-        this.shoulouxiangmu = shoulouxiangmu;
-    }
 
     public String getLouge() {
         return louge;
@@ -206,15 +160,10 @@ public class YfRecord extends Model {
         values.put("louge_bh", this.louge_bh);
         values.put("louge", this.louge);
         values.put("fangjianleixing", this.fangjianleixing);
-        values.put("shoulouduixiang", this.shoulouduixiang);
-        values.put("shoulouxiangmu", this.shoulouxiangmu);
         values.put("danyuan", this.danyuan);
-        values.put("huxing", this.huxing);
         values.put("danyuan_id", this.danyuan_id);
         values.put("huxing_id", this.huxing_id);
         values.put("fangjianleixing_id", this.fangjianleixing_id);
-        values.put("shoulouduixiang_id", this.shoulouduixiang_id);
-        values.put("shoulouxiangmu_id", this.shoulouxiangmu_id);
         values.put("save_to_server", 0);
         values.put("danyuan_bh", this.danyuan_bh);
 
@@ -230,7 +179,7 @@ public class YfRecord extends Model {
 
 
     public boolean save_to_server(Context context) throws IOException, LTException {
-        String url = LocalAccessor.getInstance(context).get_server_url() + "/kfs_yfs";
+        String url = LocalAccessor.getInstance(context).get_server_url() + "/yz_yfs";
         String xmlString = null;
 
         HashMap<String, String> params = new HashMap<String, String>();
@@ -239,20 +188,15 @@ public class YfRecord extends Model {
         params.put("yf[louge_bh]", this.louge_bh);
         params.put("yf[louge]", this.louge);
         params.put("yf[fangjianleixing]", this.fangjianleixing);
-        params.put("yf[shoulouduixiang]", this.shoulouduixiang);
-        params.put("yf[shoulouxiangmu]", this.shoulouxiangmu);
         params.put("yf[danyuan]", this.danyuan);
-        params.put("yf[huxing]", this.huxing);
         params.put("yf[danyuan_id]", this.danyuan_id);
         params.put("yf[huxing_id]", this.huxing_id);
         params.put("yf[fangjianleixing_id]", this.fangjianleixing_id);
-        params.put("yf[shoulouduixiang_id]", this.shoulouduixiang_id);
-        params.put("yf[shoulouxiangmu_id]", this.shoulouxiangmu_id);
         params.put("yf[danyuan_bh]", this.danyuan_bh);
 
 
         BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
-                    User.current_user.password, params);
+                User.current_user.password, params);
 
 
         return true;
@@ -307,15 +251,11 @@ public class YfRecord extends Model {
                 + " louge_bh = '"              + this.louge_bh + "' and "
                 + " louge = '"                 + this.louge + "' and "
                 + " fangjianleixing = '"       + this.fangjianleixing + "' and "
-                + " shoulouduixiang = '"       + this.shoulouduixiang + "' and "
-                + " shoulouxiangmu = '"        + this.shoulouxiangmu + "' and "
                 + " danyuan = '"               + this.danyuan + "' and "
 //                + " huxing = '"                + this.huxing + "' and "
                 + " danyuan_id = '"            + this.danyuan_id + "' and "
 //                + " huxing_id = '"             + this.huxing_id + "' and "
-                + " fangjianleixing_id = '"    + this.fangjianleixing_id + "' and "
-                + " shoulouduixiang_id = '"    + this.shoulouduixiang_id + "' and "
-                + " shoulouxiangmu_id = '"     + this.shoulouxiangmu_id + "'; ";
+                + " fangjianleixing_id = '"    + this.fangjianleixing_id + "'";
 
         Cursor cursor = null;
         try{
@@ -325,16 +265,8 @@ public class YfRecord extends Model {
             Log.d(SelectorView.LOG_TAG, e.toString());
 
 
-            if (cursor != null) {
-
-                cursor.close();
-            }
-            if (db != null) {
-
-                db.close();
-
-            }
-
+            cursor.close();
+            db.close();
             return false;
 
         }
@@ -398,10 +330,8 @@ public class YfRecord extends Model {
 
 
     public String pic_dir(){
-        return ("letian_images/"
-                + this.danyuan + "/"
-                + this.shoulouduixiang + "/"
-                + this.shoulouxiangmu);
+        return ("letian_yzyf_images/"
+                + this.danyuan + "/");
     }
 
 }

@@ -172,9 +172,9 @@ public class Danyuan extends Model {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         if (where == null) {
-            sql = "select * from " + TABLE_NAME + " order by _id DESC";
+            sql = "select * from " + TABLE_NAME + " order by _id ASC";
         } else {
-            sql = "select * from " + TABLE_NAME + " where " + where + " order by _id DESC";
+            sql = "select * from " + TABLE_NAME + " where " + where + " order by _id ASC";
 
         }
         Cursor cursor;
