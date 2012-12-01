@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
 import com.letian.lib.LocalAccessor;
@@ -303,36 +304,96 @@ public class YfRecord extends Model {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         sql = "select * from " + TABLE_NAME + " where "
-                + " louge_bh = '" + this.louge_bh + "' and "
-                + " louge = '" + this.louge + "' and "
-                + " fangjianleixing = '" + this.fangjianleixing + "' and "
-                + " shoulouduixiang = '" + this.shoulouduixiang + "' and "
-                + " shoulouxiangmu = '" + this.shoulouxiangmu + "' and "
-                + " danyuan = '" + this.danyuan + "' and "
-                + " huxing = '" + this.huxing + "' and "
-                + " danyuan_id = '" + this.danyuan_id + "' and "
-                + " huxing_id = '" + this.huxing_id + "' and "
-                + " fangjianleixing_id = '" + this.fangjianleixing_id + "' and "
-                + " shoulouduixiang_id = '" + this.shoulouduixiang_id + "' and "
-                + " shoulouxiangmu_id = '" + this.shoulouxiangmu_id + "'; ";
+                + " louge_bh = '"              + this.louge_bh + "' and "
+                + " louge = '"                 + this.louge + "' and "
+                + " fangjianleixing = '"       + this.fangjianleixing + "' and "
+                + " shoulouduixiang = '"       + this.shoulouduixiang + "' and "
+                + " shoulouxiangmu = '"        + this.shoulouxiangmu + "' and "
+                + " danyuan = '"               + this.danyuan + "' and "
+//                + " huxing = '"                + this.huxing + "' and "
+                + " danyuan_id = '"            + this.danyuan_id + "' and "
+//                + " huxing_id = '"             + this.huxing_id + "' and "
+                + " fangjianleixing_id = '"    + this.fangjianleixing_id + "' and "
+                + " shoulouduixiang_id = '"    + this.shoulouduixiang_id + "' and "
+                + " shoulouxiangmu_id = '"     + this.shoulouxiangmu_id + "'; ";
 
-        Cursor cursor;
+        Cursor cursor = null;
         try{
             cursor = db.rawQuery(sql,null);
             Log.d(SelectorView.LOG_TAG, sql);
         }catch(Exception e){
+            Log.d(SelectorView.LOG_TAG, e.toString());
+
+
+            cursor.close();
+            db.close();
             return false;
+
         }
         cursor.moveToFirst();
-        if(cursor.isLast()){
+        if(cursor.getCount() == 0){
+
+            cursor.close();
+            db.close();
             return false;
         }else {
             this.reason = cursor.getString(2);
             this.result = Boolean.valueOf(Integer.toString(cursor.getInt(1)));
             this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(16)));
+
+            cursor.close();
+            db.close();
             return true;
         }
     }
 
+
+    public void displayAll(Context context){
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql;
+        sql = "select * from " + TABLE_NAME + ";";
+
+        Cursor cursor;
+        try{
+            cursor = db.rawQuery(sql,null);
+            Log.d(SelectorView.LOG_TAG, sql);
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+
+                Log.d(SelectorView.LOG_TAG, "111111111111111111111111111");
+                Log.d(SelectorView.LOG_TAG, "id" + cursor.getInt(0));
+                Log.d(SelectorView.LOG_TAG, "result" + cursor.getInt(1));
+                Log.d(SelectorView.LOG_TAG, "reason" + cursor.getString(2));
+                Log.d(SelectorView.LOG_TAG, "louge_bh" + cursor.getString(3));
+                Log.d(SelectorView.LOG_TAG, "louge" + cursor.getString(4));
+                Log.d(SelectorView.LOG_TAG, "fangjianleixing" + cursor.getString(5));
+                Log.d(SelectorView.LOG_TAG, "shoulouduixiang" + cursor.getString(6));
+                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu" + cursor.getString(7));
+                Log.d(SelectorView.LOG_TAG, "danyuan" + cursor.getString(8));
+                Log.d(SelectorView.LOG_TAG, "huxing" + cursor.getString(9));
+                Log.d(SelectorView.LOG_TAG, "danyuan_id" + cursor.getString(10));
+                Log.d(SelectorView.LOG_TAG, "huxing_id" + cursor.getString(11));
+                Log.d(SelectorView.LOG_TAG, "fangjianleixing_id" + cursor.getString(12));
+                Log.d(SelectorView.LOG_TAG, "shoulouduixiang_id" + cursor.getString(13));
+                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu_id" + cursor.getString(14));
+
+
+                cursor.moveToNext() ;
+            }
+        }catch(Exception e){
+            Log.d(SelectorView.LOG_TAG, e.toString());
+        }
+
+
+
+    }
+
+
+    public String pic_dir(){
+        return ("letian_images/"
+                + this.danyuan + "/"
+                + this.shoulouduixiang + "/"
+                + this.shoulouxiangmu);
+    }
 
 }

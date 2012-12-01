@@ -5,9 +5,13 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,7 +22,9 @@ import com.letian.Main;
 import com.letian.R;
 import com.letian.model.*;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static com.letian.R.color.red;
 
@@ -45,10 +51,14 @@ public class SelectorView extends Activity {
     private ArrayList<YanshouDuixiang> yanshouduixiang_datas;
     private ArrayList<YanshouXiangmu>  yanshouXiangmu_datas;
 
+    int onSelectedViewColor = R.color.red;
+
     PopupWindow window ;
 
     Button submit;
     Button cancel;
+    Button takePic;
+
     EditText reasonText;
 
     RadioButton okRadio;
@@ -61,6 +71,11 @@ public class SelectorView extends Activity {
 
     private ProgressDialog progressDialog;
     private Handler handler = new Handler();
+
+    private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
+
+    private Uri fileUri;
+
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -111,7 +126,6 @@ public class SelectorView extends Activity {
             danyuan_list_view.setAdapter(d);
             danyuan_list_view.invalidate();
 
-
             emptyLisView(fangjianleixing_list_view);
             emptyLisView(yanshouduixiang_list_view);
             emptyLisView(yanshouxiangmu_list_view);
@@ -160,6 +174,7 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setFangjianleixing(fangjianleixing_datas.get(i).fjmc);
             record.setFangjianleixing_id(fangjianleixing_datas.get(i)._id);
+
             ysdxes = new ArrayList<String>();
             yanshouduixiang_datas = YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fangjianleixing_datas.get(i)._id));
             for(YanshouDuixiang ysdx : yanshouduixiang_datas){
@@ -184,6 +199,7 @@ public class SelectorView extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setShoulouduixiang(yanshouduixiang_datas.get(i).dxmc);
             record.setShoulouduixiang_id(yanshouduixiang_datas.get(i)._id);
+
             ysxms = new ArrayList<String>();
             yanshouXiangmu_datas = YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(yanshouduixiang_datas.get(i)._id));
             for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
@@ -192,22 +208,15 @@ public class SelectorView extends Activity {
 
             ArrayAdapter yxa = new ArrayAdapter(getApplicationContext(),
                     android.R.layout.simple_expandable_list_item_1,
-                    ysdxes);
+                    ysxms);
 
-            yanshouxiangmu_list_view.setAdapter(yxa);
 
-            for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
-                record.shoulouxiangmu = ysxm.xmmc;
-                record.shoulouxiangmu_id = ysxm._id;
-                Log.d(SelectorView.LOG_TAG, " " + record.existInDb(SelectorView.this.getApplicationContext()));
-                if (record.existInDb(SelectorView.this.getApplicationContext())){
-
-                }
-                ysxms.add(ysxm.xmmc);
-            }
             record.shoulouxiangmu = null;
             record.shoulouxiangmu_id = null;
+
+            yanshouxiangmu_list_view.setAdapter(yxa);
             yanshouxiangmu_list_view.invalidate();
+
         }
 
     }
@@ -232,6 +241,8 @@ public class SelectorView extends Activity {
             View v = lay.inflate(R.layout.reason_form, null);
             submit = (Button) v.findViewById(R.id.submit);
             cancel = (Button) v.findViewById(R.id.cancel);
+            takePic = (Button) v.findViewById(R.id.take_pic);
+
 
             reasonText = (EditText)v.findViewById(R.id.reason_text_view);
             submit.setOnClickListener(new SubmitListener());
@@ -244,6 +255,7 @@ public class SelectorView extends Activity {
                     window.dismiss();
                 }
             });
+            takePic.setOnClickListener(new TakePicClickListener());
             window = new PopupWindow(v, 500,260);
         }
 
@@ -335,5 +347,44 @@ public class SelectorView extends Activity {
             return  tv;
         }
     }
+
+    private class TakePicClickListener implements Button.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Log.d(SelectorView.LOG_TAG, record.pic_dir());
+            File imagesFolder = new File(Environment.getExternalStorageDirectory(),  record.pic_dir());
+            imagesFolder.mkdirs();
+            File image = new File(imagesFolder, "image_" + (new Random()).nextInt(100) + ".jpg");
+            Uri uriSavedImage = Uri.fromFile(image);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+
+            startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
+
+        }
+    }
+
+    @Override
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE) {
+
+            if (resultCode == RESULT_OK) {
+
+
+            } else if (resultCode == RESULT_CANCELED) {
+
+
+            } else {
+
+
+            }
+
+        }
+
+    }
+
 
 }
