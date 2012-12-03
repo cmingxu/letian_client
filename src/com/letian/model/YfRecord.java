@@ -196,6 +196,20 @@ public class YfRecord extends Model {
     }
 
 
+    public void update_save_status(boolean updated){
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        ContentValues values = new ContentValues();
+        values.put("save_to_server", updated ? 1 : 0);
+        String where = "louge_bh='" + this.louge_bh + "' and fangjianleixing='" +
+                this.fangjianleixing + "' and shoulouduixiang_id='" + this.shoulouduixiang_id +
+                "' and shoulouxiangmu_id='" + this.shoulouxiangmu_id + "' and danyuan='" + this.danyuan +
+                "'";
+        Log.d(SelectorView.LOG_TAG, where);
+        db.update(YfRecord.TABLE_NAME, values, where, null);
+        db.close();
+    }
+
+
     public boolean save_to_db(){
 
         LocalAccessor.getInstance(this.context).create_db(
@@ -258,15 +272,19 @@ public class YfRecord extends Model {
         return true;
     }
 
-    public static ArrayList<YfRecord> findAll(Context context){
+    public static ArrayList<YfRecord> findAll(Context context, String where){
         ArrayList<YfRecord> records = new ArrayList<YfRecord>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
-        sql = "select * from " + TABLE_NAME + " order by _id DESC";
+        if (where != null) {
+            sql = "select * from " + TABLE_NAME + " where " + where + " order by id DESC";
+        }else{
+            sql = "select * from " + TABLE_NAME + " order by id DESC";
+        }
 
         Cursor cursor;
         try{
-            cursor = db.rawQuery(sql,null);
+            cursor = db.rawQuery(sql, null);
             Log.d(SelectorView.LOG_TAG, sql);
         }catch(Exception e){
             return records;
@@ -298,6 +316,10 @@ public class YfRecord extends Model {
         db.close();
         return records;
 
+    }
+
+    public static ArrayList<YfRecord> findAll(Context context){
+        return findAll(context, "");
     }
 
     public boolean existInDb(Context context){
@@ -391,8 +413,6 @@ public class YfRecord extends Model {
         }catch(Exception e){
             Log.d(SelectorView.LOG_TAG, e.toString());
         }
-
-
 
     }
 

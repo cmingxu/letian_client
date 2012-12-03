@@ -4,45 +4,41 @@
 	android:layout_height="fill_parent" android:scrollbars="vertical">
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:orientation="vertical">
-		<Button android:layout_width="wrap_content" android:id="@+id/drop_button"
-			android:layout_height="wrap_content" android:text="清空数据库表"></Button>
-
-		<Button android:layout_width="wrap_content" android:id="@+id/list_unit"
+		<Button android:layout_width="fill_parent" android:id="@+id/list_unit"
 			android:layout_height="wrap_content" android:text="单元列表"></Button>
 
-		<Button android:layout_width="wrap_content" android:id="@+id/list_louge"
+		<Button android:layout_width="fill_parent" android:id="@+id/list_louge"
 			android:layout_height="wrap_content" android:text="楼阁列表"></Button>
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_hx"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_hx"
                 android:layout_height="wrap_content" android:text="户型列表"></Button>
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_fjlx"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_fjlx"
                 android:layout_height="wrap_content" android:text="房间类型"></Button>
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_ysdx"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_ysdx"
                 android:layout_height="wrap_content" android:text="验收对象"></Button>
 
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_fjlx_ysdx"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_fjlx_ysdx"
                 android:layout_height="wrap_content" android:text="房间类型 验收对象"></Button>
 
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_ysxm"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_ysxm"
                 android:layout_height="wrap_content" android:text="验收项目"></Button>
 
 
-        <Button android:layout_width="wrap_content" android:id="@+id/list_record"
+        <Button android:layout_width="fill_parent" android:id="@+id/list_record"
                 android:layout_height="wrap_content" android:text="验收结果"></Button>
 
 
 
-
-
-        <Button android:layout_width="wrap_content" android:id="@+id/back"
+        <Button android:layout_width="fill_parent" android:id="@+id/back"
                 android:layout_height="wrap_content" android:text="返回"></Button>
 
 
-        <Button android:layout_width="wrap_content" android:id="@+id/set_admin_password"
-			android:layout_height="wrap_content" android:text="设置管理员密码"></Button>
+
+        <!--<Button android:layout_width="fill_parent" android:id="@+id/set_admin_password"-->
+			<!--android:layout_height="wrap_content" android:text="设置管理员密码"></Button>-->
 	</LinearLayout>
 </ScrollView>  

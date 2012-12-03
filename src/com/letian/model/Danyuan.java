@@ -174,7 +174,7 @@ public class Danyuan extends Model {
         if (where == null) {
             sql = "select * from " + TABLE_NAME + " order by _id ASC";
         } else {
-            sql = "select * from " + TABLE_NAME + " where " + where + " order by _id ASC";
+            sql = "select * from " + TABLE_NAME + " where " + where + " order by danyuanbianhao ASC";
 
         }
         Cursor cursor;

@@ -13,18 +13,16 @@
         <ListView
                 android:text="green"
                 android:gravity="center_horizontal"
-                android:background="#00aaaa"
+                android:background="#111300"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/louge_list_view"
-
                 android:layout_weight="1"/>
-
 
         <ListView
                 android:text="red"
                 android:gravity="center_horizontal"
-                android:background="#00aabb"
+                android:background="#111311"
 
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -36,7 +34,7 @@
                 android:text="green"
                 android:gravity="center_horizontal"
                 android:layout_weight="1"
-                android:background="#00aacc"
+                android:background="#111322"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/fangjianleixing_list_view"></ListView>
@@ -45,7 +43,7 @@
             android:text="green"
             android:gravity="center_horizontal"
             android:layout_weight="1"
-            android:background="#00aadd"
+            android:background="#111333"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:id="@+id/yanshouduixiang_list_view"></ListView>
@@ -54,7 +52,7 @@
                 android:text="green"
                 android:gravity="center_horizontal"
                 android:layout_weight="1"
-                android:background="#00aaee"
+                android:background="#111344"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:id="@+id/yanshouxiangmu_list_view"></ListView>

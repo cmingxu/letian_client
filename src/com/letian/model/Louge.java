@@ -103,7 +103,7 @@ public class Louge extends Model {
     public static ArrayList<Louge> findAll(Context context) {
         ArrayList<Louge> louges = new ArrayList<Louge>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-        String sql = "select * from Louge order by _id DESC";
+        String sql = "select * from Louge order by lougebianhao ASC";
         Cursor cursor;
         try {
             cursor = db.rawQuery(sql, null);
@@ -124,7 +124,7 @@ public class Louge extends Model {
     public static HashMap<String, String> mingcheng_bianhao_map(Context context, String loupan_bianhao) {
         HashMap<String, String> res = new HashMap<String, String>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-        String sql = "select * from Louge where loupanbianhao = '" + loupan_bianhao.replaceAll("\\s*", "") + "' order by _id DESC";
+        String sql = "select * from Louge where loupanbianhao = '" + loupan_bianhao.replaceAll("\\s*", "") + "' order by lougebianhao ASC";
         Cursor cursor;
         try {
             cursor = db.rawQuery(sql, null);

@@ -136,7 +136,7 @@ public class Login extends Activity {
                         getResources().getString(
                                 R.string.net_work_can_not_be_found))
                         .setPositiveButton(R.string.i_know, null).show();
-            } else if (user.name.length() == 0 || user.password.length() == 0) {
+            } else if (user.name.length() == 0) {
                 new AlertDialog.Builder(Login.this).setMessage(
                         getResources().getString(
                                 R.string.field_should_not_blank))

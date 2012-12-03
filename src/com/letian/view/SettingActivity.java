@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.letian.Main;
 import com.letian.R;
+import com.letian.lib.LocalAccessor;
 import com.letian.lib.NetworkConnection;
 import com.letian.model.*;
 
@@ -28,8 +30,14 @@ public class SettingActivity extends Activity {
 
     private Button syncBtn;
     private Button backBtn;
+
+    private Button drop_button;
+    private Button upload_kfs_yfd;
+    private Button upload_yz_yfd;
+
+
     ProgressDialog progressDialog;
-    Handler handler;
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,18 @@ public class SettingActivity extends Activity {
                 tongbu();
             }
         });
+
+
+        drop_button = (Button) findViewById(R.id.drop_button);
+
+        upload_kfs_yfd = (Button) findViewById(R.id.upload_kfs_yfd);
+        upload_yz_yfd = (Button) findViewById(R.id.upload_yz_yfd);
+        upload_kfs_yfd.setOnClickListener(new UploadKfsYfdClickListener());
+        upload_yz_yfd.setOnClickListener(new UploadYzYfdClickListener());
+
+        drop_button.setOnClickListener(new DropButtonListener());
+
+
         backBtn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -111,6 +131,71 @@ public class SettingActivity extends Activity {
                             "同步出错， 请检查网络！", Toast.LENGTH_LONG).show();
                 }
             });
+        }
+    }
+
+
+    private class DropButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View arg0) {
+            SQLiteDatabase db = LocalAccessor.getInstance(
+                    SettingActivity.this.getApplicationContext()).openDB();
+            db.execSQL("drop table  if exists " + Danyuan.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + Louge.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + FangjianLeixing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + Huxing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + FangjianleixingYanshouduixiang.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + HuxingFangjianLeixing.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + YanshouXiangmu.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + YanshouDuixiang.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + YfRecord.TABLE_NAME + ";");
+            db.close();
+            Toast.makeText(SettingActivity.this.getApplicationContext(), "数据库已经清空， 请重新同步", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    private class UploadKfsYfdClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            progressDialog = ProgressDialog.show(SettingActivity.this, "保存中， 请稍候...",
+                    null, true);
+
+
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+
+                        for (YfRecord record : YfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
+                            Log.d(SelectorView.LOG_TAG, record.shoulouxiangmu_id);
+                            Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
+                            if(record.save_to_server(SettingActivity.this.getApplicationContext())){
+                               record.update_save_status(true);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                    progressDialog.dismiss();
+                    }
+            }.start();
+
+        }
+    }
+
+    private class UploadYzYfdClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            //To change body of implemented methods use File | Settings | File Templates.
         }
     }
 

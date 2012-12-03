@@ -291,6 +291,7 @@ public class SelectorView extends Activity {
                         record.save_to_db();
                         if(record.save_to_server(SelectorView.this.getApplicationContext()))
                         {
+                            record.update_save_status(true);
                             handler.post(new Runnable() {
                                 public void run() {
                                     new AlertDialog.Builder(SelectorView.this).setMessage(
@@ -301,16 +302,16 @@ public class SelectorView extends Activity {
                             });
 
                         }
+                        else {
+                            record.update_save_status(false);
+                        }
                     } catch (Exception e) {
 
                         e.printStackTrace();
-
+                        record.update_save_status(false);
                         handler.post(new Runnable() {
                             public void run() {
-                                new AlertDialog.Builder(SelectorView.this).setMessage(
-                                        "网络好像不太给力, 稍后尝试").setPositiveButton("Okay",
-                                        null).show();
-
+                                Toast.makeText(SelectorView.this.getApplicationContext(), "网络有问题， 稍后在【设置】中上传!", Toast.LENGTH_LONG).show();
                             }
                         });
 
