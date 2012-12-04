@@ -175,7 +175,13 @@ public class SettingActivity extends Activity {
                             if(record.save_to_server(SettingActivity.this.getApplicationContext())){
                                record.update_save_status(true);
                             }
+
                         }
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "保存成功!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                         handler.post(new Runnable() {
@@ -195,7 +201,40 @@ public class SettingActivity extends Activity {
 
         @Override
         public void onClick(View view) {
-            //To change body of implemented methods use File | Settings | File Templates.
+                progressDialog = ProgressDialog.show(SettingActivity.this, "保存中， 请稍候...",
+                        null, true);
+
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+
+                            for (YzYfRecord record : YzYfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
+                                Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
+                                if(record.save_to_server(SettingActivity.this.getApplicationContext())){
+                                    record.update_save_status(true);
+
+                                }
+                            }
+
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(SettingActivity.this.getApplicationContext(), "保存成功!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                        progressDialog.dismiss();
+                    }
+                }.start();
+
         }
     }
 

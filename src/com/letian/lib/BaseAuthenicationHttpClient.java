@@ -79,9 +79,7 @@ public class BaseAuthenicationHttpClient {
 	        uc.setRequestProperty("User-Agent", "Mozilla/5.0");   
 	          
 	        InputStream content = uc.getInputStream();
-	       
-	      
-	  
+
 	        BufferedReader in = new BufferedReader (new InputStreamReader (content,"UTF-8"));
 	        String line = "";//will refactory
 	        StringBuilder sb = new StringBuilder("");

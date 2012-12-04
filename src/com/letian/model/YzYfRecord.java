@@ -23,9 +23,19 @@ import java.util.HashMap;
  * To change this template use File | Settings | File Templates.
  */
 public class YzYfRecord extends Model {
+    public int id;
     public boolean result;
     public String reason;
     public String louge_bh;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String louge;
     public String fangjianleixing;
     public String danyuan;
@@ -49,7 +59,7 @@ public class YzYfRecord extends Model {
     public static final String TABLE_NAME = "YzYfRecord";
 
 
-    private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YfRecord("
+    private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YzYfRecord("
             + "id INTEGER PRIMARY KEY,"
             + "result INTEGER,"
             + "reason TEXT,"
@@ -169,7 +179,19 @@ public class YzYfRecord extends Model {
 
 
         try {
-            return super.save_into_db(context, YfRecord.TABLE_NAME, values);
+
+
+            Log.d(SelectorView.LOG_TAG, "save_to_db " + this.toString());
+            super.save_into_db(context, YzYfRecord.TABLE_NAME, values);
+
+            SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+            Cursor c = db.rawQuery("select id from " + YzYfRecord.TABLE_NAME + " order by id asc limit 1;", null );
+            c.moveToFirst();
+            this.id = c.getInt(0);
+            c.close();
+            db.close();
+
+            return true;
         } catch (LTException e) {
             e.printStackTrace();
             return false;
@@ -177,6 +199,17 @@ public class YzYfRecord extends Model {
 
     }
 
+    public void update_save_status(boolean updated){
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        ContentValues values = new ContentValues();
+        values.put("save_to_server", updated ? 1 : 0);
+        String where = "id=" + this.id;
+
+        Log.d(SelectorView.LOG_TAG, "update_save_status" + Boolean.toString(updated));
+        Log.d(SelectorView.LOG_TAG, where);
+        db.update(YzYfRecord.TABLE_NAME, values, where, null);
+        db.close();
+    }
 
     public boolean save_to_server(Context context) throws IOException, LTException {
         String url = LocalAccessor.getInstance(context).get_server_url() + "/yz_yfs";
@@ -194,6 +227,7 @@ public class YzYfRecord extends Model {
         params.put("yf[fangjianleixing_id]", this.fangjianleixing_id);
         params.put("yf[danyuan_bh]", this.danyuan_bh);
 
+        Log.d(SelectorView.LOG_TAG, "save_to_server " + this.toString());
 
         BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
                 User.current_user.password, params);
@@ -201,13 +235,15 @@ public class YzYfRecord extends Model {
 
         return true;
     }
-
-    public static ArrayList<YfRecord> findAll(Context context){
-        ArrayList<YfRecord> records = new ArrayList<YfRecord>();
+    public static ArrayList<YzYfRecord> findAll(Context context, String where){
+        ArrayList<YzYfRecord> records = new ArrayList<YzYfRecord>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
-        sql = "select * from " + TABLE_NAME + " order by _id DESC";
-
+        if (where != null) {
+            sql = "select * from " + TABLE_NAME + " where " + where + " order by id DESC";
+        }else{
+            sql = "select * from " + TABLE_NAME + " order by id DESC";
+        }
         Cursor cursor;
         try{
             cursor = db.rawQuery(sql,null);
@@ -218,22 +254,22 @@ public class YzYfRecord extends Model {
         cursor.moveToFirst();
         while(cursor.isAfterLast() != true){
             Log.d(YfRecord.LOG_TAG, cursor.getString(3));
-            YfRecord r = new YfRecord( context  );
+            YzYfRecord r = new YzYfRecord( context  );
+
+
+            r.setId(cursor.getInt(0));
             r.setResult(cursor.getString(1) == "1" ? true : false);
             r.setReason(cursor.getString(2));
             r.setLouge_bh(cursor.getString(3));
             r.setLouge(cursor.getString(4));
             r.setFangjianleixing(cursor.getString(5));
-            r.setShoulouduixiang(cursor.getString(6));
-            r.setShoulouxiangmu(cursor.getString(7));
-            r.setDanyuan(cursor.getString(8));
-            r.setHuxing(cursor.getString(9));
-            r.setHuxing_id(cursor.getString(10));
-            r.setFangjianleixing_id(cursor.getString(11));
-            r.setShoulouduixiang_id(cursor.getString(12));
-            r.setShoulouxiangmu_id(cursor.getString(13));
-            r.setDanyuan_bh(cursor.getString(14));
+            r.setDanyuan(cursor.getString(6));
+            r.setDanyuan_id(cursor.getString(8));
+            r.setHuxing_id(cursor.getString(9));
+            r.setFangjianleixing_id(cursor.getString(10));
+            r.setDanyuan_bh(cursor.getString(12));
 
+            Log.d(SelectorView.LOG_TAG, "findall " + r.toString());
             records.add(r);
             cursor.moveToNext();
         }
@@ -241,6 +277,29 @@ public class YzYfRecord extends Model {
         cursor.close();
         db.close();
         return records;
+    }
+
+    @Override
+    public String toString() {
+        return "YzYfRecord{" +
+                "id=" + id +
+                ", result=" + result +
+                ", reason='" + reason + '\'' +
+                ", louge_bh='" + louge_bh + '\'' +
+                ", louge='" + louge + '\'' +
+                ", fangjianleixing='" + fangjianleixing + '\'' +
+                ", danyuan='" + danyuan + '\'' +
+                ", danyuan_id='" + danyuan_id + '\'' +
+                ", saved=" + saved +
+                ", danyuan_bh='" + danyuan_bh + '\'' +
+                ", huxing_id='" + huxing_id + '\'' +
+                ", fangjianleixing_id='" + fangjianleixing_id + '\'' +
+                ", context=" + context +
+                '}';
+    }
+
+    public static ArrayList<YzYfRecord> findAll(Context context){
+        return findAll(context, null);
 
     }
 

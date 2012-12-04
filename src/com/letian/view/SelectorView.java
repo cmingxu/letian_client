@@ -287,11 +287,9 @@ public class SelectorView extends Activity {
                 @Override
                 public void run() {
                     try {
-
                         record.save_to_db();
                         if(record.save_to_server(SelectorView.this.getApplicationContext()))
                         {
-                            record.update_save_status(true);
                             handler.post(new Runnable() {
                                 public void run() {
                                     new AlertDialog.Builder(SelectorView.this).setMessage(
@@ -306,7 +304,6 @@ public class SelectorView extends Activity {
                             record.update_save_status(false);
                         }
                     } catch (Exception e) {
-
                         e.printStackTrace();
                         record.update_save_status(false);
                         handler.post(new Runnable() {

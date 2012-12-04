@@ -32,6 +32,7 @@ public class FangjianLeixing extends Model {
     public Context context;
 
     public FangjianLeixing(String _id, String fjmc, String fjbh) {
+        Log.d(SelectorView.LOG_TAG, _id);
         this._id = _id;
         this.fjmc = fjmc;
         this.fjbh = fjbh;
