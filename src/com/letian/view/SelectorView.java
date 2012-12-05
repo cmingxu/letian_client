@@ -243,9 +243,11 @@ public class SelectorView extends Activity {
 
 
     private void popAwindow(View parent) {
-        if (window == null) {
+
             LayoutInflater lay = LayoutInflater.from(this);
             View v = lay.inflate(R.layout.reason_form, null);
+            TextView navView = (TextView) v.findViewById(R.id.nav);
+            navView.setText(record.danyuan + " -  " + record.fangjianleixing + " - " + record.shoulouduixiang + " - "+  record.shoulouxiangmu);
             submit = (Button) v.findViewById(R.id.submit);
             cancel = (Button) v.findViewById(R.id.cancel);
             takePic = (Button) v.findViewById(R.id.take_pic);
@@ -264,7 +266,6 @@ public class SelectorView extends Activity {
             });
             takePic.setOnClickListener(new TakePicClickListener());
             window = new PopupWindow(v, 500,260);
-        }
 
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
         window.setFocusable(true);

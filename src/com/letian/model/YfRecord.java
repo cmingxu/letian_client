@@ -157,6 +157,8 @@ public class YfRecord extends Model {
 
     public YfRecord(Context context) {
         this.context = context;
+        LocalAccessor.getInstance(this.context).create_db(
+                SQL_CREATE_TABLE_MESSAGE);
     }
 
     public String getDanyuan() {

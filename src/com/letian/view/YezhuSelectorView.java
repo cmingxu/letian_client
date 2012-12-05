@@ -129,9 +129,19 @@ public class YezhuSelectorView extends Activity {
 
             fangjianleixing_datas = FangjianLeixing.findAllByHuxing(getApplicationContext(), danyuan_datas.get(i).jiange);
             Log.d(SelectorView.LOG_TAG, "" + fangjianleixing_datas.size());
+
+
+
             fjlxes = new ArrayList<String>();
             for(FangjianLeixing fjlx : fangjianleixing_datas){
-                fjlxes.add(fjlx.fjmc);
+                record.setFangjianleixing(fjlx.fjmc);
+                record.setFangjianleixing_id(fjlx._id);
+                if (record.existInDb(YezhuSelectorView.this.getApplicationContext())){
+                    fjlxes.add("[验完]" + fjlx.fjmc);
+                }
+                else{
+                    fjlxes.add(fjlx.fjmc);
+                }
             }
 
             ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
@@ -159,12 +169,13 @@ public class YezhuSelectorView extends Activity {
     }
 
     private void popAwindow(View parent) {
-        if (window == null) {
             LayoutInflater lay = LayoutInflater.from(this);
             View v = lay.inflate(R.layout.reason_form, null);
             submit = (Button) v.findViewById(R.id.submit);
             cancel = (Button) v.findViewById(R.id.cancel);
             takePic = (Button) v.findViewById(R.id.take_pic);
+            TextView navView = (TextView) v.findViewById(R.id.nav);
+            navView.setText(record.danyuan + " -  " + record.fangjianleixing);
 
 
             reasonText = (EditText)v.findViewById(R.id.reason_text_view);
@@ -180,7 +191,6 @@ public class YezhuSelectorView extends Activity {
             });
             takePic.setOnClickListener(new TakePicClickListener());
             window = new PopupWindow(v, 500,260);
-        }
 
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
         window.setFocusable(true);

@@ -131,6 +131,8 @@ public class YzYfRecord extends Model {
 
     public YzYfRecord(Context context) {
         this.context = context;
+        LocalAccessor.getInstance(this.context).create_db(
+                SQL_CREATE_TABLE_MESSAGE);
     }
 
     public String getDanyuan() {
@@ -311,9 +313,7 @@ public class YzYfRecord extends Model {
                 + " louge = '"                 + this.louge + "' and "
                 + " fangjianleixing = '"       + this.fangjianleixing + "' and "
                 + " danyuan = '"               + this.danyuan + "' and "
-//                + " huxing = '"                + this.huxing + "' and "
                 + " danyuan_id = '"            + this.danyuan_id + "' and "
-//                + " huxing_id = '"             + this.huxing_id + "' and "
                 + " fangjianleixing_id = '"    + this.fangjianleixing_id + "'";
 
         Cursor cursor = null;
@@ -338,7 +338,7 @@ public class YzYfRecord extends Model {
         }else {
             this.reason = cursor.getString(2);
             this.result = Boolean.valueOf(Integer.toString(cursor.getInt(1)));
-            this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(16)));
+            this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(11)));
 
             cursor.close();
             db.close();
@@ -358,23 +358,6 @@ public class YzYfRecord extends Model {
             Log.d(SelectorView.LOG_TAG, sql);
             cursor.moveToFirst();
             while(!cursor.isAfterLast()){
-
-                Log.d(SelectorView.LOG_TAG, "111111111111111111111111111");
-                Log.d(SelectorView.LOG_TAG, "id" + cursor.getInt(0));
-                Log.d(SelectorView.LOG_TAG, "result" + cursor.getInt(1));
-                Log.d(SelectorView.LOG_TAG, "reason" + cursor.getString(2));
-                Log.d(SelectorView.LOG_TAG, "louge_bh" + cursor.getString(3));
-                Log.d(SelectorView.LOG_TAG, "louge" + cursor.getString(4));
-                Log.d(SelectorView.LOG_TAG, "fangjianleixing" + cursor.getString(5));
-                Log.d(SelectorView.LOG_TAG, "shoulouduixiang" + cursor.getString(6));
-                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu" + cursor.getString(7));
-                Log.d(SelectorView.LOG_TAG, "danyuan" + cursor.getString(8));
-                Log.d(SelectorView.LOG_TAG, "huxing" + cursor.getString(9));
-                Log.d(SelectorView.LOG_TAG, "danyuan_id" + cursor.getString(10));
-                Log.d(SelectorView.LOG_TAG, "huxing_id" + cursor.getString(11));
-                Log.d(SelectorView.LOG_TAG, "fangjianleixing_id" + cursor.getString(12));
-                Log.d(SelectorView.LOG_TAG, "shoulouduixiang_id" + cursor.getString(13));
-                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu_id" + cursor.getString(14));
 
 
                 cursor.moveToNext() ;
