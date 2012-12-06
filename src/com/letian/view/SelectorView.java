@@ -153,7 +153,7 @@ public class SelectorView extends Activity {
             Log.d(SelectorView.LOG_TAG, "" + fangjianleixing_datas.size());
             fjlxes = new ArrayList<String>();
             for(FangjianLeixing fjlx : fangjianleixing_datas){
-                fjlxes.add(fjlx.fjmc);
+                fjlxes.add(fjlx.fjmc );
             }
 
             ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
@@ -179,7 +179,7 @@ public class SelectorView extends Activity {
             ysdxes = new ArrayList<String>();
             yanshouduixiang_datas = YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fangjianleixing_datas.get(i)._id));
             for(YanshouDuixiang ysdx : yanshouduixiang_datas){
-                ysdxes.add(ysdx.dxmc);
+                ysdxes.add(ysdx.dxmc );
             }
 
             ArrayAdapter d = new ArrayAdapter(getApplicationContext(),

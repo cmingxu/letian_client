@@ -109,9 +109,9 @@ public class YanshouDuixiang extends Model{
             Log.d(SelectorView.LOG_TAG, sql);
             cursor = db.rawQuery(sql,null);
             cursor.moveToFirst();
-            Log.d(SelectorView.LOG_TAG,"1111111111"  + cursor.getString(2));
+            Log.d(SelectorView.LOG_TAG,"1111111111"  + cursor.getString(3));
 
-            ysdxids.append(cursor.getString(2));
+            ysdxids.append(cursor.getString(3));
             cursor.moveToNext();
 
             while(cursor.isAfterLast() != true){

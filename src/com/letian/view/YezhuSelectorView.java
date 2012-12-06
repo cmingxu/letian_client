@@ -62,9 +62,7 @@ public class YezhuSelectorView extends Activity {
 
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 
-
     public void onCreate(Bundle savedInstanceState) {
-
         this.record = new YzYfRecord(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yezhu_list_view);

@@ -6,7 +6,6 @@ import com.letian.R;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.*;
 import com.letian.test.ListLouge;
-import com.letian.test.ListLoupan;
 import com.letian.test.ListUnit;
 import com.letian.test.ListZhuhu;
 
