@@ -1,6 +1,8 @@
 package com.letian.model.xmlhandler;
 
 import android.content.Context;
+import android.text.LoginFilter;
+import android.util.Log;
 import com.letian.model.FangjianleixingYanshouduixiang;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -42,7 +44,9 @@ public class FangjianleixingYanshouduixiangHandler extends BaseHandler {
 
         if (this.currentFangjianLeixingYanshouDuixiang != null){
             if (localName.equalsIgnoreCase("FJLXID")){
+
                 currentFangjianLeixingYanshouDuixiang.fjlxid = builder.toString().replaceAll("\\s","");
+                Log.d(FangjianleixingYanshouduixiang.LOG_TAG,currentFangjianLeixingYanshouDuixiang.fjlxid );
             } else if (localName.equalsIgnoreCase("DXID")){
                 currentFangjianLeixingYanshouDuixiang.dxid = builder.toString().replaceAll("\\s","");
             }

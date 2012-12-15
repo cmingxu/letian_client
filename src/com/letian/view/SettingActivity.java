@@ -44,6 +44,7 @@ public class SettingActivity extends Activity {
         handler = new Handler();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
+        this.setTitle(getResources().getString(R.string.title));
         syncBtn = (Button) findViewById(R.id.sync_xml_btn);
         backBtn = (Button) findViewById(R.id.setting_back);
         syncBtn.setOnClickListener(new Button.OnClickListener() {
@@ -124,6 +125,7 @@ public class SettingActivity extends Activity {
             YanshouDuixiang.syn(context);
             YanshouXiangmu.syn(context);
         } catch (Exception e) {
+            progressDialog.dismiss();
             handler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -172,6 +174,7 @@ public class SettingActivity extends Activity {
                         for (YfRecord record : YfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
                             Log.d(SelectorView.LOG_TAG, record.shoulouxiangmu_id);
                             Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
+
                             if(record.save_to_server(SettingActivity.this.getApplicationContext())){
                                record.update_save_status(true);
                             }
@@ -184,6 +187,8 @@ public class SettingActivity extends Activity {
                         });
                     } catch (Exception e) {
                         e.printStackTrace();
+
+                        Log.e("aaaaaaaaaaaaaaa", e.toString());
                         handler.post(new Runnable() {
                             public void run() {
                                 Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();

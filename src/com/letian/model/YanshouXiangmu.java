@@ -56,6 +56,7 @@ public class YanshouXiangmu extends Model{
     }
 
     public static void syn(Context context) {
+        new YanshouXiangmu(context);
         // get xml
         String xml;
         String url = LocalAccessor.getInstance(context).get_server_url() + "/ysxms.xml";
@@ -63,7 +64,7 @@ public class YanshouXiangmu extends Model{
         ArrayList<YanshouXiangmu> items;
         try {
             while (true) {
-                int offset = Model.max_count(context,FangjianLeixing.TABLE_NAME);
+                int offset = Model.max_count(context,YanshouXiangmu.TABLE_NAME);
                 String params = "?offset=" + offset + "&limit="
                         + Constants.EACH_SLICE;
                 xml = BaseAuthenicationHttpClient.doRequest(url + params,

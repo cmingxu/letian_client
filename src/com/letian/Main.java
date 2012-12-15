@@ -38,7 +38,7 @@ public class Main extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		this.setTitle(getResources().getString(R.string.app_name));
+		this.setTitle(getResources().getString(R.string.title));
 		logout_view = (ImageView) findViewById(R.id.logout);
 		logout_view.setOnClickListener(new LogoutListener());
 

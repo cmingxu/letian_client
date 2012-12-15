@@ -47,6 +47,7 @@ public class FangjianleixingYanshouduixiang extends Model {
     }
 
     public static void syn(Context context) {
+        new FangjianleixingYanshouduixiang(context);
         // get xml
         String xml;
         String url = LocalAccessor.getInstance(context).get_server_url() + "/fjlx_ysdxes.xml";
@@ -54,7 +55,7 @@ public class FangjianleixingYanshouduixiang extends Model {
         ArrayList<FangjianleixingYanshouduixiang> items = new ArrayList<FangjianleixingYanshouduixiang>();
         try {
             while (true) {
-                int offset = Model.max_count(context,FangjianLeixing.TABLE_NAME);
+                int offset = Model.max_count(context,TABLE_NAME);
                 String params = "?offset=" + offset + "&limit="
                         + Constants.EACH_SLICE;
                 xml = BaseAuthenicationHttpClient.doRequest(url + params,

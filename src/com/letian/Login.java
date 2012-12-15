@@ -29,6 +29,8 @@ public class Login extends Activity {
     private EditText password;
     private Button login_button;
     private Button setting_button;
+    private Button cancel_button;
+
 
     private User user;
     private ProgressDialog progressDialog;
@@ -44,6 +46,8 @@ public class Login extends Activity {
         password = (EditText) findViewById(R.id.password);
         login_button = (Button) findViewById(R.id.login_button);
         setting_button = (Button) findViewById(R.id.setting_button);
+        cancel_button = (Button) findViewById(R.id.cancel_button);
+
 
         User last_user = User.last_user(this.getApplicationContext());
         login.setText(last_user.name);
@@ -51,6 +55,13 @@ public class Login extends Activity {
 
         login_button.setOnClickListener(new LoginListener());
         setting_button.setOnClickListener(new SettingListener());
+
+        cancel_button.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Login.this.finish();
+            }
+        });
 
     }
 

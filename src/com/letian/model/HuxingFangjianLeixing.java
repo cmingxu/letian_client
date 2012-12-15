@@ -51,7 +51,9 @@ public class HuxingFangjianLeixing extends Model {
                 SQL_CREATE_TABLE_MESSAGE);
     }
 
+
     public static void syn(Context context) {
+        new HuxingFangjianLeixing(context);
         // get xml
         String xml;
         String url = LocalAccessor.getInstance(context).get_server_url() + "/hx_fjlxes.xml";

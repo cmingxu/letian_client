@@ -83,6 +83,7 @@ public class SelectorView extends Activity {
         this.record = new YfRecord(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selector_view);
+        this.setTitle(getResources().getString(R.string.title));
         louge_list_view = (ListView)findViewById(R.id.louge_list_view);
         danyuan_list_view = (ListView)findViewById(R.id.danyuan_list_view);
         fangjianleixing_list_view = (ListView)findViewById(R.id.fangjianleixing_list_view);
@@ -265,12 +266,12 @@ public class SelectorView extends Activity {
                 }
             });
             takePic.setOnClickListener(new TakePicClickListener());
-            window = new PopupWindow(v, 500,260);
+            window = new PopupWindow(v, 1280,700);
 
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
         window.setFocusable(true);
         window.update();
-        window.showAtLocation(parent, Gravity.CENTER_VERTICAL, 0, 0);
+        window.showAtLocation(parent, Gravity.CENTER_VERTICAL, 0, 30);
     }
 
 
@@ -293,6 +294,8 @@ public class SelectorView extends Activity {
                         {
                             handler.post(new Runnable() {
                                 public void run() {
+
+//                                    Toast.makeText(SelectorView.this.getApplicationContext(), "上传成功!", Toast.LENGTH_LONG).show();
                                     new AlertDialog.Builder(SelectorView.this).setMessage(
                                             "保存成功!").setPositiveButton("Okay",
                                             null).show();

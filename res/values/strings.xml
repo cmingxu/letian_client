@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">金茂家园物业管理终端</string>
+    <string name="app_name">金茂家园</string>
     <string name="login">帐号</string>
     <string name="password">密码</string>
     <string name="login_button">登陆</string>
@@ -38,7 +38,7 @@
     <string name="yezhu_shoulou">业主收楼</string>
     <string name="paizhao">拍照</string>
     <string name="sync_btn">开始同步数据</string>
-    <string name="title">金茂家园物业管理终端</string>
+    <string name="title">金茂家园移动应用终端</string>
     <string name="save_success">保存成功</string>
     <string name="cancel">取消</string>
 

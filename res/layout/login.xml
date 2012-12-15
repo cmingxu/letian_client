@@ -61,6 +61,12 @@
                     layout_alignParentRight="true"
                     android:textStyle="bold" android:textSize="25dip"></Button>
 
+            <Button android:text="@string/logout"
+                    android:layout_width="wrap_content" android:id="@+id/cancel_button"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dip"
+                    layout_alignParentRight="true"
+                    android:textStyle="bold" android:textSize="25dip"></Button>
 
 
         </LinearLayout>

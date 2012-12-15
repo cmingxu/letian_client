@@ -22,6 +22,7 @@ import com.letian.view.SelectorView;
 
 public class User extends Model {
 
+    public static final String TABLE_NAME = "Misc";
     private static final String LOG_TAG = "Model";
     private static final String default_data = "insert into  Misc values(1,'System','123',0,' " + Constants.SERVER_PATH + "');";
     public String name;
@@ -33,6 +34,9 @@ public class User extends Model {
 
     public Context context;
 
+    public User(Context context) {
+        this.context = context;
+    }
 
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS Misc("
             + "_id INTEGER PRIMARY KEY,"

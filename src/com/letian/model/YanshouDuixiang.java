@@ -57,6 +57,7 @@ public class YanshouDuixiang extends Model{
     }
 
     public static void syn(Context context) {
+        new YanshouDuixiang(context);
         // get xml
         String xml;
         String url = LocalAccessor.getInstance(context).get_server_url() + "/ysdxes.xml";

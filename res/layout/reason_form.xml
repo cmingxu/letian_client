@@ -5,22 +5,24 @@
               android:layout_height="fill_parent"
               android:orientation="vertical">
 
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_margin="10dip"
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent"
+                  android:layout_margin="20dip"
             android:gravity="center_horizontal"
             >
     <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
-              android:id="@+id/nav" android:textSize="20dip"></TextView>
+              android:id="@+id/nav" android:textSize="30dip"></TextView>
     </LinearLayout>
 
     <RadioGroup android:id="@+id/radioGroup" android:contentDescription="性别" android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:layout_margin="20px"
+                android:textSize="15dip"
             >
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
                      android:id="@+id/radioOk" android:text="没问题" android:checked="true"></RadioButton>
         <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/radioBad" android:text="有问题"></RadioButton>
+                     android:id="@+id/radioBad" android:text="有问题" android:layout_marginLeft="40dip"></RadioButton>
     </RadioGroup>
 
 
@@ -29,7 +31,7 @@
                   android:id="@+id/edit_fields"
                   android:orientation="vertical"
             >
-        <EditText android:layout_height="100px"
+        <EditText android:layout_height="400px"
                   android:layout_width="fill_parent"
                   android:id="@+id/reason_text_view">
         </EditText>

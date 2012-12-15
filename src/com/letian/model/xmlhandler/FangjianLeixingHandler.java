@@ -44,6 +44,7 @@ public class FangjianLeixingHandler extends BaseHandler {
         if (this.currentFangjianLeixing != null){
             if (localName.equalsIgnoreCase("FJMC")){
                 currentFangjianLeixing.fjmc = builder.toString().replaceAll("\\s","");
+                Log.d(FangjianLeixing.LOG_TAG, currentFangjianLeixing.fjmc);
             } else if (localName.equalsIgnoreCase("FJBH")){
                 currentFangjianLeixing.fjbh = builder.toString().replaceAll("\\s","");
             }

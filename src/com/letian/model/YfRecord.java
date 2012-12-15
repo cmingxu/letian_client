@@ -216,10 +216,12 @@ public class YfRecord extends Model {
         values.put("save_to_server", updated ? 1 : 0);
         String where = "id=" + this.id;
 
-        Log.d(SelectorView.LOG_TAG, "update_save_status" + Boolean.toString(updated));
-        Log.d(SelectorView.LOG_TAG, where);
+        Log.e(SelectorView.LOG_TAG, "update_save_status" + Boolean.toString(updated));
+        Log.e(SelectorView.LOG_TAG, where);
         db.update(YfRecord.TABLE_NAME, values, where, null);
         db.close();
+
+        this.displayAll(context);
     }
 
 
@@ -245,7 +247,7 @@ public class YfRecord extends Model {
         values.put("save_to_server", 1);
         values.put("danyuan_bh", this.danyuan_bh);
 
-        Log.d(SelectorView.LOG_TAG, "Save to db" + this.toString());
+        Log.e(SelectorView.LOG_TAG, "Save to db" + this.toString());
 
 
 
@@ -253,12 +255,13 @@ public class YfRecord extends Model {
             super.save_into_db(context, YfRecord.TABLE_NAME, values);
 
             SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-            Cursor c = db.rawQuery("select id from " + YfRecord.TABLE_NAME + " order by id asc limit 1;", null );
+            Cursor c = db.rawQuery("select id from " + YfRecord.TABLE_NAME + " order by id desc limit 1;", null );
             c.moveToFirst();
             this.id = c.getInt(0);
             c.close();
             db.close();
 
+            this.displayAll(context);
             return true;
 
         } catch (LTException e) {
@@ -337,12 +340,17 @@ public class YfRecord extends Model {
         Cursor cursor;
         try{
             cursor = db.rawQuery(sql, null);
-            Log.d(SelectorView.LOG_TAG, sql);
+            Log.e(SelectorView.LOG_TAG, sql);
         }catch(Exception e){
             return records;
         }
         cursor.moveToFirst();
-        while(cursor.isAfterLast() != true){
+
+        Log.e("AAAAAAAAAAAAAAA111111111", Integer.toString(cursor.getCount()));
+        YfRecord a = new YfRecord(context);
+                     a.displayAll(context);
+
+        while(!cursor.isAfterLast()){
 
             YfRecord r = new YfRecord( context  );
             r.setId(cursor.getInt(0));
@@ -360,9 +368,15 @@ public class YfRecord extends Model {
             r.setFangjianleixing_id(cursor.getString(12));
             r.setShoulouduixiang_id(cursor.getString(13));
             r.setShoulouxiangmu_id(cursor.getString(14));
-            r.setDanyuan_bh(cursor.getString(15));
+            r.setDanyuan_bh(cursor.getString(16));
+
+
 
             records.add(r);
+
+            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan_id());
+            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan_bh());
+            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan());
             cursor.moveToNext();
         }
 
@@ -444,22 +458,24 @@ public class YfRecord extends Model {
             cursor.moveToFirst();
             while(!cursor.isAfterLast()){
 
-                Log.d(SelectorView.LOG_TAG, "111111111111111111111111111");
-                Log.d(SelectorView.LOG_TAG, "id" + cursor.getInt(0));
-                Log.d(SelectorView.LOG_TAG, "result" + cursor.getInt(1));
-                Log.d(SelectorView.LOG_TAG, "reason" + cursor.getString(2));
-                Log.d(SelectorView.LOG_TAG, "louge_bh" + cursor.getString(3));
-                Log.d(SelectorView.LOG_TAG, "louge" + cursor.getString(4));
-                Log.d(SelectorView.LOG_TAG, "fangjianleixing" + cursor.getString(5));
-                Log.d(SelectorView.LOG_TAG, "shoulouduixiang" + cursor.getString(6));
-                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu" + cursor.getString(7));
-                Log.d(SelectorView.LOG_TAG, "danyuan" + cursor.getString(8));
-                Log.d(SelectorView.LOG_TAG, "huxing" + cursor.getString(9));
-                Log.d(SelectorView.LOG_TAG, "danyuan_id" + cursor.getString(10));
-                Log.d(SelectorView.LOG_TAG, "huxing_id" + cursor.getString(11));
-                Log.d(SelectorView.LOG_TAG, "fangjianleixing_id" + cursor.getString(12));
-                Log.d(SelectorView.LOG_TAG, "shoulouduixiang_id" + cursor.getString(13));
-                Log.d(SelectorView.LOG_TAG, "shoulouxiangmu_id" + cursor.getString(14));
+                Log.e(SelectorView.LOG_TAG, "111111111111111111111111111");
+                Log.e(SelectorView.LOG_TAG, "id" + cursor.getInt(0));
+                Log.e(SelectorView.LOG_TAG, "result" + cursor.getInt(1));
+                Log.e(SelectorView.LOG_TAG, "reason" + cursor.getString(2));
+                Log.e(SelectorView.LOG_TAG, "louge_bh" + cursor.getString(3));
+                Log.e(SelectorView.LOG_TAG, "louge" + cursor.getString(4));
+                Log.e(SelectorView.LOG_TAG, "fangjianleixing" + cursor.getString(5));
+                Log.e(SelectorView.LOG_TAG, "shoulouduixiang" + cursor.getString(6));
+                Log.e(SelectorView.LOG_TAG, "shoulouxiangmu" + cursor.getString(7));
+                Log.e(SelectorView.LOG_TAG, "danyuan" + cursor.getString(8));
+                Log.e(SelectorView.LOG_TAG, "huxing" + cursor.getString(9));
+                Log.e(SelectorView.LOG_TAG, "danyuan_id" + cursor.getString(10));
+                Log.e(SelectorView.LOG_TAG, "huxing_id" + cursor.getString(11));
+                Log.e(SelectorView.LOG_TAG, "fangjianleixing_id" + cursor.getString(12));
+                Log.e(SelectorView.LOG_TAG, "shoulouduixiang_id" + cursor.getString(13));
+                Log.e(SelectorView.LOG_TAG, "shoulouxiangmu_id" + cursor.getString(14));
+                Log.e(SelectorView.LOG_TAG, "saved_tO_server" + cursor.getString(15));
+
 
 
                 cursor.moveToNext() ;

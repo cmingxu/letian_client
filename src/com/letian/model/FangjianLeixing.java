@@ -106,6 +106,7 @@ public class FangjianLeixing extends Model {
     }
 
     public static void syn(Context context) {
+       new FangjianLeixing(context);
         // get xml
         String xml;
         String url = LocalAccessor.getInstance(context).get_server_url() + "/fjlxes.xml";
@@ -113,7 +114,7 @@ public class FangjianLeixing extends Model {
         ArrayList<FangjianLeixing> items;
         try {
             while (true) {
-                int offset = Model.max_count(context,FangjianLeixing.TABLE_NAME);
+                int offset = Model.max_count(context,TABLE_NAME);
                 String params = "?offset=" + offset + "&limit="
                         + Constants.EACH_SLICE;
                 xml = BaseAuthenicationHttpClient.doRequest(url + params,

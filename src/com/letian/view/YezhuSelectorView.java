@@ -66,6 +66,7 @@ public class YezhuSelectorView extends Activity {
         this.record = new YzYfRecord(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yezhu_list_view);
+        this.setTitle(getResources().getString(R.string.title));
         yezhu_louge_list_view = (ListView)findViewById(R.id.yezhu_louge_list_view);
         yezhu_danyuan_list_view = (ListView)findViewById(R.id.yezhu_danyuan_list_view);
         yezhu_fangjianleixing_list_view = (ListView)findViewById(R.id.yezhu_fangjianleixing_list_view);
@@ -188,12 +189,13 @@ public class YezhuSelectorView extends Activity {
                 }
             });
             takePic.setOnClickListener(new TakePicClickListener());
-            window = new PopupWindow(v, 500,260);
+
+        window = new PopupWindow(v, 1280,700);
 
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
         window.setFocusable(true);
         window.update();
-        window.showAtLocation(parent, Gravity.CENTER_VERTICAL, 0, 0);
+        window.showAtLocation(parent, Gravity.CENTER_VERTICAL, 0, 30);
     }
 
 
