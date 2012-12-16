@@ -88,4 +88,37 @@ public class FangjianleixingYanshouduixiang extends Model {
 
         return super.save_into_db(context, FangjianleixingYanshouduixiang.TABLE_NAME, values);
     }
+
+    public static void displayAll(Context context){
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        String sql;
+        sql = "select * from " + TABLE_NAME + ";";
+
+        Cursor cursor = null;
+        try{
+            cursor = db.rawQuery(sql,null);
+            Log.d(SelectorView.LOG_TAG, sql);
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                Log.d(SelectorView.LOG_TAG, "111111111111111111111111111");
+                Log.d(SelectorView.LOG_TAG, "id" + cursor.getInt(1));
+                Log.d(SelectorView.LOG_TAG, "fjlxid" + cursor.getInt(2));
+                Log.d(SelectorView.LOG_TAG, "dxid" + cursor.getString(3));
+
+                cursor.moveToNext() ;
+            }
+            cursor.close();
+            db.close();
+        }catch(Exception e){
+            Log.d(SelectorView.LOG_TAG, e.toString());
+            if (cursor != null) {
+                cursor.close();
+            }
+
+            if (db != null) {
+                   db.close();
+            }
+
+        }
+    }
 }

@@ -139,6 +139,23 @@ public class Main extends Activity {
 		}
 	}
 
-	
+    @Override
+    protected void onPause() {
+        Log.e("MAIN", "onPause");
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+    }
 
+    @Override
+    protected void onStop() {
+
+        Log.e("MAIN", "onStop");
+        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        Log.e("MAIN", "onDestroy");
+        super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }

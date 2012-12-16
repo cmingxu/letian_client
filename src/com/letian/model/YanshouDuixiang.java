@@ -102,26 +102,27 @@ public class YanshouDuixiang extends Model{
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         StringBuffer ysdxids = new StringBuffer();
 
-        Cursor cursor;
+        Cursor cursor = null;
         try{
             String sql;
-            sql = "select * from " + FangjianleixingYanshouduixiang.TABLE_NAME + " where fjlxid ='" +
+            sql = "select * from " + FangjianleixingYanshouduixiang.TABLE_NAME + " where fjlxid = '" +
                     fjlxid + "';" ;
-            Log.d(SelectorView.LOG_TAG, sql);
-            cursor = db.rawQuery(sql,null);
+
+
+            FangjianleixingYanshouduixiang.displayAll(context);
+            cursor = db.rawQuery(sql, null);
+
             cursor.moveToFirst();
-            Log.d(SelectorView.LOG_TAG,"1111111111"  + cursor.getString(3));
 
             ysdxids.append(cursor.getString(3));
             cursor.moveToNext();
 
-            while(cursor.isAfterLast() != true){
-                Log.d(SelectorView.LOG_TAG, cursor.getString(3));
+            while(!cursor.isAfterLast()){
+
                 ysdxids.append(",");
                 ysdxids.append(cursor.getString(3));
                 cursor.moveToNext();
             }
-            Log.d(SelectorView.LOG_TAG, ysdxids.toString());
 
             sql = "select * from " + YanshouDuixiang.TABLE_NAME +
                     " where _id in (" + ysdxids.toString() + ");";
@@ -133,11 +134,18 @@ public class YanshouDuixiang extends Model{
                         cursor.getString(2),
                         cursor.getString(3)));
 
-                Log.d(SelectorView.LOG_TAG, "11111 hahah " + cursor.getString(2));
                 cursor.moveToNext();
             }
 
         }catch(Exception e){
+           Log.d(SelectorView.LOG_TAG, e.toString());
+            if (cursor != null) {
+                cursor.close();
+            }
+
+            if (db != null) {
+                db.close();
+            }
             return yuanshouduixiangs;
         }
 

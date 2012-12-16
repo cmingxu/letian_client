@@ -87,7 +87,7 @@ public final class R {
         public static final int baoshi_new=0x7f08004a;
         public static final int button=0x7f080015;
         public static final int buttonClick=0x7f080048;
-        public static final int cancel=0x7f08003a;
+        public static final int cancel=0x7f080038;
         public static final int cancel_button=0x7f08001e;
         public static final int choose_loupan_button=0x7f080056;
         public static final int choose_unit_button=0x7f080003;
@@ -109,7 +109,7 @@ public final class R {
         public static final int danyuan_list_view=0x7f08003c;
         public static final int done_button=0x7f080057;
         public static final int drop_button=0x7f080044;
-        public static final int edit_fields=0x7f080036;
+        public static final int edit_fields=0x7f080039;
         public static final int edit_item_tab_host=0x7f080002;
         public static final int fangjianleixing_list_view=0x7f08003d;
         public static final int favorite_url=0x7f08005b;
@@ -141,7 +141,7 @@ public final class R {
         public static final int radioBad=0x7f080035;
         public static final int radioGroup=0x7f080033;
         public static final int radioOk=0x7f080034;
-        public static final int reason_text_view=0x7f080037;
+        public static final int reason_text_view=0x7f08003a;
         public static final int returnBtn=0x7f080049;
         public static final int server_addr=0x7f080000;
         public static final int setting_back=0x7f080043;
@@ -149,9 +149,9 @@ public final class R {
         public static final int setting_view=0x7f080022;
         public static final int settings_tv=0x7f080021;
         public static final int shoujihaoma=0x7f080006;
-        public static final int submit=0x7f080038;
+        public static final int submit=0x7f080036;
         public static final int sync_xml_btn=0x7f080040;
-        public static final int take_pic=0x7f080039;
+        public static final int take_pic=0x7f080037;
         public static final int unit_address=0x7f080004;
         public static final int unit_chooser_dialog_title=0x7f080058;
         public static final int unit_text=0x7f08005a;

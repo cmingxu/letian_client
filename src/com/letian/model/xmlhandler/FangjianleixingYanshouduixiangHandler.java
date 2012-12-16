@@ -49,6 +49,7 @@ public class FangjianleixingYanshouduixiangHandler extends BaseHandler {
                 Log.d(FangjianleixingYanshouduixiang.LOG_TAG,currentFangjianLeixingYanshouDuixiang.fjlxid );
             } else if (localName.equalsIgnoreCase("DXID")){
                 currentFangjianLeixingYanshouDuixiang.dxid = builder.toString().replaceAll("\\s","");
+                Log.d(FangjianleixingYanshouduixiang.LOG_TAG,currentFangjianLeixingYanshouDuixiang.dxid );
             }
             else if (localName.equalsIgnoreCase("id")){
                 currentFangjianLeixingYanshouDuixiang._id = Integer.parseInt(builder.toString().replaceAll("\\s",""));
@@ -75,7 +76,6 @@ public class FangjianleixingYanshouduixiangHandler extends BaseHandler {
         super.startElement(uri, localName, name, attributes);
 
         if (localName.equalsIgnoreCase("fjlx-ysdx")){
-
             this.currentFangjianLeixingYanshouDuixiang = new FangjianleixingYanshouduixiang(context);
         }
 
