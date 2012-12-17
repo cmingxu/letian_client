@@ -33,7 +33,7 @@ public class YfRecord extends Model {
         this.id = id;
     }
 
-    public boolean result;
+    public boolean hasProblem;
     public String reason;
     public String louge_bh;
     public String louge;
@@ -66,7 +66,7 @@ public class YfRecord extends Model {
 
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS YfRecord("
             + "id INTEGER PRIMARY KEY,"
-            + "result INTEGER,"
+            + "hasProblem INTEGER,"
             + "reason TEXT,"
             + "louge_bh  TEXT,"
             + "louge TEXT,"
@@ -85,13 +85,12 @@ public class YfRecord extends Model {
             + ");";
 
 
-
     public boolean isResult() {
-        return result;
+        return hasProblem;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setResult(boolean hasProblem) {
+        this.hasProblem = hasProblem;
     }
 
     public String getReason() {
@@ -210,14 +209,13 @@ public class YfRecord extends Model {
     }
 
 
-    public void update_save_status(boolean updated){
+    public void update_save_status(boolean updated) {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         ContentValues values = new ContentValues();
         values.put("save_to_server", updated ? 1 : 0);
         String where = "id=" + this.id;
 
-        Log.e(SelectorView.LOG_TAG, "update_save_status" + Boolean.toString(updated));
-        Log.e(SelectorView.LOG_TAG, where);
+
         db.update(YfRecord.TABLE_NAME, values, where, null);
         db.close();
 
@@ -225,12 +223,12 @@ public class YfRecord extends Model {
     }
 
 
-    public boolean save_to_db(){
+    public boolean save_to_db() {
 
         LocalAccessor.getInstance(this.context).create_db(
                 SQL_CREATE_TABLE_MESSAGE);
         ContentValues values = new ContentValues();
-        values.put("result", this.result);
+        values.put("hasProblem", this.hasProblem ? 1 : 0);
         values.put("reason", this.reason);
         values.put("louge_bh", this.louge_bh);
         values.put("louge", this.louge);
@@ -247,20 +245,19 @@ public class YfRecord extends Model {
         values.put("save_to_server", 1);
         values.put("danyuan_bh", this.danyuan_bh);
 
-        Log.e(SelectorView.LOG_TAG, "Save to db" + this.toString());
-
-
 
         try {
-            if(this.existInDb(context)){
-             super.updateDb(context, YfRecord.TABLE_NAME, values, "id=" + this.id);
-            }
-                else                     {
-            super.save_into_db(context, YfRecord.TABLE_NAME, values);
+            if (this.existInDb(context)) {
+                super.updateDb(context, YfRecord.TABLE_NAME, values, "id=" + this.id);
+                Log.d(YfRecord.LOG_TAG, "update db " + this.id + this.toString());
+            } else {
+                super.save_into_db(context, YfRecord.TABLE_NAME, values);
+                Log.d(YfRecord.LOG_TAG, "save db " + this.id + this.toString());
+
             }
 
             SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-            Cursor c = db.rawQuery("select id from " + YfRecord.TABLE_NAME + " order by id desc limit 1;", null );
+            Cursor c = db.rawQuery("select id from " + YfRecord.TABLE_NAME + " order by id desc limit 1;", null);
             c.moveToFirst();
             this.id = c.getInt(0);
             c.close();
@@ -280,7 +277,7 @@ public class YfRecord extends Model {
         String xmlString = null;
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("yf[result]", this.result ? "ok" : "not_ok");
+        params.put("yf[result]", this.hasProblem ? "not_ok" : "ok");
         params.put("yf[reason]", this.reason);
         params.put("yf[louge_bh]", this.louge_bh);
         params.put("yf[louge]", this.louge);
@@ -296,11 +293,11 @@ public class YfRecord extends Model {
         params.put("yf[shoulouxiangmu_id]", this.shoulouxiangmu_id);
         params.put("yf[danyuan_bh]", this.danyuan_bh);
 
-        Log.d(SelectorView.LOG_TAG, "SAve to server");
+        Log.d(YfRecord.LOG_TAG, "SAve to server" + this.toString());
 
 
         BaseAuthenicationHttpClient.doRequest(url, User.current_user.name,
-                    User.current_user.password, params);
+                User.current_user.password, params);
 
 
         return true;
@@ -310,7 +307,7 @@ public class YfRecord extends Model {
     public String toString() {
         return "YfRecord{" +
                 "id=" + id +
-                ", result=" + result +
+                ", hasProblem=" + hasProblem +
                 ", reason='" + reason + '\'' +
                 ", louge_bh='" + louge_bh + '\'' +
                 ", louge='" + louge + '\'' +
@@ -330,34 +327,33 @@ public class YfRecord extends Model {
                 '}';
     }
 
-    public static ArrayList<YfRecord> findAll(Context context, String where){
+    public static ArrayList<YfRecord> findAll(Context context, String where) {
         ArrayList<YfRecord> records = new ArrayList<YfRecord>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         if (where != null) {
             sql = "select * from " + TABLE_NAME + " where " + where + " order by id DESC";
-        }else{
+        } else {
             sql = "select * from " + TABLE_NAME + " order by id DESC";
         }
 
         Cursor cursor;
-        try{
+        try {
             cursor = db.rawQuery(sql, null);
             Log.e(SelectorView.LOG_TAG, sql);
-        }catch(Exception e){
+        } catch (Exception e) {
             return records;
         }
         cursor.moveToFirst();
 
-        Log.e("AAAAAAAAAAAAAAA111111111", Integer.toString(cursor.getCount()));
         YfRecord a = new YfRecord(context);
-                     a.displayAll(context);
+        a.displayAll(context);
 
-        while(!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
 
-            YfRecord r = new YfRecord( context  );
+            YfRecord r = new YfRecord(context);
             r.setId(cursor.getInt(0));
-            r.setResult(cursor.getString(1) == "1" ? true : false);
+            r.setResult(cursor.getInt(1) == 1 ? true : false);
             r.setReason(cursor.getString(2));
             r.setLouge_bh(cursor.getString(3));
             r.setLouge(cursor.getString(4));
@@ -374,12 +370,8 @@ public class YfRecord extends Model {
             r.setDanyuan_bh(cursor.getString(16));
 
 
-
             records.add(r);
 
-            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan_id());
-            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan_bh());
-            Log.e(SelectorView.LOG_TAG, " " + r.getDanyuan());
             cursor.moveToNext();
         }
 
@@ -389,33 +381,31 @@ public class YfRecord extends Model {
 
     }
 
-    public static ArrayList<YfRecord> findAll(Context context){
+    public static ArrayList<YfRecord> findAll(Context context) {
         return findAll(context, "");
     }
 
-    public boolean existInDb(Context context){
+    public boolean existInDb(Context context) {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         sql = "select * from " + TABLE_NAME + " where "
-                + " louge_bh = '"              + this.louge_bh + "' and "
-                + " louge = '"                 + this.louge + "' and "
-                + " fangjianleixing = '"       + this.fangjianleixing + "' and "
-                + " shoulouduixiang = '"       + this.shoulouduixiang + "' and "
-                + " shoulouxiangmu = '"        + this.shoulouxiangmu + "' and "
-                + " danyuan = '"               + this.danyuan + "' and "
+                + " louge_bh = '" + this.louge_bh + "' and "
+                + " louge = '" + this.louge + "' and "
+                + " fangjianleixing = '" + this.fangjianleixing + "' and "
+                + " shoulouduixiang = '" + this.shoulouduixiang + "' and "
+                + " shoulouxiangmu = '" + this.shoulouxiangmu + "' and "
+                + " danyuan = '" + this.danyuan + "' and "
 //                + " huxing = '"                + this.huxing + "' and "
-                + " danyuan_id = '"            + this.danyuan_id + "' and "
+                + " danyuan_id = '" + this.danyuan_id + "' and "
 //                + " huxing_id = '"             + this.huxing_id + "' and "
-                + " fangjianleixing_id = '"    + this.fangjianleixing_id + "' and "
-                + " shoulouduixiang_id = '"    + this.shoulouduixiang_id + "' and "
-                + " shoulouxiangmu_id = '"     + this.shoulouxiangmu_id + "'; ";
+                + " fangjianleixing_id = '" + this.fangjianleixing_id + "' and "
+                + " shoulouduixiang_id = '" + this.shoulouduixiang_id + "' and "
+                + " shoulouxiangmu_id = '" + this.shoulouxiangmu_id + "'; ";
 
         Cursor cursor = null;
-        try{
-            cursor = db.rawQuery(sql,null);
-            Log.d(SelectorView.LOG_TAG, sql);
-        }catch(Exception e){
-            Log.d(SelectorView.LOG_TAG, e.toString());
+        try {
+            cursor = db.rawQuery(sql, null);
+        } catch (Exception e) {
 
 
             if (cursor != null) {
@@ -432,20 +422,19 @@ public class YfRecord extends Model {
 
         }
         cursor.moveToFirst();
-        if(cursor.getCount() == 0){
-
+        if (cursor.getCount() == 0) {
             this.id = 0;
-
-
             cursor.close();
             db.close();
             return false;
-        }else {
+        } else {
             this.id = cursor.getInt(0);
             this.reason = cursor.getString(2);
-            this.result = Boolean.valueOf(Integer.toString(cursor.getInt(1)));
-            this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(16)));
 
+            this.hasProblem = cursor.getInt(1) == 1 ? true : false;
+            this.saved = Boolean.valueOf(Integer.toString(cursor.getInt(16)));
+            Log.d(YfRecord.LOG_TAG,Integer.toString(cursor.getInt(1)));
+            Log.d(YfRecord.LOG_TAG, this.toString());
             cursor.close();
             db.close();
             return true;
@@ -453,21 +442,20 @@ public class YfRecord extends Model {
     }
 
 
-    public void displayAll(Context context){
+    public void displayAll(Context context) {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
         sql = "select * from " + TABLE_NAME + ";";
 
         Cursor cursor;
-        try{
-            cursor = db.rawQuery(sql,null);
-            Log.d(SelectorView.LOG_TAG, sql);
+        try {
+            cursor = db.rawQuery(sql, null);
             cursor.moveToFirst();
-            while(!cursor.isAfterLast()){
+            while (!cursor.isAfterLast()) {
 
                 Log.e(SelectorView.LOG_TAG, "111111111111111111111111111");
                 Log.e(SelectorView.LOG_TAG, "id" + cursor.getInt(0));
-                Log.e(SelectorView.LOG_TAG, "result" + cursor.getInt(1));
+                Log.e(SelectorView.LOG_TAG, "hasProblem" + cursor.getInt(1));
                 Log.e(SelectorView.LOG_TAG, "reason" + cursor.getString(2));
                 Log.e(SelectorView.LOG_TAG, "louge_bh" + cursor.getString(3));
                 Log.e(SelectorView.LOG_TAG, "louge" + cursor.getString(4));
@@ -484,17 +472,16 @@ public class YfRecord extends Model {
                 Log.e(SelectorView.LOG_TAG, "saved_tO_server" + cursor.getString(15));
 
 
-
-                cursor.moveToNext() ;
+                cursor.moveToNext();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d(SelectorView.LOG_TAG, e.toString());
         }
 
     }
 
 
-    public String pic_dir(){
+    public String pic_dir() {
         return ("letian_images/"
                 + this.danyuan + "/"
                 + this.shoulouduixiang + "/"

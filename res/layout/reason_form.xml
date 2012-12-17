@@ -13,17 +13,6 @@
               android:id="@+id/nav" android:textSize="30dip"></TextView>
     </LinearLayout>
 
-    <RadioGroup android:id="@+id/radioGroup" android:contentDescription="性别" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_margin="20px"
-                android:textSize="15dip"
-            >
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/radioOk" android:text="没问题" android:checked="true"></RadioButton>
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                     android:id="@+id/radioBad" android:text="有问题" android:layout_marginLeft="40dip"></RadioButton>
-    </RadioGroup>
 
 
     <LinearLayout android:layout_height="wrap_content"

@@ -50,11 +50,12 @@ public class SelectorView extends Activity {
     private ArrayList<Danyuan> danyuan_datas;
     private ArrayList<FangjianLeixing> fangjianleixing_datas;
     private ArrayList<YanshouDuixiang> yanshouduixiang_datas;
-    private ArrayList<YanshouXiangmu>  yanshouXiangmu_datas;
+    private ArrayList<YanshouXiangmu> yanshouXiangmu_datas;
+
 
     int onSelectedViewColor = R.color.red;
 
-    PopupWindow window ;
+    PopupWindow window;
 
     Button submit;
     Button cancel;
@@ -62,8 +63,7 @@ public class SelectorView extends Activity {
 
     EditText reasonText;
 
-    RadioButton okRadio;
-    RadioButton badRadio;
+
 
     ArrayList<String> danyuans = new ArrayList<String>();
     ArrayList<String> fjlxes = new ArrayList<String>();
@@ -78,23 +78,22 @@ public class SelectorView extends Activity {
     private Uri fileUri;
 
 
-
     public void onCreate(Bundle savedInstanceState) {
 
         this.record = new YfRecord(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selector_view);
         this.setTitle(getResources().getString(R.string.title));
-        louge_list_view = (ListView)findViewById(R.id.louge_list_view);
-        danyuan_list_view = (ListView)findViewById(R.id.danyuan_list_view);
-        fangjianleixing_list_view = (ListView)findViewById(R.id.fangjianleixing_list_view);
-        yanshouduixiang_list_view = (ListView)findViewById(R.id.yanshouduixiang_list_view);
-        yanshouxiangmu_list_view  = (ListView)findViewById(R.id.yanshouxiangmu_list_view);
+        louge_list_view = (ListView) findViewById(R.id.louge_list_view);
+        danyuan_list_view = (ListView) findViewById(R.id.danyuan_list_view);
+        fangjianleixing_list_view = (ListView) findViewById(R.id.fangjianleixing_list_view);
+        yanshouduixiang_list_view = (ListView) findViewById(R.id.yanshouduixiang_list_view);
+        yanshouxiangmu_list_view = (ListView) findViewById(R.id.yanshouxiangmu_list_view);
 
         louge_datas = Louge.findAll(getApplicationContext());
 
         ArrayList<String> louges = new ArrayList<String>();
-        for(Louge l : louge_datas){
+        for (Louge l : louge_datas) {
             louges.add(l.lougemingcheng);
         }
         ArrayAdapter a = new ArrayAdapter(getApplicationContext(),
@@ -110,7 +109,7 @@ public class SelectorView extends Activity {
 
     }
 
-    private class LougeOnItemClickListener implements AdapterView.OnItemClickListener{
+    private class LougeOnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setLouge(louge_datas.get(i).lougemingcheng);
@@ -118,7 +117,7 @@ public class SelectorView extends Activity {
 
             danyuan_datas = Danyuan.findAll(getApplicationContext(), "lougebianhao = '" + louge_datas.get(i).lougebianhao + "'");
             danyuans = new ArrayList<String>();
-            for(Danyuan danyuan : danyuan_datas){
+            for (Danyuan danyuan : danyuan_datas) {
                 danyuans.add(danyuan.danyuanmingcheng + "(" + danyuan.jiange + ")");
             }
 
@@ -138,7 +137,7 @@ public class SelectorView extends Activity {
         }
     }
 
-    public void emptyLisView(ListView toBeEmpty){
+    public void emptyLisView(ListView toBeEmpty) {
         ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
                 android.R.layout.simple_expandable_list_item_1,
                 new ArrayList<String>());
@@ -146,18 +145,19 @@ public class SelectorView extends Activity {
         toBeEmpty.invalidate();
     }
 
-    private class DanyuanOnItemClickListener implements AdapterView.OnItemClickListener{
+    private class DanyuanOnItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setDanyuan(danyuan_datas.get(i).danyuanmingcheng);
-            record.setDanyuan_id(danyuan_datas.get(i).danyuanbianhao);
+            record.setDanyuan_id(Integer.toString(danyuan_datas.get(i)._id));
+            record.setDanyuan_bh(danyuan_datas.get(i).danyuanbianhao);
+            record.setHuxing(danyuan_datas.get(i).jiange);
 
             fangjianleixing_datas = FangjianLeixing.findAllByHuxing(getApplicationContext(), danyuan_datas.get(i).jiange);
-            Log.d(SelectorView.LOG_TAG, "" + fangjianleixing_datas.size());
             fjlxes = new ArrayList<String>();
-            for(FangjianLeixing fjlx : fangjianleixing_datas){
-                fjlxes.add(fjlx.fjmc );
+            for (FangjianLeixing fjlx : fangjianleixing_datas) {
+                fjlxes.add(fjlx.fjmc);
             }
 
             ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
@@ -172,10 +172,10 @@ public class SelectorView extends Activity {
             emptyLisView(yanshouxiangmu_list_view);
 
             highLightView(danyuan_list_view, danyuan_datas.get(i).danyuanmingcheng);
-       }
+        }
     }
 
-    private class FangjianLeixingOnItemClickListener implements AdapterView.OnItemClickListener{
+    private class FangjianLeixingOnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             record.setFangjianleixing(fangjianleixing_datas.get(i).fjmc);
@@ -183,8 +183,8 @@ public class SelectorView extends Activity {
 
             ysdxes = new ArrayList<String>();
             yanshouduixiang_datas = YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fangjianleixing_datas.get(i)._id));
-            for(YanshouDuixiang ysdx : yanshouduixiang_datas){
-                ysdxes.add(ysdx.dxmc );
+            for (YanshouDuixiang ysdx : yanshouduixiang_datas) {
+                ysdxes.add(ysdx.dxmc);
             }
 
             ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
@@ -203,7 +203,7 @@ public class SelectorView extends Activity {
 
     }
 
-    private class YanshouduixiangOnItemClickListener implements AdapterView.OnItemClickListener{
+    private class YanshouduixiangOnItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -212,13 +212,17 @@ public class SelectorView extends Activity {
 
             ysxms = new ArrayList<String>();
             yanshouXiangmu_datas = YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(yanshouduixiang_datas.get(i)._id));
-            for(YanshouXiangmu ysxm : yanshouXiangmu_datas){
+            for (YanshouXiangmu ysxm : yanshouXiangmu_datas) {
                 record.shoulouxiangmu = ysxm.xmmc;
                 record.shoulouxiangmu_id = ysxm._id;
-                if (record.existInDb(SelectorView.this.getApplicationContext())){
-                    ysxms.add("[验完]" + ysxm.xmmc );
-                }
-                else{
+                if (record.existInDb(SelectorView.this.getApplicationContext())) {
+                    if (record.hasProblem) {
+                        ysxms.add("[有问题]" + ysxm.xmmc);
+                    } else {
+                        ysxms.add("[无问题]" + ysxm.xmmc);
+
+                    }
+                } else {
                     ysxms.add(ysxm.xmmc);
                 }
             }
@@ -238,7 +242,7 @@ public class SelectorView extends Activity {
 
     }
 
-    private class YanshouxiangmuOnItemClickListener implements AdapterView.OnItemClickListener{
+    private class YanshouxiangmuOnItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -255,31 +259,30 @@ public class SelectorView extends Activity {
 
     private void popAwindow(View parent) {
 
-            LayoutInflater lay = LayoutInflater.from(this);
-            View v = lay.inflate(R.layout.reason_form, null);
-            TextView navView = (TextView) v.findViewById(R.id.nav);
-            navView.setText(record.danyuan + " -  " + record.fangjianleixing + " - " + record.shoulouduixiang + " - "+  record.shoulouxiangmu);
-            submit = (Button) v.findViewById(R.id.submit);
-            cancel = (Button) v.findViewById(R.id.cancel);
-            takePic = (Button) v.findViewById(R.id.take_pic);
+        LayoutInflater lay = LayoutInflater.from(this);
+        View v = lay.inflate(R.layout.reason_form, null);
+        TextView navView = (TextView) v.findViewById(R.id.nav);
+        navView.setText(record.danyuan + " -  " + record.fangjianleixing + " - " + record.shoulouduixiang + " - " + record.shoulouxiangmu);
+        submit = (Button) v.findViewById(R.id.submit);
+        cancel = (Button) v.findViewById(R.id.cancel);
+        takePic = (Button) v.findViewById(R.id.take_pic);
 
 
-            reasonText = (EditText)v.findViewById(R.id.reason_text_view);
-            submit.setOnClickListener(new SubmitListener());
-            okRadio = (RadioButton)v.findViewById(R.id.radioOk);
+        reasonText = (EditText) v.findViewById(R.id.reason_text_view);
+        submit.setOnClickListener(new SubmitListener());
 
 
-            cancel.setOnClickListener(new Button.OnClickListener(){
+        cancel.setOnClickListener(new Button.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
-                    window.dismiss();
-                }
-            });
-            takePic.setOnClickListener(new TakePicClickListener());
-            window = new PopupWindow(v, 1280,700);
+            @Override
+            public void onClick(View view) {
+                window.dismiss();
+            }
+        });
+        takePic.setOnClickListener(new TakePicClickListener());
+        window = new PopupWindow(v, 1280, 700);
 
-        if( record.existInDb(SelectorView.this.getApplicationContext())){
+        if (record.existInDb(SelectorView.this.getApplicationContext())) {
             reasonText.setText(record.reason);
         }
 
@@ -290,13 +293,14 @@ public class SelectorView extends Activity {
     }
 
 
-    private class SubmitListener implements Button.OnClickListener{
+    private class SubmitListener implements Button.OnClickListener {
 
         @Override
         public void onClick(View view) {
             progressDialog = ProgressDialog.show(SelectorView.this, "保存中， 请稍候...",
                     null, true);
-            record.setResult(okRadio.isChecked());
+//            assign id if exist in db
+            record.hasProblem = true;
             record.setReason(reasonText.getText().toString());
             reasonText.setText("");
 
@@ -305,8 +309,7 @@ public class SelectorView extends Activity {
                 public void run() {
                     try {
                         record.save_to_db();
-                        if(record.save_to_server(SelectorView.this.getApplicationContext()))
-                        {
+                        if (record.save_to_server(SelectorView.this.getApplicationContext())) {
                             handler.post(new Runnable() {
                                 public void run() {
 
@@ -318,8 +321,7 @@ public class SelectorView extends Activity {
                                 }
                             });
 
-                        }
-                        else {
+                        } else {
                             record.update_save_status(false);
                         }
                     } catch (Exception e) {
@@ -339,7 +341,7 @@ public class SelectorView extends Activity {
         }
     }
 
-    private class YanshouXiangmuAdapter extends BaseAdapter{
+    private class YanshouXiangmuAdapter extends BaseAdapter {
         ArrayList<YanshouXiangmu> ysxms;
         private Context context;
 
@@ -368,17 +370,16 @@ public class SelectorView extends Activity {
         public View getView(int i, View view, ViewGroup viewGroup) {
             TextView tv = (TextView) SelectorView.this.findViewById(android.R.layout.simple_expandable_list_item_1);
             tv.setText(ysxms.get(i).xmmc);
-            return  tv;
+            return tv;
         }
     }
 
-    private class TakePicClickListener implements Button.OnClickListener{
+    private class TakePicClickListener implements Button.OnClickListener {
 
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            Log.d(SelectorView.LOG_TAG, record.pic_dir());
-            File imagesFolder = new File(Environment.getExternalStorageDirectory(),  record.pic_dir());
+            File imagesFolder = new File(Environment.getExternalStorageDirectory(), record.pic_dir());
             imagesFolder.mkdirs();
             File image = new File(imagesFolder, "image_" + (new Random()).nextInt(100) + ".jpg");
             Uri uriSavedImage = Uri.fromFile(image);
@@ -397,13 +398,10 @@ public class SelectorView extends Activity {
 
             if (resultCode == RESULT_OK) {
 
-
             } else if (resultCode == RESULT_CANCELED) {
-
 
             } else {
 
-
             }
 
         }
@@ -411,39 +409,48 @@ public class SelectorView extends Activity {
     }
 
 
-    public void highLightView(ListView view, String text){
-
-
+    public void highLightView(ListView view, String text) {
 
 
     }
 
 
+    public void fillDb(final String fjlxid) {
 
-    public void fillDb(String fjlxid){
-        for(YanshouDuixiang ysdx : YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fjlxid))){
-            for(YanshouXiangmu ysxm : YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(ysdx._id))){
-                YfRecord r = new YfRecord(SelectorView.this.getApplicationContext());
-                r.louge = record.louge;
-                r.louge_bh = record.louge_bh;
-                r.danyuan = record.danyuan;
-                r.danyuan_bh = record.danyuan_bh;
-                r.fangjianleixing = record.fangjianleixing;
-                r.fangjianleixing_id = record.fangjianleixing_id;
-                r.shoulouduixiang = ysdx.dxmc;
-                r.shoulouduixiang_id = ysdx._id;
-                r.shoulouxiangmu = ysxm.xmmc;
-                r.shoulouxiangmu_id = ysxm._id;
-                r.reason = "";
-                r.result = true;
-                if (r.existInDb(SelectorView.this.getApplicationContext())){
+        progressDialog = ProgressDialog.show(SelectorView.this, "请稍候...",
+                null, true);
+        new Thread() {
+            @Override
+            public void run() {
+                for (YanshouDuixiang ysdx : YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fjlxid))) {
+                    for (YanshouXiangmu ysxm : YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(ysdx._id))) {
+                        YfRecord r = new YfRecord(SelectorView.this.getApplicationContext());
+                        r.louge = record.louge;
+                        r.louge_bh = record.louge_bh;
+                        r.danyuan = record.danyuan;
+                        r.danyuan_bh = record.danyuan_bh;
+                        r.danyuan_id = record.danyuan_id;
+                        r.huxing = record.huxing;
+                        r.fangjianleixing = record.fangjianleixing;
+                        r.fangjianleixing_id = record.fangjianleixing_id;
+                        r.shoulouduixiang = ysdx.dxmc;
+                        r.shoulouduixiang_id = ysdx._id;
+                        r.shoulouxiangmu = ysxm.xmmc;
+                        r.shoulouxiangmu_id = ysxm._id;
+                        r.reason = "";
+                        r.hasProblem = false;
+                        r.saved = false;
+                        if (r.existInDb(SelectorView.this.getApplicationContext())) {
+                        } else {
+                            r.save_to_db();
+                            r.update_save_status(false);
+                        }
+                    }
                 }
-                else{
-                    r.save_to_db();
-                    r.update_save_status(false);
-                }
+
+                progressDialog.dismiss();
             }
-        }
+        }.start();
 
     }
 

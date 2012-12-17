@@ -52,7 +52,6 @@ public class YezhuSelectorView extends Activity {
 
     EditText reasonText;
 
-    RadioButton okRadio;
 
     ArrayList<String> danyuans = new ArrayList<String>();
     ArrayList<String> fjlxes = new ArrayList<String>();
@@ -179,7 +178,6 @@ public class YezhuSelectorView extends Activity {
 
             reasonText = (EditText)v.findViewById(R.id.reason_text_view);
             submit.setOnClickListener(new SubmitListener());
-            okRadio = (RadioButton)v.findViewById(R.id.radioOk);
 
             cancel.setOnClickListener(new Button.OnClickListener(){
 
@@ -205,7 +203,6 @@ public class YezhuSelectorView extends Activity {
         public void onClick(View view) {
             progressDialog = ProgressDialog.show(YezhuSelectorView.this, "保存中， 请稍候...",
                     null, true);
-            record.setResult(okRadio.isChecked());
             record.setReason(reasonText.getText().toString());
             reasonText.setText("");
 
