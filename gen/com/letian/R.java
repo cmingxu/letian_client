@@ -108,7 +108,7 @@ public final class R {
         public static final int custom_list_view=0x7f080019;
         public static final int danyuan_list_view=0x7f08003c;
         public static final int done_button=0x7f080057;
-        public static final int drop_button=0x7f080044;
+        public static final int drop_button=0x7f080043;
         public static final int edit_fields=0x7f080039;
         public static final int edit_item_tab_host=0x7f080002;
         public static final int fangjianleixing_list_view=0x7f08003d;
@@ -144,7 +144,7 @@ public final class R {
         public static final int reason_text_view=0x7f08003a;
         public static final int returnBtn=0x7f080049;
         public static final int server_addr=0x7f080000;
-        public static final int setting_back=0x7f080043;
+        public static final int setting_back=0x7f080044;
         public static final int setting_button=0x7f08001d;
         public static final int setting_view=0x7f080022;
         public static final int settings_tv=0x7f080021;

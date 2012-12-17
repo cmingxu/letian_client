@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.letian.Login;
 import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.LocalAccessor;
@@ -47,22 +49,19 @@ public class SettingActivity extends Activity {
         this.setTitle(getResources().getString(R.string.title));
         syncBtn = (Button) findViewById(R.id.sync_xml_btn);
         backBtn = (Button) findViewById(R.id.setting_back);
-        syncBtn.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tongbu();
-            }
-        });
+        syncBtn.setOnClickListener(new ActionListener(new TongbuListener(), "确认要同步， 注意同步前需清空数据库!"));
 
 
         drop_button = (Button) findViewById(R.id.drop_button);
 
         upload_kfs_yfd = (Button) findViewById(R.id.upload_kfs_yfd);
         upload_yz_yfd = (Button) findViewById(R.id.upload_yz_yfd);
-        upload_kfs_yfd.setOnClickListener(new UploadKfsYfdClickListener());
-        upload_yz_yfd.setOnClickListener(new UploadYzYfdClickListener());
+        upload_kfs_yfd.setOnClickListener(new ActionListener(new UploadKfsYfdClickListener(), "确认要上传开发商验房单？"));
 
-        drop_button.setOnClickListener(new DropButtonListener());
+        upload_yz_yfd.setOnClickListener(new ActionListener(new UploadYzYfdClickListener(), "确认要上传业主验房单?"));
+
+
+        drop_button.setOnClickListener(new ActionListener(new DropButtonListener(), "确认要删除本机上的所有数据库表？"));
 
 
         backBtn.setOnClickListener(new Button.OnClickListener() {
@@ -77,67 +76,95 @@ public class SettingActivity extends Activity {
         });
     }
 
-    private void tongbu() {
-        progressDialog = ProgressDialog.show(SettingActivity.this, this.getResources().getString(R.string.sync_notice), null, true);
-        new Thread() {
-            @Override
-            public void run() {
-                if (!NetworkConnection.getInstance(
-                        SettingActivity.this.getApplicationContext())
-                        .isNetworkAvailable()) {
-                    Log.e(SettingActivity.LOG_TAG, "network can not be reach");
-                    handler.post(new Runnable() {
+    private class ActionListener implements View.OnClickListener {
+        private String notice;
+        private CustomOnClickListener listener;
 
-                        @Override
-                        public void run() {
-                            new AlertDialog.Builder(SettingActivity.this)
-                                    .setMessage(SettingActivity.this.getResources().getString(R.string.network_connection_problem)
-                                    )
-                                    .setPositiveButton("Okay", null)
-                                    .show();
+        private ActionListener(CustomOnClickListener listener, String notice) {
+            this.listener = listener;
+            this.notice = notice;
+        }
 
-                        }
-
-                    });
-                } else {
-                    get_data_from_server();
-
-                }
-
-                progressDialog.dismiss();
-
-            }
-        }.start();
-    }
-
-
-    public void get_data_from_server() {
-        Context context = getApplication();
-        try {
-            Louge.syn(context);
-
-            Danyuan.syn(context);
-
-            FangjianLeixing.syn(context);
-            FangjianleixingYanshouduixiang.syn(context);
-            Huxing.syn(context);
-            HuxingFangjianLeixing.syn(context);
-            YanshouDuixiang.syn(context);
-            YanshouXiangmu.syn(context);
-        } catch (Exception e) {
-            progressDialog.dismiss();
-            handler.post(new Runnable() {
+        @Override
+        public void onClick(final View view) {
+            new AlertDialog.Builder(SettingActivity.this).setPositiveButton("确认", new DialogInterface.OnClickListener() {
                 @Override
-                public void run() {
-                    Toast.makeText(SettingActivity.this.getApplicationContext(),
-                            "同步出错， 请检查网络！", Toast.LENGTH_LONG).show();
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    listener.onClick(view);
                 }
-            });
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }).setTitle(notice).show();
         }
     }
 
 
-    private class DropButtonListener implements View.OnClickListener {
+    private class TongbuListener implements CustomOnClickListener {
+        public void onClick(View view) {
+            progressDialog = ProgressDialog.show(SettingActivity.this, SettingActivity.this.getResources().getString(R.string.sync_notice), null, true);
+            new Thread() {
+                @Override
+                public void run() {
+                    if (!NetworkConnection.getInstance(
+                            SettingActivity.this.getApplicationContext())
+                            .isNetworkAvailable()) {
+                        Log.e(SettingActivity.LOG_TAG, "network can not be reach");
+                        handler.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                new AlertDialog.Builder(SettingActivity.this)
+                                        .setMessage(SettingActivity.this.getResources().getString(R.string.network_connection_problem)
+                                        )
+                                        .setPositiveButton("Okay", null)
+                                        .show();
+
+                            }
+
+                        });
+                    } else {
+                        get_data_from_server();
+
+                    }
+
+                    progressDialog.dismiss();
+
+                }
+            }.start();
+        }
+
+        public void get_data_from_server() {
+            Context context = getApplication();
+            try {
+                Louge.syn(context);
+
+                Danyuan.syn(context);
+
+                FangjianLeixing.syn(context);
+                FangjianleixingYanshouduixiang.syn(context);
+                Huxing.syn(context);
+                HuxingFangjianLeixing.syn(context);
+                YanshouDuixiang.syn(context);
+                YanshouXiangmu.syn(context);
+            } catch (Exception e) {
+                progressDialog.dismiss();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(SettingActivity.this.getApplicationContext(),
+                                "同步出错， 请检查网络！", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    private class DropButtonListener implements CustomOnClickListener {
 
         @Override
         public void onClick(View arg0) {
@@ -158,7 +185,7 @@ public class SettingActivity extends Activity {
         }
     }
 
-    private class UploadKfsYfdClickListener implements View.OnClickListener {
+    private class UploadKfsYfdClickListener implements CustomOnClickListener {
 
         @Override
         public void onClick(View view) {
@@ -175,8 +202,8 @@ public class SettingActivity extends Activity {
                             Log.d(SelectorView.LOG_TAG, record.shoulouxiangmu_id);
                             Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
 
-                            if(record.save_to_server(SettingActivity.this.getApplicationContext())){
-                               record.update_save_status(true);
+                            if (record.save_to_server(SettingActivity.this.getApplicationContext())) {
+                                record.update_save_status(true);
                             }
 
                         }
@@ -196,49 +223,49 @@ public class SettingActivity extends Activity {
                         });
                     }
                     progressDialog.dismiss();
-                    }
+                }
             }.start();
 
         }
     }
 
-    private class UploadYzYfdClickListener implements View.OnClickListener {
+    private class UploadYzYfdClickListener implements CustomOnClickListener {
 
         @Override
         public void onClick(View view) {
-                progressDialog = ProgressDialog.show(SettingActivity.this, "保存中， 请稍候...",
-                        null, true);
+            progressDialog = ProgressDialog.show(SettingActivity.this, "保存中， 请稍候...",
+                    null, true);
 
 
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
 
-                            for (YzYfRecord record : YzYfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
-                                Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
-                                if(record.save_to_server(SettingActivity.this.getApplicationContext())){
-                                    record.update_save_status(true);
+                        for (YzYfRecord record : YzYfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
+                            Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
+                            if (record.save_to_server(SettingActivity.this.getApplicationContext())) {
+                                record.update_save_status(true);
 
-                                }
                             }
-
-                            handler.post(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(SettingActivity.this.getApplicationContext(), "保存成功!", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            handler.post(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();
-                                }
-                            });
                         }
-                        progressDialog.dismiss();
+
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "保存成功!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
-                }.start();
+                    progressDialog.dismiss();
+                }
+            }.start();
 
         }
     }

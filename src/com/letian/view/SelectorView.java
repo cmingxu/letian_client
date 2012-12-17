@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -126,11 +127,13 @@ public class SelectorView extends Activity {
                     danyuans);
 
             danyuan_list_view.setAdapter(d);
-            danyuan_list_view.invalidate();
+//            danyuan_list_view.invalidate();
 
             emptyLisView(fangjianleixing_list_view);
             emptyLisView(yanshouduixiang_list_view);
             emptyLisView(yanshouxiangmu_list_view);
+
+            highLightView(louge_list_view, louge_datas.get(i).lougemingcheng);
 
         }
     }
@@ -162,12 +165,13 @@ public class SelectorView extends Activity {
                     fjlxes);
 
             fangjianleixing_list_view.setAdapter(d);
-            fangjianleixing_list_view.invalidate();
+//            fangjianleixing_list_view.invalidate();
 
 
             emptyLisView(yanshouduixiang_list_view);
             emptyLisView(yanshouxiangmu_list_view);
 
+            highLightView(danyuan_list_view, danyuan_datas.get(i).danyuanmingcheng);
        }
     }
 
@@ -188,9 +192,13 @@ public class SelectorView extends Activity {
                     ysdxes);
 
             yanshouduixiang_list_view.setAdapter(d);
-            yanshouduixiang_list_view.invalidate();
+//            yanshouduixiang_list_view.invalidate();
 
             emptyLisView(yanshouxiangmu_list_view);
+
+            fillDb(fangjianleixing_datas.get(i)._id);
+
+            highLightView(fangjianleixing_list_view, fangjianleixing_datas.get(i).fjmc);
         }
 
     }
@@ -221,9 +229,10 @@ public class SelectorView extends Activity {
 
 
             yanshouxiangmu_list_view.setAdapter(yxa);
-            yanshouxiangmu_list_view.invalidate();
+//            yanshouxiangmu_list_view.invalidate();
 
 
+            highLightView(yanshouduixiang_list_view, yanshouduixiang_datas.get(i).dxmc);
 
         }
 
@@ -237,6 +246,7 @@ public class SelectorView extends Activity {
             record.setShoulouxiangmu(yanshouXiangmu_datas.get(i).xmmc);
             record.setShoulouxiangmu_id(yanshouXiangmu_datas.get(i)._id);
 
+            highLightView(yanshouxiangmu_list_view, yanshouXiangmu_datas.get(i).xmmc);
             popAwindow(yanshouduixiang_list_view);
 
         }
@@ -258,6 +268,7 @@ public class SelectorView extends Activity {
             submit.setOnClickListener(new SubmitListener());
             okRadio = (RadioButton)v.findViewById(R.id.radioOk);
 
+
             cancel.setOnClickListener(new Button.OnClickListener(){
 
                 @Override
@@ -267,6 +278,10 @@ public class SelectorView extends Activity {
             });
             takePic.setOnClickListener(new TakePicClickListener());
             window = new PopupWindow(v, 1280,700);
+
+        if( record.existInDb(SelectorView.this.getApplicationContext())){
+            reasonText.setText(record.reason);
+        }
 
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg));
         window.setFocusable(true);
@@ -395,5 +410,41 @@ public class SelectorView extends Activity {
 
     }
 
+
+    public void highLightView(ListView view, String text){
+
+
+
+
+    }
+
+
+
+    public void fillDb(String fjlxid){
+        for(YanshouDuixiang ysdx : YanshouDuixiang.findAllByFjlxid(getApplicationContext(), String.valueOf(fjlxid))){
+            for(YanshouXiangmu ysxm : YanshouXiangmu.findAllByYsdxid(getApplicationContext(), String.valueOf(ysdx._id))){
+                YfRecord r = new YfRecord(SelectorView.this.getApplicationContext());
+                r.louge = record.louge;
+                r.louge_bh = record.louge_bh;
+                r.danyuan = record.danyuan;
+                r.danyuan_bh = record.danyuan_bh;
+                r.fangjianleixing = record.fangjianleixing;
+                r.fangjianleixing_id = record.fangjianleixing_id;
+                r.shoulouduixiang = ysdx.dxmc;
+                r.shoulouduixiang_id = ysdx._id;
+                r.shoulouxiangmu = ysxm.xmmc;
+                r.shoulouxiangmu_id = ysxm._id;
+                r.reason = "";
+                r.result = true;
+                if (r.existInDb(SelectorView.this.getApplicationContext())){
+                }
+                else{
+                    r.save_to_db();
+                    r.update_save_status(false);
+                }
+            }
+        }
+
+    }
 
 }

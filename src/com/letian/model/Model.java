@@ -87,4 +87,12 @@ public class Model {
         return true;
     }
 
+    public boolean updateDb(Context context, String tableName, ContentValues cv, String wherence) throws LTException {
+        Log.d(SelectorView.LOG_TAG, "update " + wherence);
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        db.update(tableName, cv, wherence, null);
+        db.close();
+        return true;
+    }
+
 }

@@ -252,7 +252,12 @@ public class YfRecord extends Model {
 
 
         try {
+            if(this.existInDb(context)){
+             super.updateDb(context, YfRecord.TABLE_NAME, values, "id=" + this.id);
+            }
+                else                     {
             super.save_into_db(context, YfRecord.TABLE_NAME, values);
+            }
 
             SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
             Cursor c = db.rawQuery("select id from " + YfRecord.TABLE_NAME + " order by id desc limit 1;", null );
@@ -260,8 +265,6 @@ public class YfRecord extends Model {
             this.id = c.getInt(0);
             c.close();
             db.close();
-
-            this.displayAll(context);
             return true;
 
         } catch (LTException e) {
@@ -431,10 +434,14 @@ public class YfRecord extends Model {
         cursor.moveToFirst();
         if(cursor.getCount() == 0){
 
+            this.id = 0;
+
+
             cursor.close();
             db.close();
             return false;
         }else {
+            this.id = cursor.getInt(0);
             this.reason = cursor.getString(2);
             this.result = Boolean.valueOf(Integer.toString(cursor.getInt(1)));
             this.saved  = Boolean.valueOf(Integer.toString(cursor.getInt(16)));

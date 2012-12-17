@@ -18,16 +18,16 @@
             android:layout_height="wrap_content" android:text="上传业主验房单"></Button>
 
 
-    <Button android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:text="@string/back"
-            android:id="@+id/setting_back">
-    </Button>
 
 
 
     <Button android:layout_width="fill_parent" android:id="@+id/drop_button"
             android:layout_height="wrap_content" android:text="清空数据库表"></Button>
 
+    <Button android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:text="@string/back"
+            android:id="@+id/setting_back">
+    </Button>
 
 
 

@@ -3,8 +3,10 @@ package com.letian;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -124,16 +126,25 @@ public class Main extends Activity {
     }
 
 
-
     private class LogoutListener implements View.OnClickListener {
 
 		@Override
 		public void onClick(View arg0) {
+            new AlertDialog.Builder(Main.this).setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent();
+                    intent.setClass(Main.this, Login.class);
+                    Main.this.startActivity(intent);
+                    Main.this.finish();
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-			Intent intent = new Intent();
-			intent.setClass(Main.this, Login.class);
-			Main.this.startActivity(intent);
-			Main.this.finish();
+                }
+            }).setTitle("确认要退出程序?").show();
+
 			
 		
 		}
@@ -149,13 +160,38 @@ public class Main extends Activity {
     protected void onStop() {
 
         Log.e("MAIN", "onStop");
-        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
 
-        Log.e("MAIN", "onDestroy");
+
         super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.d(SelectorView.LOG_TAG, "BACKDDDDDDD");
+            new AlertDialog.Builder(Main.this).setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent();
+                    intent.setClass(Main.this, Login.class);
+                    Main.this.startActivity(intent);
+                    Main.this.finish();
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }).setTitle("确认要退出程序?").show();
+
+
+
+            return true;
+        }
+        return false;
     }
 }
