@@ -4,6 +4,10 @@
 	android:layout_height="fill_parent" android:scrollbars="vertical">
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="fill_parent" android:orientation="vertical">
+
+        <Button android:layout_width="fill_parent" android:id="@+id/list_user"
+                android:layout_height="wrap_content" android:text="用户列表"></Button>
+
 		<Button android:layout_width="fill_parent" android:id="@+id/list_unit"
 			android:layout_height="wrap_content" android:text="单元列表"></Button>
 

@@ -185,7 +185,7 @@ public class Login extends Activity {
                         }
                     } catch (Exception e) {
 
-                        Log.d(Login.LOG_TAG, e.getMessage());
+                        Log.e(Login.LOG_TAG, e.toString());
                         handler.post(new Runnable() {
                             public void run() {
                                 showToast( "网络好像不太给力！");

@@ -22,16 +22,24 @@ import java.util.Date;
 
 public class Model {
     public static int max_count(Context context, String tableName) {
+        SQLiteDatabase db  = null    ;
+        Cursor c = null;
         try {
             int offset = 0;
             // make sure table created
-            SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-            Cursor c = db.query(tableName, null, null, null, null, null, null);
+             db = LocalAccessor.getInstance(context).openDB();
+             c = db.query(tableName, null, null, null, null, null, null);
             offset = c.getCount();
             c.close();
             db.close();
             return offset;
         } catch (SQLiteException e) {
+            if (c != null) {
+                c.close();
+            }
+            if (null != db) {
+                db.close();
+            }
             e.printStackTrace();
             return 0;
         }

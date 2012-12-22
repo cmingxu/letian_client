@@ -145,34 +145,34 @@ public class SelectorView extends Activity {
         toBeEmpty.invalidate();
     }
 
-    private class DanyuanOnItemClickListener implements AdapterView.OnItemClickListener {
+        private class DanyuanOnItemClickListener implements AdapterView.OnItemClickListener {
 
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            record.setDanyuan(danyuan_datas.get(i).danyuanmingcheng);
-            record.setDanyuan_id(Integer.toString(danyuan_datas.get(i)._id));
-            record.setDanyuan_bh(danyuan_datas.get(i).danyuanbianhao);
-            record.setHuxing(danyuan_datas.get(i).jiange);
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                record.setDanyuan(danyuan_datas.get(i).danyuanmingcheng);
+                record.setDanyuan_id(Integer.toString(danyuan_datas.get(i)._id));
+                record.setDanyuan_bh(danyuan_datas.get(i).danyuanbianhao);
+                record.setHuxing(danyuan_datas.get(i).jiange);
 
-            fangjianleixing_datas = FangjianLeixing.findAllByHuxing(getApplicationContext(), danyuan_datas.get(i).jiange);
-            fjlxes = new ArrayList<String>();
-            for (FangjianLeixing fjlx : fangjianleixing_datas) {
-                fjlxes.add(fjlx.fjmc);
-            }
+                fangjianleixing_datas = FangjianLeixing.findAllByHuxing(getApplicationContext(), danyuan_datas.get(i).jiange);
+                fjlxes = new ArrayList<String>();
+                for (FangjianLeixing fjlx : fangjianleixing_datas) {
+                    fjlxes.add(fjlx.fjmc);
+                }
 
-            ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
-                    android.R.layout.simple_expandable_list_item_1,
-                    fjlxes);
+                ArrayAdapter d = new ArrayAdapter(getApplicationContext(),
+                        android.R.layout.simple_expandable_list_item_1,
+                        fjlxes);
 
-            fangjianleixing_list_view.setAdapter(d);
+                fangjianleixing_list_view.setAdapter(d);
 //            fangjianleixing_list_view.invalidate();
 
 
-            emptyLisView(yanshouduixiang_list_view);
-            emptyLisView(yanshouxiangmu_list_view);
+                emptyLisView(yanshouduixiang_list_view);
+                emptyLisView(yanshouxiangmu_list_view);
 
-            highLightView(danyuan_list_view, danyuan_datas.get(i).danyuanmingcheng);
-        }
+                highLightView(danyuan_list_view, danyuan_datas.get(i).danyuanmingcheng);
+            }
     }
 
     private class FangjianLeixingOnItemClickListener implements AdapterView.OnItemClickListener {

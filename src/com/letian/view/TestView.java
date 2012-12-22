@@ -23,6 +23,7 @@ import android.widget.EditText;
 
 public class TestView extends Activity {
 
+    private Button list_user;
 	private Button list_unit;
 	private Button list_louge;
     private Button list_hx;
@@ -39,6 +40,7 @@ public class TestView extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.test_view);
+        list_user = (Button) findViewById(R.id.list_user);
 		list_unit = (Button) findViewById(R.id.list_unit);
 		list_louge = (Button) findViewById(R.id.list_louge);
         list_fjlx = (Button)findViewById(R.id.list_fjlx);
@@ -49,6 +51,7 @@ public class TestView extends Activity {
 
         list_record = (Button) findViewById(R.id.list_record);
 //		set_admin_password= (Button) findViewById(R.id.set_admin_password);
+        list_user.setOnClickListener(new ListItemListener());
 		list_unit.setOnClickListener(new ListItemListener());
 		list_louge.setOnClickListener(new ListItemListener());
         list_fjlx.setOnClickListener(new ListItemListener());
@@ -94,6 +97,8 @@ public class TestView extends Activity {
             }
             else if(view.getId() == R.id.list_ysxm){
                 i.putExtra("tableToDisplay", YanshouXiangmu.TABLE_NAME);
+            }   else if(view.getId() == R.id.list_user)      {
+                i.putExtra("tableToDisplay", User.TABLE_NAME);
             }
             else if(view.getId() == R.id.list_record){
                 for(YfRecord r : YfRecord.findAll(getApplicationContext())){

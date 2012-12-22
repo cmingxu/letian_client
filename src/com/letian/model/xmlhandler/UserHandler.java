@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Time: 下午10:16
  * To change this template use File | Settings | File Templates.
  */
-public class UserHandler  extends DefaultHandler {
+public class UserHandler  extends BaseHandler {
 
     private ArrayList<User> users;
     private User currentUser;
@@ -27,7 +27,7 @@ public class UserHandler  extends DefaultHandler {
         this.context = context;
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getItems(){
         return this.users;
     }
     @Override
@@ -43,8 +43,13 @@ public class UserHandler  extends DefaultHandler {
         super.endElement(uri, localName, name);
 
         if (this.currentUser != null){
-            if (localName.equalsIgnoreCase("name")){
+            if (localName.equalsIgnoreCase("yonghuming")){
                 currentUser.name = builder.toString().replaceAll("\\s","");
+            } else  if (localName.equalsIgnoreCase("mima")){
+                currentUser.password = builder.toString().replaceAll("\\s","");
+            }
+            else  if (localName.equalsIgnoreCase("yonghuzu")){
+                currentUser.yonghuzu = builder.toString().replaceAll("\\s","");
             }
             else if (localName.equalsIgnoreCase("user")){
                 users.add(currentUser);

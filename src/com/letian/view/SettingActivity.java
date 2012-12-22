@@ -139,10 +139,9 @@ public class SettingActivity extends Activity {
         public void get_data_from_server() {
             Context context = getApplication();
             try {
+                User.syn(context);
                 Louge.syn(context);
-
                 Danyuan.syn(context);
-
                 FangjianLeixing.syn(context);
                 FangjianleixingYanshouduixiang.syn(context);
                 Huxing.syn(context);
@@ -150,6 +149,8 @@ public class SettingActivity extends Activity {
                 YanshouDuixiang.syn(context);
                 YanshouXiangmu.syn(context);
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("", e.toString());
                 progressDialog.dismiss();
                 handler.post(new Runnable() {
                     @Override
@@ -170,6 +171,7 @@ public class SettingActivity extends Activity {
         public void onClick(View arg0) {
             SQLiteDatabase db = LocalAccessor.getInstance(
                     SettingActivity.this.getApplicationContext()).openDB();
+            db.execSQL("drop table  if exists " + User.TABLE_NAME + ";");
             db.execSQL("drop table  if exists " + Danyuan.TABLE_NAME + ";");
             db.execSQL("drop table  if exists " + Louge.TABLE_NAME + ";");
             db.execSQL("drop table  if exists " + FangjianLeixing.TABLE_NAME + ";");
