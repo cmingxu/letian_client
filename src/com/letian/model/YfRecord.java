@@ -58,6 +58,11 @@ public class YfRecord extends Model {
     public String fangjianleixing_id;
     public String shoulouduixiang_id;
     public String shoulouxiangmu_id;
+    public String kfs_or_yz;
+
+    public boolean isKfs(){
+        return this.kfs_or_yz.equalsIgnoreCase(new String("kfs"));
+    }
 
 
     public static final String LOG_TAG = "YfRecordModel";
@@ -81,7 +86,8 @@ public class YfRecord extends Model {
             + "shoulouduixiang_id TEXT,"
             + "shoulouxiangmu_id TEXT,"
             + "save_to_server INTEGER,"
-            + "danyuan_bh TEXT"
+            + "danyuan_bh TEXT,"
+            + "kfs_or_yz TEXT"
             + ");";
 
 
@@ -219,7 +225,6 @@ public class YfRecord extends Model {
         db.update(YfRecord.TABLE_NAME, values, where, null);
         db.close();
 
-        this.displayAll(context);
     }
 
 
@@ -244,8 +249,10 @@ public class YfRecord extends Model {
         values.put("shoulouxiangmu_id", this.shoulouxiangmu_id);
         values.put("save_to_server", 1);
         values.put("danyuan_bh", this.danyuan_bh);
+        values.put("kfs_or_yz", this.kfs_or_yz);
 
 
+        Log.d(SelectorView.LOG_TAG, "save db kfs_or_yz" + this.kfs_or_yz);
         try {
             if (this.existInDb(context)) {
                 super.updateDb(context, YfRecord.TABLE_NAME, values, "id=" + this.id);
@@ -273,8 +280,13 @@ public class YfRecord extends Model {
 
 
     public boolean save_to_server(Context context) throws IOException, LTException {
-        String url = LocalAccessor.getInstance(context).get_server_url() + "/kfs_yfs";
-        String xmlString = null;
+        String url = null;
+        if(this.isKfs()){
+            url = LocalAccessor.getInstance(context).get_server_url() + "/kfs_yfs";
+        }else
+        {
+            url = LocalAccessor.getInstance(context).get_server_url() + "/yz_yfs";
+        }
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("yf[result]", this.hasProblem ? "not_ok" : "ok");
@@ -323,6 +335,8 @@ public class YfRecord extends Model {
                 ", fangjianleixing_id='" + fangjianleixing_id + '\'' +
                 ", shoulouduixiang_id='" + shoulouduixiang_id + '\'' +
                 ", shoulouxiangmu_id='" + shoulouxiangmu_id + '\'' +
+                ", kfs_or_yz='" + kfs_or_yz + '\'' +
+
                 ", context=" + context +
                 '}';
     }
@@ -347,7 +361,6 @@ public class YfRecord extends Model {
         cursor.moveToFirst();
 
         YfRecord a = new YfRecord(context);
-        a.displayAll(context);
 
         while (!cursor.isAfterLast()) {
 
@@ -368,7 +381,7 @@ public class YfRecord extends Model {
             r.setShoulouduixiang_id(cursor.getString(13));
             r.setShoulouxiangmu_id(cursor.getString(14));
             r.setDanyuan_bh(cursor.getString(16));
-
+            r.kfs_or_yz = cursor.getString(17);
 
             records.add(r);
 
@@ -388,6 +401,7 @@ public class YfRecord extends Model {
     public boolean existInDb(Context context) {
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         String sql;
+        Log.d(SelectorView.LOG_TAG, "exist in db" + this.kfs_or_yz);
         sql = "select * from " + TABLE_NAME + " where "
                 + " louge_bh = '" + this.louge_bh + "' and "
                 + " louge = '" + this.louge + "' and "
@@ -395,11 +409,10 @@ public class YfRecord extends Model {
                 + " shoulouduixiang = '" + this.shoulouduixiang + "' and "
                 + " shoulouxiangmu = '" + this.shoulouxiangmu + "' and "
                 + " danyuan = '" + this.danyuan + "' and "
-//                + " huxing = '"                + this.huxing + "' and "
                 + " danyuan_id = '" + this.danyuan_id + "' and "
-//                + " huxing_id = '"             + this.huxing_id + "' and "
                 + " fangjianleixing_id = '" + this.fangjianleixing_id + "' and "
                 + " shoulouduixiang_id = '" + this.shoulouduixiang_id + "' and "
+                + " kfs_or_yz = '" + this.kfs_or_yz + "' and "
                 + " shoulouxiangmu_id = '" + this.shoulouxiangmu_id + "'; ";
 
         Cursor cursor = null;
@@ -470,8 +483,8 @@ public class YfRecord extends Model {
                 Log.e(SelectorView.LOG_TAG, "shoulouduixiang_id" + cursor.getString(13));
                 Log.e(SelectorView.LOG_TAG, "shoulouxiangmu_id" + cursor.getString(14));
                 Log.e(SelectorView.LOG_TAG, "saved_tO_server" + cursor.getString(15));
-
-
+                Log.e(SelectorView.LOG_TAG, "danyuan_bh" + cursor.getString(16));
+                Log.e(SelectorView.LOG_TAG, "kfs_or_yz" + cursor.getString(17));
                 cursor.moveToNext();
             }
         } catch (Exception e) {

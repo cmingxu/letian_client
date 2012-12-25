@@ -51,13 +51,15 @@ public class Danyuan extends Model {
             + "createdTime TEXT" + ");";
 
 
-    public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao, String jiange) {
+    public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao, String jiange, String louceng, String loucengmingcheng) {
         this._id = _id;
         this.danyuanbianhao = danyuanbianhao;
         this.danyuanmingcheng = danyuanmingcheng;
         this.lougebianhao = lougebianhao;
         this.zhuhubianhao = zhuhubianhao;
         this.jiange = jiange;
+        this.louceng = louceng;
+        this.loucengmingcheng = loucengmingcheng;
 
     }
 
@@ -139,8 +141,8 @@ public class Danyuan extends Model {
         return res;
     }
 
-    public static ArrayList<String> distinct_louceng(Context context,
-                                                     String louge_bianhao) {
+    public static ArrayList<String> distinct_louceng_name(Context context,
+                                                      String louge_bianhao) {
         ArrayList<String> res = new ArrayList<String>();
         SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
         Cursor cursor = db.rawQuery("select * from Danyuan", null);
@@ -154,7 +156,43 @@ public class Danyuan extends Model {
 
         cursor.moveToFirst();
         while (cursor.isAfterLast() != true) {
-            res.add(cursor.getString(0));
+            res.add(cursor.getString(1));
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        db.close();
+        return res;
+    }
+
+
+    public static ArrayList<Danyuan> distinct_louceng(Context context,
+                                                     String louge_bianhao) {
+        ArrayList<Danyuan> res = new ArrayList<Danyuan>();
+        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
+        Cursor cursor = db.rawQuery("select * from Danyuan", null);
+        cursor.moveToFirst();
+
+
+        String sql = "select * from Danyuan where lougebianhao = '"
+                + louge_bianhao.replaceAll("\\s*", "") + "' group by loucengmingcheng order by _id ASC";
+
+        cursor = db.rawQuery(sql, null);
+
+        cursor.moveToFirst();
+        while (cursor.isAfterLast() != true) {
+            res.add(new Danyuan(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7)
+            ));
+
             cursor.moveToNext();
         }
 
@@ -185,6 +223,7 @@ public class Danyuan extends Model {
             return danyuans;
         }
         cursor.moveToFirst();
+        Log.d(SelectorView.LOG_TAG, "" + cursor.getCount());
         while (cursor.isAfterLast() != true) {
             danyuans.add(new Danyuan(
                     cursor.getInt(0),
@@ -192,8 +231,14 @@ public class Danyuan extends Model {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7)
+
+
+
             ));
+
             cursor.moveToNext();
         }
 

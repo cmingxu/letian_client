@@ -72,19 +72,14 @@ public class User extends Model {
             xmlString = BaseAuthenicationHttpClient.doRequest(url, this.name,
                     this.password);
         } catch (LTException e) {
-            Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
             Log.e(User.LOG_TAG, e.toString());
         }
-        Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDaaaaaaaaa" + xmlString);
         VerifiedInfo ret = new VerifiedInfo();
-        Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDaaaaaaaaasaefniwegfhwugfrhe" + xmlString);
         if (xmlString.contains("login.failed")) {
-            Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDfail");
             ret.verifyCode = VerifiedInfo.VERIFY_ERROR;
             ret.verifyMessage = "登录失败， 检查用户名密码";
         }
         else if ("" == xmlString) {
-            Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDaaaaaaaaaccccccc" );
             if (verifyFromDb()) {
                 ret.verifyCode = VerifiedInfo.VERIFY_SUCCESS;
                 ret.verifyMessage = "欢迎登录 " + this.name;
@@ -93,10 +88,9 @@ public class User extends Model {
                 ret.verifyMessage = "登录失败， 检查用户名密码";
             }
         } else {
-            Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDfail else");
             ret.verifyCode = VerifiedInfo.VERIFY_SUCCESS;
             ret.verifyMessage = "欢迎登录 " + this.name;
-        }      Log.e(User.LOG_TAG, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDaaaaaaaaxccccccccccccccca");
+        }
         return ret;
     }
 
@@ -240,7 +234,6 @@ public class User extends Model {
             cursor = db.rawQuery(sql, null);
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-
                 Log.e(User.LOG_TAG, "111111111111111111111111111");
                 Log.e(User.LOG_TAG, "yonghuzu" + cursor.getString(0));
                 Log.e(User.LOG_TAG, "name" + cursor.getString(1));

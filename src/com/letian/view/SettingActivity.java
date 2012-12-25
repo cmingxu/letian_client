@@ -200,7 +200,7 @@ public class SettingActivity extends Activity {
                 public void run() {
                     try {
 
-                        for (YfRecord record : YfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
+                        for (YfRecord record : YfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0 and kfs_or_yz = 'kfs'")) {
                             Log.d(SelectorView.LOG_TAG, record.shoulouxiangmu_id);
                             Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
 
@@ -244,7 +244,7 @@ public class SettingActivity extends Activity {
                 public void run() {
                     try {
 
-                        for (YzYfRecord record : YzYfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0")) {
+                        for (YfRecord record : YfRecord.findAll(SettingActivity.this.getApplicationContext(), "save_to_server = 0 and kfs_or_yz = 'yz'")) {
                             Log.d(SelectorView.LOG_TAG, Boolean.toString(record.saved));
                             if (record.save_to_server(SettingActivity.this.getApplicationContext())) {
                                 record.update_save_status(true);

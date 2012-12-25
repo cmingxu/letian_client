@@ -87,6 +87,7 @@ public class Main extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra("kfs_or_yz", "kfs");
                 intent.setClass(Main.this, SelectorView.class);
                 Main.this.startActivity(intent);
             }
@@ -97,7 +98,8 @@ public class Main extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(Main.this, YezhuSelectorView.class);
+                intent.putExtra("kfs_or_yz", "yz");
+                intent.setClass(Main.this, SelectorView.class);
                 Main.this.startActivity(intent);
             }
         });

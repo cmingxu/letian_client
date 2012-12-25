@@ -34,7 +34,7 @@ public class LoucengDialog extends Activity {
         unit_chooser_dialog_title = (TextView)findViewById(R.id.unit_chooser_dialog_title);
         unit_chooser_dialog_title.setText("选择单元");
         louge_bianhao = getIntent().getExtras().getString("louge_bianhao");
-        ArrayList<String> items = Danyuan.distinct_louceng(this.getApplicationContext(),louge_bianhao);
+        ArrayList<String> items = Danyuan.distinct_louceng_name(this.getApplicationContext(),louge_bianhao);
         listItems.addAll(items);
         
 		final ListView list = (ListView) findViewById(R.id.list);

@@ -53,8 +53,6 @@ public class SelectorView extends Activity {
     private ArrayList<YanshouXiangmu> yanshouXiangmu_datas;
 
 
-    int onSelectedViewColor = R.color.red;
-
     PopupWindow window;
 
     Button submit;
@@ -75,15 +73,20 @@ public class SelectorView extends Activity {
 
     private static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
 
-    private Uri fileUri;
-
 
     public void onCreate(Bundle savedInstanceState) {
 
         this.record = new YfRecord(getApplicationContext());
+        record.kfs_or_yz = getIntent().getStringExtra("kfs_or_yz");
+
+        Log.d(SelectorView.LOG_TAG, record.kfs_or_yz)      ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selector_view);
-        this.setTitle(getResources().getString(R.string.title));
+        if(record.isKfs())
+        this.setTitle(getResources().getString(R.string.title) + " -  开发商");
+        else{
+        this.setTitle(getResources().getString(R.string.title) + " -   业主");
+        }
         louge_list_view = (ListView) findViewById(R.id.louge_list_view);
         danyuan_list_view = (ListView) findViewById(R.id.danyuan_list_view);
         fangjianleixing_list_view = (ListView) findViewById(R.id.fangjianleixing_list_view);
@@ -126,13 +129,11 @@ public class SelectorView extends Activity {
                     danyuans);
 
             danyuan_list_view.setAdapter(d);
-//            danyuan_list_view.invalidate();
-
             emptyLisView(fangjianleixing_list_view);
             emptyLisView(yanshouduixiang_list_view);
             emptyLisView(yanshouxiangmu_list_view);
 
-            highLightView(louge_list_view, louge_datas.get(i).lougemingcheng);
+            highLightView(louge_list_view, l);
 
         }
     }
@@ -165,13 +166,12 @@ public class SelectorView extends Activity {
                         fjlxes);
 
                 fangjianleixing_list_view.setAdapter(d);
-//            fangjianleixing_list_view.invalidate();
 
 
                 emptyLisView(yanshouduixiang_list_view);
                 emptyLisView(yanshouxiangmu_list_view);
 
-                highLightView(danyuan_list_view, danyuan_datas.get(i).danyuanmingcheng);
+                highLightView(danyuan_list_view, l);
             }
     }
 
@@ -192,13 +192,12 @@ public class SelectorView extends Activity {
                     ysdxes);
 
             yanshouduixiang_list_view.setAdapter(d);
-//            yanshouduixiang_list_view.invalidate();
 
             emptyLisView(yanshouxiangmu_list_view);
 
             fillDb(fangjianleixing_datas.get(i)._id);
 
-            highLightView(fangjianleixing_list_view, fangjianleixing_datas.get(i).fjmc);
+            highLightView(fangjianleixing_list_view, l);
         }
 
     }
@@ -217,9 +216,9 @@ public class SelectorView extends Activity {
                 record.shoulouxiangmu_id = ysxm._id;
                 if (record.existInDb(SelectorView.this.getApplicationContext())) {
                     if (record.hasProblem) {
-                        ysxms.add("[有问题]" + ysxm.xmmc);
+                        ysxms.add("[不合格]" + ysxm.xmmc);
                     } else {
-                        ysxms.add("[无问题]" + ysxm.xmmc);
+                        ysxms.add("[合格]" + ysxm.xmmc);
 
                     }
                 } else {
@@ -233,10 +232,8 @@ public class SelectorView extends Activity {
 
 
             yanshouxiangmu_list_view.setAdapter(yxa);
-//            yanshouxiangmu_list_view.invalidate();
 
-
-            highLightView(yanshouduixiang_list_view, yanshouduixiang_datas.get(i).dxmc);
+            highLightView(yanshouduixiang_list_view, l);
 
         }
 
@@ -250,7 +247,7 @@ public class SelectorView extends Activity {
             record.setShoulouxiangmu(yanshouXiangmu_datas.get(i).xmmc);
             record.setShoulouxiangmu_id(yanshouXiangmu_datas.get(i)._id);
 
-            highLightView(yanshouxiangmu_list_view, yanshouXiangmu_datas.get(i).xmmc);
+            highLightView(yanshouxiangmu_list_view, l);
             popAwindow(yanshouduixiang_list_view);
 
         }
@@ -313,7 +310,6 @@ public class SelectorView extends Activity {
                             handler.post(new Runnable() {
                                 public void run() {
 
-//                                    Toast.makeText(SelectorView.this.getApplicationContext(), "上传成功!", Toast.LENGTH_LONG).show();
                                     new AlertDialog.Builder(SelectorView.this).setMessage(
                                             "保存成功!").setPositiveButton("Okay",
                                             null).show();
@@ -409,8 +405,8 @@ public class SelectorView extends Activity {
     }
 
 
-    public void highLightView(ListView view, String text) {
-
+    public void highLightView(ListView view, long l) {
+//        view.getChildAt((int)l).setBackgroundColor(R.color.red);
 
     }
 
@@ -440,6 +436,7 @@ public class SelectorView extends Activity {
                         r.reason = "";
                         r.hasProblem = false;
                         r.saved = false;
+                        r.kfs_or_yz = record.kfs_or_yz;
                         if (r.existInDb(SelectorView.this.getApplicationContext())) {
                         } else {
                             r.save_to_db();
