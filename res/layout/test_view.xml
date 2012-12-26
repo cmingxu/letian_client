@@ -35,6 +35,8 @@
         <Button android:layout_width="fill_parent" android:id="@+id/list_record"
                 android:layout_height="wrap_content" android:text="验收结果"></Button>
 
+        <Button android:layout_width="fill_parent" android:id="@+id/weixiudan"
+                android:layout_height="wrap_content" android:text="维修单"></Button>
 
 
         <Button android:layout_width="fill_parent" android:id="@+id/back"

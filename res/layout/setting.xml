@@ -17,8 +17,8 @@
     <Button android:layout_width="fill_parent" android:id="@+id/upload_yz_yfd"
             android:layout_height="wrap_content" android:text="上传业主验房单"></Button>
 
-
-
+    <Button android:layout_width="fill_parent" android:id="@+id/upload_weixiudan"
+            android:layout_height="wrap_content" android:text="上传业维修单"></Button>
 
 
     <Button android:layout_width="fill_parent" android:id="@+id/drop_button"

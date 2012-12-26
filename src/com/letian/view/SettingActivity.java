@@ -36,6 +36,7 @@ public class SettingActivity extends Activity {
     private Button drop_button;
     private Button upload_kfs_yfd;
     private Button upload_yz_yfd;
+    private Button upload_weixiudan;
 
 
     ProgressDialog progressDialog;
@@ -46,7 +47,7 @@ public class SettingActivity extends Activity {
         handler = new Handler();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
-        this.setTitle(getResources().getString(R.string.title));
+        this.setTitle(getResources().getString(R.string.title) + " -  设置");
         syncBtn = (Button) findViewById(R.id.sync_xml_btn);
         backBtn = (Button) findViewById(R.id.setting_back);
         syncBtn.setOnClickListener(new ActionListener(new TongbuListener(), "确认要同步， 注意同步前需清空数据库!"));
@@ -56,9 +57,11 @@ public class SettingActivity extends Activity {
 
         upload_kfs_yfd = (Button) findViewById(R.id.upload_kfs_yfd);
         upload_yz_yfd = (Button) findViewById(R.id.upload_yz_yfd);
+        upload_weixiudan = (Button) findViewById(R.id.upload_weixiudan);
         upload_kfs_yfd.setOnClickListener(new ActionListener(new UploadKfsYfdClickListener(), "确认要上传开发商验房单？"));
 
         upload_yz_yfd.setOnClickListener(new ActionListener(new UploadYzYfdClickListener(), "确认要上传业主验房单?"));
+        upload_weixiudan.setOnClickListener(new ActionListener(new UploadWeixiudanClickListener(), "确认要上传维修单单?"));
 
 
         drop_button.setOnClickListener(new ActionListener(new DropButtonListener(), "确认要删除本机上的所有数据库表？"));
@@ -181,6 +184,7 @@ public class SettingActivity extends Activity {
             db.execSQL("drop table  if exists " + YanshouXiangmu.TABLE_NAME + ";");
             db.execSQL("drop table  if exists " + YanshouDuixiang.TABLE_NAME + ";");
             db.execSQL("drop table  if exists " + YfRecord.TABLE_NAME + ";");
+            db.execSQL("drop table  if exists " + Weixiudan.TABLE_NAME + ";");
             db.close();
             Toast.makeText(SettingActivity.this.getApplicationContext(), "数据库已经清空， 请重新同步", Toast.LENGTH_LONG).show();
 
@@ -272,5 +276,46 @@ public class SettingActivity extends Activity {
         }
     }
 
+
+    private class UploadWeixiudanClickListener implements CustomOnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            progressDialog = ProgressDialog.show(SettingActivity.this, "保存中， 请稍候...",
+                    null, true);
+
+
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+
+                        for (Weixiudan record : Weixiudan.findAll(SettingActivity.this.getApplicationContext(), "is_synced = 0")) {
+
+                            if (record.save_to_server()) {
+                                record.update_syned();
+
+                            }
+                        }
+
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "保存成功!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(SettingActivity.this.getApplicationContext(), "网络有问题， 稍后重试!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                    progressDialog.dismiss();
+                }
+            }.start();
+
+        }
+    }
 
 }

@@ -32,6 +32,7 @@ public class TestView extends Activity {
     private Button list_fjlx_ysdx;
     private Button list_ysxm;
     private Button list_record;
+    private Button weixiudan;
 
 	private Button set_admin_password;
     private Button back;
@@ -48,6 +49,7 @@ public class TestView extends Activity {
         list_ysdx = (Button) findViewById(R.id.list_ysdx);
         list_fjlx_ysdx = (Button) findViewById(R.id.list_fjlx_ysdx);
         list_ysxm = (Button) findViewById(R.id.list_ysxm);
+        weixiudan = (Button) findViewById(R.id.weixiudan);
 
         list_record = (Button) findViewById(R.id.list_record);
 //		set_admin_password= (Button) findViewById(R.id.set_admin_password);
@@ -60,6 +62,7 @@ public class TestView extends Activity {
         list_fjlx_ysdx.setOnClickListener(new ListItemListener());
         list_ysxm.setOnClickListener(new ListItemListener());
         list_record.setOnClickListener(new ListItemListener());
+        weixiudan.setOnClickListener(new ListItemListener());
 
 //		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
 	    back = (Button)findViewById(R.id.back);
@@ -99,6 +102,9 @@ public class TestView extends Activity {
                 i.putExtra("tableToDisplay", YanshouXiangmu.TABLE_NAME);
             }   else if(view.getId() == R.id.list_user)      {
                 i.putExtra("tableToDisplay", User.TABLE_NAME);
+            }
+            else if(view.getId() == R.id.weixiudan)      {
+                i.putExtra("tableToDisplay", Weixiudan.TABLE_NAME);
             }
             else if(view.getId() == R.id.list_record){
                 for(YfRecord r : YfRecord.findAll(getApplicationContext())){

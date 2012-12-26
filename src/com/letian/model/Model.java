@@ -73,7 +73,7 @@ public class Model {
 
             cursor.moveToFirst();
             while (cursor.isAfterLast() != true) {
-                Log.d(SelectorView.LOG_TAG, "wooo"  +cursor.getString(1)) ;
+                Log.d(SelectorView.LOG_TAG, "wooo"  +cursor.getString(2)) ;
                 res.add(cursor.getString(1));
                 cursor.moveToNext();
             }

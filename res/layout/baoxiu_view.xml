@@ -37,17 +37,6 @@
             android:layout_height="fill_parent"
             android:id="@+id/zhuhu_list_view"></ListView>
 
-        <LinearLayout android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="wrap_content">
-            <EditText android:layout_height="500dip" android:layout_width="fill_parent" android:id="@+id/content"></EditText>
-            <LinearLayout android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent">
-                <Button android:id="@+id/submit" android:text="提交" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-
-                <Button android:id="@+id/take_pic" android:text="拍照" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-
-                <Button android:id="@+id/cancel" android:text="取消" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-
-            </LinearLayout>
-        </LinearLayout>
 
     </LinearLayout>
 
