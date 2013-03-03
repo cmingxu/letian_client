@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.letian.Main;
+import com.letian.controller.Main;
 import com.letian.R;
 
 /**

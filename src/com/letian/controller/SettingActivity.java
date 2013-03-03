@@ -1,4 +1,4 @@
-package com.letian.view;
+package com.letian.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,12 +13,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.letian.Login;
-import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.LocalAccessor;
 import com.letian.lib.NetworkConnection;
 import com.letian.model.*;
+import com.letian.view.CustomOnClickListener;
+import com.letian.view.SelectorView;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +27,7 @@ import com.letian.model.*;
  * Time: 下午9:04
  * To change this template use File | Settings | File Templates.
  */
-public class SettingActivity extends Activity {
+public class SettingActivity extends BaseActivity {
     public static final String LOG_TAG = "SettingActivity";
 
     private Button syncBtn;

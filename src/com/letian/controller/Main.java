@@ -1,24 +1,19 @@
-package com.letian;
+package com.letian.controller;
 
 
-
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import com.letian.R;
 import com.letian.view.*;
 
-public class Main extends Activity {
+public class Main extends BaseActivity {
 	ImageView logout_view;
     ImageView kaifashang_shoulou_view;
     ImageView setting_view;
@@ -179,33 +174,6 @@ public class Main extends Activity {
 
     @Override
     protected void onDestroy() {
-
-
-        super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Log.d(SelectorView.LOG_TAG, "BACKDDDDDDD");
-            new AlertDialog.Builder(Main.this).setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent();
-                    intent.setClass(Main.this, Login.class);
-                    Main.this.startActivity(intent);
-                    Main.this.finish();
-                }
-            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            }).setTitle("确认要退出程序?").show();
-
-
-
-            return true;
-        }
-        return false;
+         super.onDestroy();    //To change body of overridden methods use File | Settings | File Templates.
     }
 }

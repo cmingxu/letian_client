@@ -6,19 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.BaseHandler;
-import com.letian.model.xmlhandler.HuxingFangjianLeixingHandler;
 import com.letian.view.SelectorView;
-import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Model {
     public static int max_count(Context context, String tableName) {
@@ -59,7 +55,6 @@ public class Model {
 
     public static ArrayList<String> inArrayList(Context context, String table) {
 
-        Log.d(Constants.GENERAL_MESSAGE, table);
 
         try {
 

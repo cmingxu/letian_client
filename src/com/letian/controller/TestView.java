@@ -1,13 +1,9 @@
-package com.letian.view;
+package com.letian.controller;
 
 import android.util.Log;
-import com.letian.Main;
 import com.letian.R;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.*;
-import com.letian.test.ListLouge;
-import com.letian.test.ListUnit;
-import com.letian.test.ListZhuhu;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,8 +16,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import com.letian.view.ListItem;
+import com.letian.view.SelectorView;
 
-public class TestView extends Activity {
+public class TestView extends BaseActivity {
 
     private Button list_user;
 	private Button list_unit;
@@ -52,7 +50,6 @@ public class TestView extends Activity {
         weixiudan = (Button) findViewById(R.id.weixiudan);
 
         list_record = (Button) findViewById(R.id.list_record);
-//		set_admin_password= (Button) findViewById(R.id.set_admin_password);
         list_user.setOnClickListener(new ListItemListener());
 		list_unit.setOnClickListener(new ListItemListener());
 		list_louge.setOnClickListener(new ListItemListener());
@@ -64,7 +61,6 @@ public class TestView extends Activity {
         list_record.setOnClickListener(new ListItemListener());
         weixiudan.setOnClickListener(new ListItemListener());
 
-//		set_admin_password.setOnClickListener(new SetAdminPasswordListener());
 	    back = (Button)findViewById(R.id.back);
 
         back.setOnClickListener(new Button.OnClickListener() {

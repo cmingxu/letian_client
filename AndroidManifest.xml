@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.letian" android:versionCode="1" android:versionName="1.0">
-	<application android:icon="@drawable/icon_b" android:label="@string/app_name">
-		<activity android:name=".Login" android:label="@string/app_name">
+	<application android:icon="@drawable/icon_b" android:label="@string/app_name" android:name=".LetianPDA">
+		<activity android:name=".controller.Login" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
 
-        <activity android:name=".Main" android:label="@string/app_name" />
+        <activity android:name=".controller.Main" android:label="@string/app_name" />
         <activity android:name=".view.ComingSoon"/>
-        <activity android:name=".view.SettingActivity"/>
-        <activity android:name=".view.TestView"/>
+        <activity android:name=".controller.SettingActivity"/>
+        <activity android:name=".controller.TestView"/>
         <activity android:name=".view.ListItem"/>
         <activity android:name=".view.SelectorView"/>
         <activity android:name=".view.YezhuSelectorView"/>
         <activity android:name=".view.Baoxiu"/>
+        <activity android:name=".controller.BaseActivity"/>
 
     </application>
 

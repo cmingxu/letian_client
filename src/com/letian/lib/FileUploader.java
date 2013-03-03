@@ -168,7 +168,6 @@ private static String getResponseOrig(HttpURLConnection conn)
  * @param fieldName - name of file field
  * @param fieldValue - file name
  * @param type - mime type
- * @param fileInputStream - stream of bytes that get sent up
  */
 private static void writeFileField(
     String fieldName,

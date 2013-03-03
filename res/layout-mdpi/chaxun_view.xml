@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bg">
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical">
+
+		<Button android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="选择单元"
+			android:id="@+id/choose_unit_button">
+		</Button>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textStyle="bold"
+			android:textSize="25dip" android:id="@+id/unit_address" />
+	</LinearLayout>
+
+	<TableLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_marginTop="20dip">
+		<TableRow android:gravity="center_vertical|center_horizontal">
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textStyle="bold"
+					android:textSize="25dip" android:text="住户名称"
+					android:layout_alignParentBottom="true" android:gravity="left" />
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+					android:textStyle="bold" android:textSize="25dip" android:gravity="right"
+					android:layout_marginLeft="15dip" android:textColor="@color/red"
+					android:layout_alignParentBottom="true" android:id="@+id/zhuhumingcheng" />
+			</LinearLayout>
+		</TableRow>
+
+
+
+
+		<TableRow android:layout_width="fill_parent"
+			android:gravity="center_vertical|center_horizontal"
+			android:paddingTop="10dip">
+
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textStyle="bold"
+					android:textSize="25dip" android:text="手机号码"
+					android:layout_alignParentBottom="true" android:gravity="left" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_marginLeft="15dip" android:textColor="@color/red"
+					android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+					android:textStyle="bold" android:textSize="25dip" android:gravity="right"
+					android:layout_alignParentBottom="true" android:id="@+id/shoujihaoma" />
+			</LinearLayout>
+
+
+
+
+
+
+		</TableRow>
+
+
+
+
+		<TableRow android:layout_width="fill_parent"
+			android:gravity="center_vertical|center_horizontal"
+			android:paddingTop="10dip">
+
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textStyle="bold"
+					android:textSize="25dip" android:text="联系电话"
+					android:layout_alignParentBottom="true" android:gravity="left" />
+				<TextView android:textStyle="bold" android:textSize="25dip"
+					android:layout_marginLeft="15dip" android:textColor="@color/red"
+					android:gravity="right" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+					android:layout_alignParentBottom="true" android:id="@+id/lianxidianhua" />
+			</LinearLayout>
+
+
+
+
+
+
+		</TableRow>
+	</TableLayout>
+</LinearLayout>

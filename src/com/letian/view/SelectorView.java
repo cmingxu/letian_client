@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,15 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.letian.Main;
 import com.letian.R;
 import com.letian.model.*;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static com.letian.R.color.red;
 
 /**
  * Created with IntelliJ IDEA.

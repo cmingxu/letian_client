@@ -1,12 +1,8 @@
 package com.letian.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,30 +11,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.letian.lib.BaseAuthenicationHttpClient;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.view.SelectorView;
 
 public class Danyuan extends Model {
-    public Integer _id;
-
-    public String danyuanbianhao;
-
-    public String danyuanmingcheng;
-
-    public String lougebianhao;
-
-    public String zhuhubianhao;
-    public String louceng;
-    public String jiange;
-    public String loucengmingcheng;
-
     public static final String LOG_TAG = "DANYUAN_MODEL";
     public static final String TABLE_NAME = "DANYUAN";
-    public Context context;
-
-
     private static final String SQL_CREATE_TABLE_MESSAGE = "CREATE TABLE IF NOT EXISTS Danyuan("
             + "_id INTEGER PRIMARY KEY,"
             + "danyuanbianhao TEXT,"
@@ -49,6 +28,15 @@ public class Danyuan extends Model {
             + "louceng TEXT,"
             + "loucengmingcheng TEXT,"
             + "createdTime TEXT" + ");";
+    public Integer _id;
+    public String danyuanbianhao;
+    public String danyuanmingcheng;
+    public String lougebianhao;
+    public String zhuhubianhao;
+    public String louceng;
+    public String jiange;
+    public String loucengmingcheng;
+    public Context context;
 
 
     public Danyuan(Integer _id, String danyuanbianhao, String danyuanmingcheng, String lougebianhao, String zhuhubianhao, String jiange, String louceng, String loucengmingcheng) {
@@ -98,22 +86,6 @@ public class Danyuan extends Model {
         }
 
     }
-
-
-    public boolean save_into_db() throws LTException {
-        ContentValues values = new ContentValues();
-        values.put("danyuanbianhao", this.danyuanbianhao);
-        values.put("danyuanmingcheng", this.danyuanmingcheng);
-        values.put("lougebianhao", this.lougebianhao);
-        values.put("zhuhubianhao", this.zhuhubianhao);
-        values.put("jiange", this.jiange);
-        values.put("louceng", this.louceng);
-        values.put("loucengmingcheng", this.loucengmingcheng);
-        values.put("createdTime", (new Date()).toString());
-
-        return super.save_into_db(context, Danyuan.TABLE_NAME, values);
-    }
-
 
     public static HashMap<String, String> mingcheng_bianhao_map(
             Context context, String loucengmingcheng, String lougebianhao) {
@@ -165,7 +137,6 @@ public class Danyuan extends Model {
         db.close();
         return res;
     }
-
 
     public static ArrayList<Danyuan> distinct_louceng(Context context,
                                                      String louge_bianhao) {
@@ -245,6 +216,20 @@ public class Danyuan extends Model {
         cursor.close();
         db.close();
         return danyuans;
+    }
+
+    public boolean save_into_db() throws LTException {
+        ContentValues values = new ContentValues();
+        values.put("danyuanbianhao", this.danyuanbianhao);
+        values.put("danyuanmingcheng", this.danyuanmingcheng);
+        values.put("lougebianhao", this.lougebianhao);
+        values.put("zhuhubianhao", this.zhuhubianhao);
+        values.put("jiange", this.jiange);
+        values.put("louceng", this.louceng);
+        values.put("loucengmingcheng", this.loucengmingcheng);
+        values.put("createdTime", (new Date()).toString());
+
+        return super.save_into_db(context, Danyuan.TABLE_NAME, values);
     }
 
 }

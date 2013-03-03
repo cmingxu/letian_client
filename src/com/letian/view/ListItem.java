@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import com.letian.R;
-import com.letian.lib.Constants;
-import com.letian.model.Danyuan;
 import com.letian.model.Model;
 
 import java.util.ArrayList;
@@ -31,7 +28,6 @@ public class ListItem extends Activity {
         tableToDisplay = getIntent().getStringExtra("tableToDisplay");
         list_view = (ListView)findViewById(R.id.custom_list_view);
 
-        Log.d(Constants.GENERAL_MESSAGE, tableToDisplay);
 
         dataList = Model.inArrayList(getApplicationContext(), tableToDisplay);
 

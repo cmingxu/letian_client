@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
-import com.letian.model.xmlhandler.FangjianLeixingHandler;
 import com.letian.model.xmlhandler.HuxingHandler;
 
 import java.util.ArrayList;

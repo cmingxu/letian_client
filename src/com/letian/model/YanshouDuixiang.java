@@ -6,19 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
-import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.model.xmlhandler.YanshouduixiangHandler;
 import com.letian.view.SelectorView;
 
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.

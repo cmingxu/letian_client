@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<FrameLayout android:id="@+id/preview_frame"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="Camera Demo"
+			android:textSize="24sp" />
+		<com.letian.view.PrevView android:id="@+id/preview"
+			android:layout_width="fill_parent" android:layout_height="fill_parent">
+		</com.letian.view.PrevView>
+
+		<LinearLayout android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<Button android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/buttonClick"
+				android:text="拍照" android:layout_gravity="center"></Button>
+
+			<Button android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/returnBtn"
+				android:text="返回" android:layout_gravity="center"></Button>
+		</LinearLayout>
+	</FrameLayout>
+</LinearLayout>

@@ -1,15 +1,6 @@
 package com.letian.model;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,11 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.letian.lib.Base64;
 import com.letian.lib.BaseAuthenicationHttpClient;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
-import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.model.xmlhandler.UserHandler;
 import com.letian.view.SelectorView;
 
@@ -169,9 +157,7 @@ public class User extends Model {
         this.password = password;
     }
 
-    public boolean update() {
-        return false;
-    }
+
 
     public static void set_current_user(User user, Context context) {
         current_user = user;
@@ -206,19 +192,7 @@ public class User extends Model {
         return user;
     }
 
-    public static boolean is_server_reachable(String addr) throws IOException {
-        boolean result = false;
-        URL url = null;
-        HttpURLConnection connection = null;
-        InputStreamReader in = null;
-        url = new URL(addr);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setConnectTimeout(5 * 1000);
-        result = (connection.getResponseCode() == 200);
 
-        return result;
-
-    }
 
     public String name() {
         return this.name;

@@ -71,7 +71,6 @@ public class YanshouduixiangHandler extends BaseHandler {
         super.startElement(uri, localName, name, attributes);
 
         if (localName.equalsIgnoreCase("ysdx")){
-
             this.currentYanshouDuixiang = new YanshouDuixiang(context);
         }
 

@@ -1,6 +1,8 @@
-package com.letian;
+package com.letian.controller;
 
 import android.widget.Toast;
+import com.letian.LetianPDA;
+import com.letian.R;
 import com.letian.lib.LocalAccessor;
 import com.letian.lib.NetworkConnection;
 import com.letian.model.User;
@@ -15,16 +17,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Login extends Activity {
+public class Login extends BaseActivity {
     public static final String LOG_TAG = "Login_Activty";
-    public static final int SHEZHI = Menu.FIRST;
     private EditText login;
     private EditText password;
     private Button login_button;
@@ -48,10 +47,8 @@ public class Login extends Activity {
         setting_button = (Button) findViewById(R.id.setting_button);
         cancel_button = (Button) findViewById(R.id.cancel_button);
 
-
-        User last_user = User.last_user(this.getApplicationContext());
-        login.setText(last_user.name);
-        password.setText(last_user.password);
+        login.setText(LetianPDA.get("user_name", ""));
+        password.setText(LetianPDA.get("password", ""));
 
         login_button.setOnClickListener(new LoginListener());
         setting_button.setOnClickListener(new SettingListener());
@@ -101,7 +98,7 @@ public class Login extends Activity {
                                 public void run() {
                                     try {
                                         String addr_str = addr.getText().toString().trim();
-                                        if (User.is_server_reachable(addr_str)) {
+                                        if (LetianPDA.is_server_reachable(addr_str)) {
                                             LocalAccessor.getInstance(
                                                     Login.this.getApplicationContext())
                                                     .set_server_url(addr_str);
@@ -200,55 +197,4 @@ public class Login extends Activity {
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.e("onKeyDown:", " keyCode=" + keyCode + " KeyEvent=" + event);
-        boolean should_capture = false;
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_UP:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_0:
-                should_capture = true;
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                should_capture = true;
-                break;
-
-            case KeyEvent.KEYCODE_CALL:
-                should_capture = true;
-                break;
-
-            case KeyEvent.KEYCODE_ENDCALL:
-                should_capture = true;
-                break;
-
-            case KeyEvent.KEYCODE_HOME:
-                should_capture = true;
-                break;
-        }
-        if (should_capture) {
-            return false;
-        }
-        return super.onKeyDown(keyCode, event);
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        this.onResume();
-    }
 }

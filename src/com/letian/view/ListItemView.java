@@ -49,19 +49,7 @@ public class ListItemView extends LinearLayout {
 				android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 	}
 
-	/**
-	 * Convenience method to set the title of a SpeechView
-	 */
-	public void setTitle(String title) {
-		mTitle.setText(title);
-	}
 
-	/**
-	 * Convenience method to set the dialogue of a SpeechView
-	 */
-	public void setDialogue(String words) {
-		mDialogue.setText(words);
-	}
 
 	private TextView mTitle;
 	private TextView mDialogue;

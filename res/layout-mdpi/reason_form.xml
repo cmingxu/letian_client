@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent"
+                  android:layout_margin="20dip"
+            android:gravity="center_horizontal"
+            >
+    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"
+              android:id="@+id/nav" android:textSize="30dip"></TextView>
+    </LinearLayout>
+
+
+
+    <LinearLayout android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:orientation="horizontal"
+            >
+
+        <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提交"
+
+                />
+
+        <Button
+                android:id="@+id/take_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拍照"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="540dip"
+
+
+                />
+
+        <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:layout_marginLeft="540dip"
+
+                />
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_height="fill_parent"
+                  android:layout_width="fill_parent"
+                  android:id="@+id/edit_fields"
+                  android:orientation="vertical"
+            >
+
+        <EditText android:layout_height="400px"
+                  android:layout_width="fill_parent"
+                  android:gravity="top"
+                  android:id="@+id/reason_text_view">
+        </EditText>
+
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -15,7 +15,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.letian.lib.BaseAuthenicationHttpClient;
-import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.ZhuhuHandler;
 
@@ -40,10 +39,7 @@ public class Zhuhu extends Model {
 			+ "createdTime TEXT"
 			+ ");";
 
-//	private static final String COLLECTION_PATH = Constants.LT_BASE_URL
-//			+ "zhuhus.xml";
 
-	
 	public Zhuhu(Context context) {
 		this.context = context;
 
@@ -130,16 +126,6 @@ public class Zhuhu extends Model {
 		return offset;
 	}
 	
-	
-	public static Cursor getScrollDataCursor(long startIndex, long maxCount,Context context) {
-
-		SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-		String sql = "select * from Zhuhu limit ?,?";	
-		String[] selectionArgs = { String.valueOf(startIndex),
-				String.valueOf(maxCount) };
-		Cursor cursor = db.rawQuery(sql, selectionArgs);
-		return cursor;
-	}
 
 
 
