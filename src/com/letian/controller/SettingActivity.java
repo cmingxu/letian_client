@@ -43,7 +43,7 @@ public class SettingActivity extends BaseActivity {
     Handler handler = new Handler();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         handler = new Handler();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);

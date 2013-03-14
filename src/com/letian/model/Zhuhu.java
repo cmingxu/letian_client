@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.letian.lib.BaseAuthenicationHttpClient;
+import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.ZhuhuHandler;
 

@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.letian.lib.BaseAuthenicationHttpClient;
+import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.DanyuanHandler;
 import com.letian.view.SelectorView;
@@ -69,6 +70,7 @@ public class Danyuan extends Model {
 
             int offset = Model.max_count(context, "Danyuan");
             Log.d(LOG_TAG, "syn start danyuan");
+
             String params = "?offset=" + offset + "&limit="
                     + Constants.EACH_SLICE;
             xml = BaseAuthenicationHttpClient.doRequest(url + params,

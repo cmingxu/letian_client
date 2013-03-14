@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.letian.lib.BaseAuthenicationHttpClient;
+import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.YanshouduixiangHandler;
 import com.letian.view.SelectorView;
@@ -61,8 +62,7 @@ public class YanshouDuixiang extends Model{
 
                 int offset = Model.max_count(context, TABLE_NAME);
                 Log.d(LOG_TAG, "syn start danyuan");
-                String params = "?offset=" + offset + "&limit="
-                        + Constants.EACH_SLICE;
+                String params = "?offset=" + offset + "&limit=";
                 xml = BaseAuthenicationHttpClient.doRequest(url + params,
                         User.current_user.name, User.current_user.password);
 

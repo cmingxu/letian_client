@@ -70,7 +70,7 @@ public class BaseAuthenicationHttpClient {
 	        URL url = new URL (urlString);
 
 	        URLConnection uc = url.openConnection();
-	        uc.setConnectTimeout(Constants.TIMEOUT);
+//	        uc.setConnectTimeout(Constants.TIMEOUT);
 	        String userPassword = name+":"+password;
 	        String encoding = Base64.encode(userPassword).trim();
 	        

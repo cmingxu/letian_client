@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.letian.lib.BaseAuthenicationHttpClient;
+import com.letian.lib.Constants;
 import com.letian.lib.LocalAccessor;
 import com.letian.model.xmlhandler.UserHandler;
 import com.letian.view.SelectorView;
@@ -17,7 +18,7 @@ public class User extends Model {
 
     public static final String TABLE_NAME = "User";
     private static final String LOG_TAG = "UserLogTag";
-    private static final String default_data = "insert into  Misc values(1,'System','123',0,' " + Constants.SERVER_PATH + "');";
+//    private static final String default_data = "insert into  Misc values(1,'System','123',0,' " + Constants.SERVER_PATH + "');";
     public String name;
     public int remember_me;
     public String password;
@@ -172,25 +173,6 @@ public class User extends Model {
 
     }
 
-    public static User last_user(Context context) {
-        Cursor cursor;
-        User user;
-        LocalAccessor.getInstance(context).create_db(SQL_CREATE_TABLE_MESSAGE);
-        SQLiteDatabase db = LocalAccessor.getInstance(context).openDB();
-
-        String sql = "select * from Misc;";
-        cursor = db.rawQuery(sql, null);
-        if (cursor.getCount() == 0) {
-            db.execSQL(default_data);
-        }
-        cursor = db.rawQuery(sql, null);
-        cursor.moveToLast();
-        user = new User(cursor.getString(1), cursor.getString(2));
-        user.remember_me = cursor.getInt(3);
-        cursor.close();
-        db.close();
-        return user;
-    }
 
 
 
